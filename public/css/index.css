@@ -7,8 +7,11 @@
     text-decoration: none;
     scroll-behavior: smooth;
     scroll-padding-top: 3rem;
+    text-decoration: none;
 }
-
+a{
+    text-decoration: none;
+}
 :root{
     --main-color : #ff9f0d;
     --text-color : #fff;

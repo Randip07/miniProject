@@ -12,5 +12,9 @@ app.listen(port, ()=>{
 })
 
 app.get("/home", (req, res) => {
-    res.render("index.ejs")
+    res.render("home.ejs")
+})
+
+app.get("/login", (req, res) => {
+    res.render("login.ejs")
 })

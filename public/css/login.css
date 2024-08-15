@@ -1,0 +1,111 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    scroll-padding-top: 3rem;
+
+}
+
+:root{
+    --main-color : #ff9f0d;
+    --text-color : #fff;
+    --other-color : #212121;
+    --second-color : #7c7c7c;
+    --bg-color : #111111;
+
+    --big-font : 4.5rem;
+    --h2-font : 2.5rem;
+    --p-font : 0.8rem;
+}
+
+
+.container{
+    background-color: #f4f1f1;
+    width: 30%;
+    height: auto;
+    padding: 3rem;
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+
+}
+
+.text{
+    display: flex;
+}
+
+.textDiv{
+    width: 70%;
+}
+
+.text > h2{
+    font-size: var(--h2-font);
+    
+}
+
+p{
+    font-size: var(--p-font);
+    color: var(--second-color);
+}
+
+b{
+    color: #111111;
+}
+
+.imgDiv{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.imgDiv img{
+    width: 50%;
+    height: auto;
+}
+
+#inputNumber{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    background: transparent;
+    padding-left: 0;
+    &:focus {
+        background: transparent;
+        outline: none;
+    }
+}
+
+.inpGrp{
+    margin: 1rem 0;
+    display: flex;
+}
+
+.inpGrp > span{
+    display: flex;
+    align-items: center;
+}
+
+.btn{
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.6rem;
+    background: var(--main-color);
+    opacity: 0.8;
+    transition: all .2s ease-in;
+
+    &:hover{
+        background: var(--main-color);
+        opacity: 1;
+    }
+}
+
+.signup a{
+    text-decoration: none;
+
+}
+
