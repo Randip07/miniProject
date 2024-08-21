@@ -18,3 +18,7 @@ app.get("/home", (req, res) => {
 app.get("/login", (req, res) => {
     res.render("login.ejs")
 })
+
+app.get("/booking", (req, res) => {
+    res.render("booking.ejs")
+})
