@@ -254,6 +254,7 @@ header.sticky{
 .about-img img{
     width: 100%;
     height: auto;
+    border-radius: 4rem;
 }
 
 .about-text h2{
