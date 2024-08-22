@@ -6,26 +6,107 @@
     font-family: "Poppins", sans-serif;;
 }
 
+:root{
+    --main-color : #ff9f0d;
+    --text-color : #fff;
+    --other-color : #212121;
+    --second-color : #9e9e9e;
+    --bg-color : #111111;
+
+    --big-font : 4.5rem;
+    --h2-font : 2.6rem;
+    --p-font : 1.1rem;
+}
+
 body{
     width: 100%;
     height: auto;
 }
+
 .con{
-    width: 60%;
+    width: 80%;
     margin: 0px auto;
 }
+
+.nav-div{
+    margin-bottom: 0.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-icons{
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    background: var(--main-color);
+    border-radius: 3rem;
+    box-shadow: #ff9f0d 0px 1px 15px;
+}
+
+.nav-icons i{
+    vertical-align: middle;
+    font-size: 1.5rem;
+    color: var(--bg-color);
+    margin-right: 8px;
+    margin-left: 5px;
+    transition: all .50s ease;
+}
+
+.nav-icons i:hover{
+    transform: scale(1.1);
+    color: var(--text-color);
+}
+
+.search-div{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search{
+    width: 50%;
+    padding: 0.2rem 1.3rem;
+    margin-right: 1rem;
+    border-radius: 0.3rem;
+    border: 1px solid rgb(169, 168, 168);
+}
+
+.bttn i{
+    font-size: 1.3rem;
+}
+
+.search-div button{
+    display: flex;
+    align-items: center;
+}
+
+.bttn{
+    background: var(--main-color);
+    padding: 0.4rem 1rem;
+    border:  none;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
 .dashboard{
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .dashboard-banner{
     width: 100%;
-    height: 300px;
+    height: 250px;
     position: relative;
     
 }
@@ -39,8 +120,36 @@ body{
 
 .banner-promo{
     position: absolute;
-    top: 20%;
+    top: 15%;
+    font-size: 1.2rem;
     margin-left: 3rem;
+    left: 30%;
+    letter-spacing: 0.2rem;
+}
+
+.banner-promo h1 span{
+    color: var(--main-color);
+}
+
+.heading{
+    display: flex;
+    align-items: center;
+    
+}
+
+.heading img{
+    width: 3rem;
+    height: auto;
+    opacity: 0.5;
+    margin: 0 0.3rem;
+}
+
+.heading h2{
+    font-weight: 400;
+    letter-spacing: 0.5rem;
+    opacity: 0.5;
+    font-size: 1rem;
+    padding-left: 0.5rem;
 }
 
 .menu-container{
@@ -53,69 +162,97 @@ body{
     margin-top: 1rem;
 }
 
-.starter{
+.starter, .main, .beverages{
     width: 100%;
+    padding-top: 1rem;
+}
+
+
+
+.starter-titile h4, .main-titile h4, .beverages-titile h4{
+    font-weight: 400;
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+}
+
+
+.starter-con, .main-con, .beverages-con{
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    border-top: 1px solid black;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-items: start;
+    margin-top: 1rem;
+}
+
+.space{
+    width: 100%;
+    height: 0.8rem;
+    background: rgba(2, 6, 12, .0509803922);
 }
 
 .food-card{
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: auto;
+    padding-bottom: 0.5rem;
     border: 1px solid black;
-    border-radius: 3rem;
+    border-radius: 1.5rem;
+    margin: 0 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover{
+        transform: scale(1.03);
+        box-shadow: rgb(137, 136, 136) 1px 1px 18px;
+    }
 }
 
 .food-card img{
     width: 100%;
     height: 120px;
     object-fit: cover;
-    border-top-left-radius: 3rem;
-    border-top-right-radius: 3rem;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
 }
 
 .card-details{
     display: flex;
-    padding: 0 1rem;
+    justify-content: space-between;
+    padding: 0 0.5rem;
 }
 
 .titile{
-    width: 80%;
+    width: 70%;
 }
 
 .titile p{
-    font-size: 0.7rem;
+    font-size: 0.5rem;
+}
+
+.price p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .price i{
-    font-size: 1.8rem;
+    font-size: 1.2rem;
 }
 
 .price p{
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
-.btn{
+.add{
     display: flex;
-    padding: 1rem;
+    padding: 1rem 0.5rem;
     justify-content: space-between;
-}
-
-.search-div{
-    width: 100%;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
 }
 
-.search{
-    width: 40%;
-    padding: 0.2rem 2rem;
-    margin-right: 1rem;
+.add p i{
+    color: #ff9f0d;
 }
+

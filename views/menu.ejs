@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>The Grand Eclat</title>
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <div class="con">
         <div class="dashboard">
-            <div class="search-div">
-                <input type="text" class="search" placeholder="search">
-                <button><i class='bx bx-search-alt-2' ></i>Search</button>
+            <div class="nav-div">
+                <div class="search-div">
+                    <input type="text" class="search" placeholder="search">
+                    <button class="bttn"><i class='bx bx-search-alt-2' ></i>Search</button>
+                </div>
+                <div class="nav-icons">
+                    <a href="/home" type="button"><i class='bx bxs-home' ></i></a>
+                    <a href="/cart"><i class='bx bx-cart' ></i></a>
+                    <a href="/login" type="button"><i class='bx bxs-user-circle'></i></a>
+                </div>
             </div>
             <div class="dashboard-banner">
                 <img src="/css/img/banner2.jpg" alt="">
@@ -29,26 +35,91 @@
             </div>
     
             <div class="menu-container">
-                <h2>--menu--</h2>
-                <div class="starter">
-                    <h4>--starter--</h4>
-                    <div class="food-card">
-                        <img src="/css/img/pizza.avif" alt="">
-                        <div class="card-details">
-                            <div class="titile">
-                                <h3>Chicken Pizza</h3>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi in accusamus numquam. </p>
-                            </div>
-                            <div class="price">
-                                <p><i class='bx bx-rupee'></i>299</p>
-                            </div>
-                        </div>
-                        <div class="btn">
-                            <p><i class='bx bxs-star' ></i>3.5</p>
-                            <button>add to cart</button>
-                        </div>
-                    </div>
+                <div class="heading">
+                    <img src="/css/img/left.png" alt="">
+                    <h2>MENU</h2>
+                    <img src="/css/img/right.png" alt="">
                 </div>
+                <div class="space"></div>
+                <div class="starter">
+                    <div class="starter-titile">
+                        <h4>Appetizers<span>(9)</span></h4>
+                    </div>
+                   <div class="starter-con">
+                        <% for (let i = 0; i < 9; i++) { %>
+                            <div class="food-card">
+                                <img src="/css/img/pizza.avif" alt="">
+                                <div class="card-details">
+                                    <div class="titile">
+                                        <h3>Chicken Pizza</h3>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi in accusamus numquam. </p>
+                                    </div>
+                                    <div class="price">
+                                        <p><i class='bx bx-rupee'></i>299</p>
+                                    </div>
+                                </div>
+                                <div class="add">
+                                    <p><i class='bx bxs-star' ></i>3.5</p>
+                                    <button class="bttn">add to cart</button>
+                                </div>
+                            </div>
+                        <% } %>
+                   </div>
+                </div>
+                <div class="space"></div>
+                <div class="main">
+                    <div class="main-titile">
+                        <h4>Main<span>(9)</span></h4>
+                    </div>
+                   <div class="main-con">
+                        <% for (let i = 0; i < 9; i++) { %>
+                            <div class="food-card">
+                                <img src="/css/img/pizza.avif" alt="">
+                                <div class="card-details">
+                                    <div class="titile">
+                                        <h3>Chicken Pizza</h3>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi in accusamus numquam. </p>
+                                    </div>
+                                    <div class="price">
+                                        <p><i class='bx bx-rupee'></i>299</p>
+                                    </div>
+                                </div>
+                                <div class="add">
+                                    <p><i class='bx bxs-star' ></i>3.5</p>
+                                    <button class="bttn">add to cart</button>
+                                </div>
+                            </div>
+                        <% } %>
+                   </div>
+                </div>
+                <div class="space"></div>
+                <div class="beverages">
+                    <div class="beverages-titile">
+                        <h4>Beverages<span>(9)</span></h4>
+                    </div>
+                   <div class="beverages-con">
+                        <% for (let i = 0; i < 9; i++) { %>
+                            <div class="food-card">
+                                <img src="/css/img/pizza.avif" alt="">
+                                <div class="card-details">
+                                    <div class="titile">
+                                        <h3>Chicken Pizza</h3>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi in accusamus numquam. </p>
+                                    </div>
+                                    <div class="price">
+                                        <p><i class='bx bx-rupee'></i>299</p>
+                                    </div>
+                                </div>
+                                <div class="add">
+                                    <p><i class='bx bxs-star' ></i>3.5</p>
+                                    <button class="bttn">add to cart</button>
+                                </div>
+                            </div>
+                        <% } %>
+                   </div>
+                   <div class="space"></div>
+                </div>
+                
                 <!-- <div class="main-course">
                     <h4>--maincourse--</h4>
                 </div>

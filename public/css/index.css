@@ -57,6 +57,11 @@ header{
     color: var(--main-color);
 }
 
+.nav-con{
+    display: flex;
+    align-items: center;
+}
+
 .navlist{
     display: flex;
 }
@@ -66,6 +71,7 @@ header{
     font-size : (--p-font);
     font-weight: 600;
     margin: 0 30px;
+    margin-left: 20px;
     transition: all .50s ease;
 }
 
