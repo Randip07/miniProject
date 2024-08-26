@@ -20,8 +20,8 @@ a{
     --bg-color : #111111;
 
     --big-font : 4.5rem;
-    --h2-font : 2.6rem;
-    --p-font : 1.1rem;
+    --h2-font : 2rem;
+    --p-font : 0.8rem;
 }
 
 body{
@@ -40,7 +40,7 @@ header{
     align-items: center;
     justify-content: space-between;
     background: transparent;
-    padding: 30px 14%;
+    padding: 30px 10%;
     transition: all .50s ease;
 }   
 
@@ -48,7 +48,9 @@ header{
     display: flex;
     align-items: center;
     color: var(--text-color);
-    font-size: 33px;
+    font-size: 20px;
+    line-height: 1.4rem;
+    letter-spacing: 0.2rem;
 }
 
 .logo i{
@@ -68,8 +70,8 @@ header{
 
 .navlist a{
     color: var(--text-color);
-    font-size : (--p-font);
-    font-weight: 600;
+    font-size : 0.9rem;
+    font-weight: 500;
     margin: 0 30px;
     margin-left: 20px;
     transition: all .50s ease;
@@ -94,11 +96,12 @@ header{
 
 .nav-icons i{
     vertical-align: middle;
-    font-size: 30px;
+    font-size: 25px;
     color: var(--bg-color);
     margin-right: 8px;
     margin-left: 5px;
     transition: all .50s ease;
+    cursor: pointer;
 }
 
 #menu-icon{
@@ -120,14 +123,13 @@ header{
     bottom: 0;
     top: 0;
     width: 100%;
-
     z-index: -1000;
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
 
 section{
-    padding: 70px 14% 60px;
+    padding: 20px 14%;
 }
 
 .home{
@@ -139,11 +141,25 @@ section{
     align-items: center;
     gap: 2rem;
     margin-bottom: 50px;
+    padding-top: 70px;
 }
 
-.home-img img{
-    width: 100%;
+.offer-img img{
+    width: 90%;
     height: auto;
+}
+
+.offer-img div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.offer-img h4{
+    position: relative;
+    bottom: 8rem;
+    transform: rotate(-22deg);
+    font-size: 2rem;
 }
 
 .home-text h1{
@@ -165,7 +181,7 @@ span{
 
 .btn{
     display: inline-block;
-    padding: 15px 35px;
+    padding: 15px 25px;
     background: var(--other-color);
     color: var(--main-color);
     font-size: var(--p-font);
@@ -216,21 +232,21 @@ header.sticky{
 }
 
 .container-box{
-    padding: 43px;
+    padding: 25px;
     background: var(--other-color);
     border-radius: 3rem;
 }
 
 .container-box img{
     width: 100%;
-    max-width: 50px;
+    max-width: 30px;
     height: auto;
 }
 
 .container-box h3{
-    font-size: 21px;
+    font-size: 15px;
     font-weight: bold;
-    margin: 16px 0;
+    margin: 5px 0;
 }
 
 .container-box a{
@@ -249,6 +265,7 @@ header.sticky{
     grid-template-columns: repeat(2,1fr);
     align-items: center;
     gap: 4rem;
+    margin-bottom: 2rem;
 }
 
 .about-img img{
@@ -287,6 +304,12 @@ header.sticky{
     font-size: var(--h2-font);
 }
 
+.shop{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .shop-content{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, auto));
@@ -300,11 +323,21 @@ header.sticky{
     padding: 10px 35px 40px;
     background: var(--other-color);
     border-radius: 3rem;
+    min-height: 24rem;
+    align-self: center;
+}
+
+.rowImg{
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
 }
 
 .row img{
-    width: 100% ;
-    height: auto;
+    width: auto ;
+    height: 120px;
+    /* height: auto; */
     transition: transform .50s ease;
     cursor: pointer;
 }
@@ -318,7 +351,8 @@ header.sticky{
 .row p{
     color: var(--second-color);
     font-size: var(--p-font);
-    line-height: 30px;
+    line-height: 25px;
+    text-align: start;
     margin-bottom: 1.1rem;
 }
 
@@ -365,7 +399,8 @@ header.sticky{
 
 .row-btnn{
     text-align: center;
-    margin-top: 6rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .row img:hover{
@@ -459,7 +494,7 @@ header.sticky{
 }
 
 .contact-text h2{
-    font-size: var(--h2-font);
+    font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
@@ -491,6 +526,7 @@ header.sticky{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 3rem;
 }
 
@@ -498,7 +534,7 @@ header.sticky{
     display: flex;
     align-items: center;
     color: var(--text-color);
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 600;
 }
 
@@ -535,7 +571,7 @@ header.sticky{
     :root{
         --big-font : 4rem;
         --h2-font : 2rem;
-        --p-font : 1rem;
+        --p-font : 0.8rem;
     }
 }
 
@@ -551,7 +587,7 @@ header.sticky{
     }
 
     section{
-        padding: 50px 4% 40px;
+        padding: 10px 4% 10px;
         transition: .2s;
     }
 
@@ -563,12 +599,12 @@ header.sticky{
 @media (max-width : 1180px){
     :root{
         --big-font : 4rem;
-        --h2-font : 2.2rem;
+        --h2-font : 2rem;
         --p-font : 15px;
     }
 
     .home{
-        height: 90vh;
+        height: 100vh;
     }
 }
 
@@ -627,14 +663,14 @@ header.sticky{
     }
     
     .home{
-        height: 80vh;
+        height: 100vh;
     }
 }
 
 @media (max-width : 860px){
     .home{
         grid-template-columns: 1fr;
-        height: 118vh;
+        height: 100vh;
     }
 
     .home-text{
@@ -684,12 +720,14 @@ header.sticky{
         --big-font : 2.8rem;
         --h2-font : 2rem;
     }
-
+    .shop-content{
+        max-width: 90%;
+    }
 }
 
 @media (max-width : 440px){
     .home{
-        height: 110vh;
+        height: 100vh;
         gap: 0.1rem;
     }
 }
@@ -704,6 +742,6 @@ header.sticky{
 @media (max-aspect-ratio: 16/9){
     .bg-video{
         width: auto;
-        height: auto;
+        height: 100vh;
     }
 }

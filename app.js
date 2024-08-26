@@ -12,6 +12,10 @@ app.listen(port, ()=>{
     console.log(`Listening on port ${port}`);
 })
 
+app.get("/", (req, res) => {
+    res.redirect("/home")
+})
+
 app.get("/home", (req, res) => {
     res.render("home.ejs")
 })
@@ -26,4 +30,8 @@ app.get("/booking", (req, res) => {
 
 app.get("/menu", (req, res) => {
     res.render("menu.ejs")
+});
+
+app.get("/dashboard", (req, res) => {
+    res.render("dashboard.ejs")
 });

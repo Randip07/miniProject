@@ -177,11 +177,11 @@ body{
 
 
 .starter-con, .main-con, .beverages-con{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    justify-items: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+    gap: 1rem;
     margin-top: 1rem;
+    justify-content: center;
 }
 
 .space{

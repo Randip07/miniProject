@@ -1,0 +1,268 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    scroll-padding-top: 3rem;
+    text-decoration: none;
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+:root{
+    --main-color : #ff9f0d;
+    --text-color : #fff;
+    --other-color : #212121;
+    --second-color : rgba(2, 6, 12, .0509803922);
+    --bg-color : #111111;
+    --big-font : 4rem;
+    --h2-font : 1.2rem;
+    --p-font : 0.8rem;
+    --i-size : 1.5rem;
+}
+
+body{
+}
+
+.main-con{
+    display: flex;
+}
+
+.nav-bar{
+    background: var(--bg-color);
+    color: #fff;
+    height: 100vh;
+    width: 20%;
+}
+
+.heading {
+    padding: 2rem 0 ;
+}
+
+.heading h2{
+    font-size: var(--h2-font);
+    text-align: center;
+    letter-spacing: 0.2rem;
+}
+
+.nav-list{
+    padding: 0;
+    margin-top: 2rem;
+}
+
+.nav-list li{
+    width: 100%;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+
+.nav-list li.active{
+    background: var(--main-color);
+}
+
+.nav-list li a{
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    font-size: var(--p-font);
+}
+
+i{
+    margin-right: 0.5rem;
+    font-size: var(--i-size);
+}
+
+.dashboard{
+    width: 80%;
+}
+
+.nav-bar2{
+    width: 100%;
+    height: 10vh;
+    padding: 1rem 4rem 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--text-color);
+}
+
+.nav-bar2 i{
+    font-size: 2rem;
+    color: #ff9f0d;
+    margin-left: 0.5rem;
+}
+
+.nav-icons{
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 1rem;
+    background: var(--main-color);
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    box-shadow: #ff9f0d 0px 1px 1px;
+    font-size: var(--p-font);
+}
+
+.nav-icons i{
+    color: #111111;
+}
+
+.main-dash{
+    position: relative;
+    background: var(--second-color);
+    padding: 1rem 2rem;
+    width: 100%;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+.dash-titile h2{
+    font-size: var(--h2-font);
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    margin: 0;
+}
+
+.dash-titile p{
+    font-size: var(--p-font);
+    margin: 0;
+    color: #8c8c8c;
+}
+
+.one{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    gap: 1rem;
+}
+
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.box-i i{
+    margin: 0;
+    color: #FA6239;
+}
+
+.box-i{
+    border-radius: 50%;
+    background: #ffe5e1;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.box-t{
+    padding: 0 1rem;
+}
+
+.box-t h3 {
+    font-size: 1rem;
+}
+
+.box-t p{
+    font-size: var(--p-font);
+}
+
+.two{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(500px, auto));
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.two-a{
+    background: #fff;
+    padding: 0.2rem 0;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.two-b{
+    background: #fff;
+    padding: 0.2rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.three{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(500px, auto));
+    gap: 1rem;
+}
+
+.three-a{
+    border-radius: 1rem;
+    padding:2rem;
+    background: var(--text-color);
+}
+
+.three-a div h2{
+    font-size: var(--h2-font);
+}
+
+.top-card{
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    background: var(--second-color);
+    border-radius: 1rem;
+}
+
+.top-card-img{
+    display: flex;
+    align-items: center;
+}
+
+.top-card-img i{
+    font-size: 2rem;
+}
+
+.top-card-text{
+    width: 70%;
+}
+
+.top-card-text div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-con{
+    width: 100%;
+    overflow: auto;
+}
+
+.three-b{
+    background: #fff;
+    padding: 0.2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

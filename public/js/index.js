@@ -25,7 +25,7 @@ const sr = ScrollReveal({
 })
 
 sr.reveal('.home-text', {delay : 50});
-sr.reveal('.home-img', {delay : 100});
+sr.reveal('.offer-img', {delay : 100});
 sr.reveal('.container', {delay : 50});
 
 sr.reveal('.about-img', {});

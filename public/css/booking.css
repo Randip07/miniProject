@@ -8,6 +8,7 @@
 }
 body{
     font-family: 'Poppins', sans-serif;
+    background-color: #000;
 }
 
 :root{
@@ -29,10 +30,13 @@ body{
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    color: #fff;
     overflow: hidden;
+}
+
+.banner-div{
+    margin-top: 5rem;
 }
 
 .video-background {
@@ -43,9 +47,10 @@ body{
     height: 100%;
     object-fit: cover;
     z-index: -1;
+    opacity: 0.5;
 }
 
-.gradient-overlay {
+/* .gradient-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -53,7 +58,7 @@ body{
     height: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
     z-index: 1;
-}
+} */
 
 .card-container{
     position: relative;
