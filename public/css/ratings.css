@@ -19,9 +19,7 @@ body {
 	background:  #f4f1f1;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	padding: 1rem;
+	align-items: flex-start;
 }
 
 .wrapper {
@@ -32,6 +30,8 @@ body {
 	border-radius: .75rem;
 	box-shadow: var(--shadow);
 	text-align: center;
+	margin: 1rem;
+	margin-top: 1.5rem;
 }
 .wrapper h3 {
 	font-size: 1.5rem;
