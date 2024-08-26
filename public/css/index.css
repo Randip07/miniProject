@@ -786,9 +786,20 @@ header.sticky{
 	transform: scale(1.1);
 }
 
+.review-icon{
+    display: flex;
+    justify-content: center;
+}
 
-.review .review-icon{
-    font-size: 20px ;
+.review-icon a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: fit-content;
+}
+
+.review-icon a i{
+    font-size: 1.5rem ;
 }
 
 .btn5{
@@ -799,6 +810,7 @@ header.sticky{
     border-bottom: 3px solid var(--main-color);
     color: var(--main-color);
     transition: all .50s ease;
+
 }
 
 .btn5:hover{
