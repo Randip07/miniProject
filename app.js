@@ -35,3 +35,10 @@ app.get("/menu", (req, res) => {
 app.get("/dashboard", (req, res) => {
     res.render("dashboard.ejs")
 });
+
+app.get("/dashboard/orders", (req, res) => {
+    res.render("orders.ejs")
+});
+app.get("/dashboard/customers", (req, res) => {
+    res.render("customer.ejs")
+});

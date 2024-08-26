@@ -54,7 +54,7 @@ function drawVisualization() {
 function drawVisualization2() {
   // Some raw data (not necessarily accurate)
   var data = google.visualization.arrayToDataTable([
-    ['Review', 'Rating'],
+    ['Review', 'Total'],
     ['Exc',5],
     ['Good',4 ],
     ['Ok',  1],

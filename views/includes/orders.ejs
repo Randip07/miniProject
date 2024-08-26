@@ -1,0 +1,44 @@
+<div class="order-dash">
+    <div class="dash-titile">
+        <h2>Orders List</h2>
+        <p>Dashboard / Orders</p>
+    </div>
+    <div class="o-one">
+        <table>
+            <tr>
+              <th>Order id</th>
+              <th>Date</th>
+              <th>Customer</th>
+              <th>Contact Number</th>
+              <th>Amount</th>
+              <th>Order Status</th>
+            </tr>
+            <tr>
+              <td>#12345</td>
+              <td>21 June 2024, 12:32 pm</td>
+              <td>Ranadip</td>
+              <td>9957416364</td>
+              <td>299.00</td>
+              <td>Delivered</td>
+              <td class="btn-td">
+                <a href="" class="o-btn"><i class='bx bx-data'></i></a>
+                <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
+            </td>
+            </tr>
+            <% for(let i=1; i<20 ; i++){ %>
+                <tr>
+                    <td>#12346</td>
+                    <td>21 June 2024, 12:32 pm</td>
+                    <td>Tony</td>
+                    <td>9957416364</td>
+                    <td>499.00</td>
+                    <td>Pending</td>
+                    <td class="btn-td">
+                        <a href="" class="o-btn"><i class='bx bx-data'></i></a>
+                        <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
+                    </td>
+                </tr>
+            <% } %>
+          </table>
+    </div>
+</div>
