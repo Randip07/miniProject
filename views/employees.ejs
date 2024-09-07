@@ -27,9 +27,9 @@
                 <div class="nav-con">
                     <ul class="nav-list">
                         <a href="/dashboard"><li class="dashboard"><i class='bx bxs-dashboard'></i>Dashboard</li></a>
-                        <a href="/dashboard/orders"><li class="order active"><i class='bx bx-restaurant'></i>Orders</li></a>
+                        <a href="/dashboard/orders"><li class="order"><i class='bx bx-restaurant'></i>Orders</li></a>
                         <a href="/dashboard/customers"><li class="customer"><i class='bx bxs-user' ></i>Customers</li></a>
-                        <a href="/dashboard/employee"><li class="emoloyee"><i class='bx bxs-user' ></i>Employees</li></a>
+                        <a href="/dashboard/employee"><li class="emoloyee active"><i class='bx bxs-user' ></i>Employees</li></a>
                         <a href="#"><li class="menu"><i class='bx bxs-food-menu' ></i>Menu</li></a>
                         <a href="#"><li class="table"><i class='bx bxs-card' ></i>Table</li></a>
                     </ul>
@@ -45,48 +45,39 @@
                     <i class='bx bxs-user-circle'></i>
                 </div>
             </div>
-            <div class="order-dash">
+            <div class="cust-dash">
                 <div class="dash-titile">
-                    <h2>Orders List</h2>
-                    <p>Dashboard / Orders</p>
+                    <h2>Employees List</h2>
+                    <p>Dashboard / Employees</p>
                 </div>
                 <div class="o-one">
                     <table>
                         <tr>
-                          <th>Order id</th>
-                          <th>Date</th>
-                          <th>Customer</th>
-                          <th>Contact Number</th>
-                          <th>Amount</th>
-                          <th>Table</th>
-                          <th>Order Status</th>
+                          <th>Employee id</th>
+                          <th>Employee Name</th>
+                          <th>Contact Number</th> 
+                          <th>Joining Date</th>
+                          <th>Location</th>
+                          <th>Post</th> 
+                          <th>Salary</th>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                           <td>#12345</td>
-                          <td>21 June 2024, 12:32 pm</td>
                           <td>Ranadip</td>
                           <td>9957416364</td>
-                          <td>299.00</td>
-                          <td>2</td>
-                          <td>Delivered</td>
-                          <td class="btn-td">
-                            <a href="" class="o-btn"><i class='bx bx-data'></i></a>
-                            <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
-                        </td>
-                        </tr>
-                        <% for(let i=1; i<20 ; i++){ %>
+                          <td>12-12-2022</td>
+                          <td>Manager</td>
+                          <td>15000/-</td>
+                        </tr> -->
+                        <% for(employee of employees){ %>
                             <tr>
-                                <td>#12346</td>
-                                <td>21 June 2024, 12:32 pm</td>
-                                <td>Tony</td>
-                                <td>9957416364</td>
-                                <td>499.00</td>
-                                <td>2</td>
-                                <td>Pending</td>
-                                <td class="btn-td">
-                                    <a href="" class="o-btn"><i class='bx bx-data'></i></a>
-                                    <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
-                                </td>
+                                <td>#<%= employee.employeeId %></td>
+                                <td><%= employee.name %></td>
+                                <td>+<%= employee.contactNo %></td>
+                                <td><%= employee.joiningDate.toString().split(" ").slice(1,4).join("/") %></td>
+                                <td><%= employee.location.city + ", " + employee.location.state%></td>
+                                <td><%= employee.post %></td>
+                                <td><%= employee.salary.toLocaleString("en-IN") %></td>
                             </tr>
                         <% } %>
                       </table>

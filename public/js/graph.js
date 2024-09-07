@@ -32,7 +32,7 @@ function drawVisualization() {
       ['Day', 'Appetizers', 'Main', 'Beverages'],
       ['Mon',  165,      938,         522],
       ['Tue',  135,      1120,        599],
-      ['Wed',  157,      1167,        587],
+      ['Wed',  157,      1500,        587],
       ['Thu',  139,      1110,        615],
       ['Fri',  136,      691,         629],
       ['Sat',  136,      691,         629],
@@ -54,12 +54,14 @@ function drawVisualization() {
 function drawVisualization2() {
   // Some raw data (not necessarily accurate)
   var data = google.visualization.arrayToDataTable([
-    ['Review', 'Total'],
-    ['Exc',5],
-    ['Good',4 ],
-    ['Ok',  1],
-    ['Dis', 2 ],
-    ['Wor',  1],
+    ['Review', 'Excellent', 'Good', 'Ok', 'Disappoinment', 'Worst'],
+    ['Mon', 5,4,10,2,4],
+    ['Tue', 15,4,10,2,4],
+    ['Wed', 5,14,10,2,4],
+    ['Thu', 5,14,10,2,4],
+    ['Fri', 5,10,10,2,4 ],
+    ['Sat', 20,4,10,2,4],
+    ['Sun', 5,4,10,2,4],
   ]);
 
   var options = {

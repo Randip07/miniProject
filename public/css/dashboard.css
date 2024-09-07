@@ -126,6 +126,7 @@ i{
     width: 100%;
     height: 90vh;
     overflow: auto;
+    padding-bottom: 4rem;
 }
 
 .dash-titile h2{
