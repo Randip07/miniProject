@@ -62,30 +62,31 @@
                         <tr>
                           <th>ItemID</th>
                           <th>ItemName</th>
-                          <th>ItemDetails</th>
                           <th>Price</th>
                           <th>Category</th>
                           <th>Discount</th>
                           <th>Rating</th>
+                          <th>Veg/Non-Veg</th>
                           <th>Edit Item</th>
+                          
                         </tr>
-                    
-                        
-                        <% for(let i=1; i<20 ; i++){ %>
+         
+                        <% for(item of items){ %>
                             <tr>
-                                <td>#12346</td>
-                                <td>9957416364</td>
-                                <td>Crispy rolls filled with vegetables <br>
-                                    and served with sweet chili sauce</td>
-                               <td>120</td>
-                                <td>Appetizers</td>
-                                <td>35</td>
-                                <td>4.4</td>
-                                <td class="btn-td">
-                                    <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
-                                </td>
+                              <td>#<%= item.itemID %></td>
+                              <td><%= item.itemName %></td>
+                              <td><%= item.price %></td>
+                              <td><%= item.category %></td>
+                              <td><%= item.discount %></td>
+                              <td>
+                                <%= `${((item.rating.reduce((partialSum, a) => partialSum + a, 0)) / item.rating.length).toString().slice(0, 3)} (${item.rating.length})` %>
+                              </td>
+                              <td></td>
+                              <td class="btn-td">
+                                  <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
+                              </td>
                             </tr>
-                        <% } %>
+                            <% } %>
                       </table>
                 </div>
             </div>
@@ -93,6 +94,6 @@
         </div>
     </section>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="/js/graph.js"></script>
+    <script src="/js/graph.js"></script>      
 </body>
 </html>

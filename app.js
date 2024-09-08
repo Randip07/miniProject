@@ -101,8 +101,9 @@ app.get("/ratings", (req, res) => {
   res.render("ratings.ejs");
 });
 
-app.get("/dashboard/menu1", (req, res) => {
-  res.render("menu1.ejs");
+app.get("/dashboard/menu1", async (req, res) => {
+  let data = await Menu.find({});
+  res.render("menu1.ejs", { items: data });
 });
 
 app.get("/dashboard/menu1/new", (req, res) => {
