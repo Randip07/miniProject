@@ -78,31 +78,49 @@
             <p>Dashboard / Employees / New</p>
           </div>
           <div class="empForm-div">
-            <form action="dashboard/emoloyee" method="post">
+            <form action="/dashboard/employee" method="post">
                 <div class="empForm">
                     <div>
                         <label for="name">Employee Name</label>
-                        <input type="text" id="name" name="name">
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div>
-                        <label for="name">Contact Number</label>
-                        <input type="text" id="contactNo" name="contactNo">
+                        <label for="contactNo">Contact Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text">+91</span>
+                            <input type="text" id="contactNo" name="contactNo" required>
+                        </div>
                     </div>
                     <div>
-                        <label for="name">Post</label>
-                        <input type="text" id="post" name="post">
+                        <label for="post">Post</label>
+                        <select class="form-select" id="post" required>
+                            <option selected>Select Post</option>
+                            <option value="manager">Manager</option>
+                            <option value="chef">Chef</option>
+                            <option value="waiter">Waiter</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="dishwasher">Dishwasher</option>
+                            <option value="bartender">Bartender</option>
+                            <option value="guard">Guard</option>
+                          </select>
                     </div>
                     <div>
-                        <label for="name">Salary</label>
-                        <input type="text" id="salary" name="salary">
+                        <label for="salary">Salary</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class='bx bx-rupee' ></i></span>
+                            <input type="number" class="form-control" id="salary" name="salary" required>
+                        </div>
                     </div>
                     <div>
-                        <label for="name">City</label>
-                        <input type="text" id="city" name="city">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" required>
                     </div>
                     <div>
-                        <label for="name">State</label>
-                        <input type="text" id="state" name="state">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" value="Assam" disabled>
+                    </div>
+                    <div class="reg-btn">
+                        <button type="submit" >Register</button>
                     </div>
                 </div>
             </form>

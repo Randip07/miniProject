@@ -66,8 +66,13 @@ app.get("/dashboard/employee", async (req, res) => {
 });
 
 app.get("/dashboard/employee/new", (req, res) => {
-    res.render("newEmp.ejs")
-  });
+    res.render("newEmp.ejs");
+});
+
+app.post("/dashboard/employee", (req, res) => {
+    
+    res.redirect("/dashboard/employee");
+});
 
 app.get("/ratings", (req, res) => {
   res.render("ratings.ejs");
