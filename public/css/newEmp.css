@@ -79,15 +79,47 @@ a {
     border-bottom-left-radius: 0.2rem;
 }
 
+.reg-btn {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    margin: 1rem;
+}
+
 .reg-btn button{
     padding: 0.5rem 2.5rem;
+    background: var(--main-color);
+    opacity: 0.8;
     cursor: pointer;
     border: none;
+    font-size: .9rem;
     border-radius: 0.5rem;
     transition: all 0.2s ease;
     box-shadow: black 0px 1px 5px;
-    margin: 1rem;
     &:hover{
         transform: scale(1.05);
     }
+}
+
+.reg-btn a{
+    color: #111111;
+    background: var(--second-color);
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    box-shadow: black 0px 1px 5px;
+    margin-left: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .9rem;
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+.reg-btn a i{
+    font-size: 1.2rem;
+    margin:  0 !important;
 }

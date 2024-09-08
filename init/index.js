@@ -34,6 +34,6 @@ const initDB2 = async () => {
   console.log("Customer data initialized");
 };
 
-initDB1();
-initDB2();
+// initDB1();
+// initDB2();
 initDB();

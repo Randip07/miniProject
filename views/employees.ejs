@@ -122,7 +122,10 @@
                 <td><%= employee.post %></td>
                 <td><%= employee.salary.toLocaleString("en-IN") %></td>
                 <td class="btn-td">
-                    <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
+                  <form action="/dashboard/employee/<%= employee.employeeId %>">
+                    <button class="o-btn"><i class='bx bx-edit'></i></button>
+                  </form>
+                    
                 </td>
               </tr>
               <% } %>

@@ -303,6 +303,10 @@ i {
 
 .o-btn {
   padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: navy;
 }
 
 .o-btn i {

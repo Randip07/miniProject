@@ -5,10 +5,12 @@ const mongoose = require("mongoose");
 const Employee = require("./models/employee.js");
 const Menu = require("./models/menu.js");
 const Customer = require("./models/customers.js");
+const { name } = require("ejs");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({extended : true}));
 
 const port = 8080;
 
@@ -65,13 +67,34 @@ app.get("/dashboard/employee", async (req, res) => {
   res.render("employees.ejs", { employees: data });
 });
 
-app.get("/dashboard/employee/new", (req, res) => {
+app.get("/dashboard/employee/new", async (req, res) => {
     res.render("newEmp.ejs");
 });
 
-app.post("/dashboard/employee", (req, res) => {
+app.post("/dashboard/employee", async (req, res) => {
+    let employeeId = await Employee.countDocuments();
+    employeeId += 10100;
     
+    let newEmployee = new Employee({
+        employeeId : employeeId,
+        name : req.body.name,
+        age : req.body.age,
+        location : {
+            city : req.body.city
+        },
+        contactNo : "91" + req.body.contactNo,
+        gender : req.body.gender,
+        salary :  req.body.salary,
+        post :  req.body.post,
+        joiningDate :  new Date(),
+    })
+
+    await newEmployee.save();
     res.redirect("/dashboard/employee");
+});
+
+app.get("/dashboard/employee/:id", async (req, res) => {
+    res.render("newEmp.ejs");
 });
 
 app.get("/ratings", (req, res) => {
