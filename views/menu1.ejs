@@ -27,10 +27,10 @@
                 <div class="nav-con">
                     <ul class="nav-list">
                         <a href="/dashboard"><li class="dashboard"><i class='bx bxs-dashboard'></i>Dashboard</li></a>
-                        <a href="/dashboard/orders"><li class="order active"><i class='bx bx-restaurant'></i>Orders</li></a>
+                        <a href="/dashboard/orders"><li class="order "><i class='bx bx-restaurant'></i>Orders</li></a>
                         <a href="/dashboard/customers"><li class="customer"><i class='bx bxs-user' ></i>Customers</li></a>
                         <a href="/dashboard/employee"><li class="emoloyee"><i class='bx bxs-user' ></i>Employees</li></a>
-                        <a href="/dashboard/menu1"><li class="menu"><i class='bx bxs-food-menu' ></i>Menu</li></a>
+                        <a href="/dashboard/menu1"><li class="menu active"><i class='bx bxs-food-menu' ></i>Menu</li></a>
                         <a href="#"><li class="table"><i class='bx bxs-card' ></i>Table</li></a>
                     </ul>
                 </div>
@@ -45,46 +45,43 @@
                     <i class='bx bxs-user-circle'></i>
                 </div>
             </div>
-            <div class="order-dash">
-                <div class="dash-titile">
-                    <h2>Orders List</h2>
-                    <p>Dashboard / Orders</p>
+            <div class="cust-dash">
+                <div class="dash-head">
+                  <div class="dash-titile">
+                      <h2>Item List</h2>
+                      <p>Dashboard / Menu</p>
+                  </div>
+                  <div class="emp-add">
+                      <form action="/dashboard/menu1/new">
+                          <button><i class='bx bx-plus'></i>Add Items</button>
+                      </form>
+                  </div>
                 </div>
                 <div class="o-one">
                     <table>
                         <tr>
-                          <th>Order id</th>
-                          <th>Date</th>
-                          <th>Customer</th>
-                          <th>Contact Number</th>
-                          <th>Amount</th>
-                          <th>Table</th>
-                          <th>Order Status</th>
+                          <th>ItemID</th>
+                          <th>ItemName</th>
+                          <th>ItemDetails</th>
+                          <th>Price</th>
+                          <th>Category</th>
+                          <th>Discount</th>
+                          <th>Rating</th>
+                          <th>Edit Item</th>
                         </tr>
-                        <tr>
-                          <td>#12345</td>
-                          <td>21 June 2024, 12:32 pm</td>
-                          <td>Ranadip</td>
-                          <td>9957416364</td>
-                          <td>299.00</td>
-                          <td>2</td>
-                          <td>Delivered</td>
-                          <td class="btn-td">
-                            <a href="" class="o-btn"><i class='bx bx-data'></i></a>
-                            <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
-                        </td>
-                        </tr>
+                    
+                        
                         <% for(let i=1; i<20 ; i++){ %>
                             <tr>
                                 <td>#12346</td>
-                                <td>21 June 2024, 12:32 pm</td>
-                                <td>Tony</td>
                                 <td>9957416364</td>
-                                <td>499.00</td>
-                                <td>2</td>
-                                <td>Pending</td>
+                                <td>Crispy rolls filled with vegetables <br>
+                                    and served with sweet chili sauce</td>
+                               <td>120</td>
+                                <td>Appetizers</td>
+                                <td>35</td>
+                                <td>4.4</td>
                                 <td class="btn-td">
-                                    <a href="" class="o-btn"><i class='bx bx-data'></i></a>
                                     <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
                                 </td>
                             </tr>
