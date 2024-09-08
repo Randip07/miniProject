@@ -72,3 +72,11 @@ app.get("/dashboard/employee/new", (req, res) => {
 app.get("/ratings", (req, res) => {
   res.render("ratings.ejs");
 });
+
+app.get("/dashboard/menu1", (req, res) => {
+  res.render("menu1.ejs");
+});
+
+app.get("/dashboard/menu1/new", (req, res) => {
+  res.render("newItem.ejs")
+});
