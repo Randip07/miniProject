@@ -75,25 +75,25 @@
         <div class="cust-dash">
           <div class="dash-titile">
             <h2>Employees List</h2>
-            <p>Dashboard / Employees / New</p>
+            <p>Dashboard / Employee / #<%= data.employeeId %></p>
           </div>
           <div class="empForm-div">
-            <form action="/dashboard/employee" method="post">
+            <form action="" method="post">
                 <div class="empForm">
                     <div>
                         <label for="name">Employee Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" value= "<%= data.name %>" required>
                     </div>
                     <div>
                         <label for="contactNo">Contact Number</label>
                         <div class="input-group">
                             <span class="input-group-text">+91</span>
-                            <input type="number" id="contactNo" name="contactNo" required>
+                            <input type="number" id="contactNo" name="contactNo" value="<%= data.contactNo.toString().slice(2) %>" required>
                         </div>
                     </div>
                     <div>
                         <label for="post">Post</label>
-                        <select id="post" required name="post">
+                        <select id="post" required name="post" value="<%= data.post %>">
                             <option selected>Select Post</option>
                             <option value="Manager">Manager</option>
                             <option value="Chef">Chef</option>
@@ -107,25 +107,25 @@
                     <div>
                       <label for="gender">Gender</label>
                       <select id="gender" required name="gender">
-                          <option selected>Select Gender</option>
+                          <option>Select Gender</option>
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
                         </select>
                      </div>
                     <div>
                       <label for="age">Age</label>
-                      <input type="number" id="age" name="age" required>
+                      <input type="number" id="age" name="age"  value="<%= data.age %>" required>
                      </div>
                     <div>
                         <label for="salary">Salary</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class='bx bx-rupee' ></i></span>
-                            <input type="number" class="form-control" id="salary" name="salary" required>
+                            <input type="number" class="form-control" id="salary" name="salary"  value="<%= data.salary %>" required>
                         </div>
                     </div>
                     <div>
                         <label for="city">City</label>
-                        <input type="text" id="city" name="city" required>
+                        <input type="text" id="city" name="city"  value="<%= data.location.city %>" required>
                     </div>
                     <div>
                         <label for="state">State</label>

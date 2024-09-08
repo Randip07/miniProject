@@ -94,7 +94,9 @@ app.post("/dashboard/employee", async (req, res) => {
 });
 
 app.get("/dashboard/employee/:id", async (req, res) => {
-    res.render("newEmp.ejs");
+    let { id : employeeId } = req.params
+    let empData = await Employee.findOne({employeeId : employeeId})
+    res.render("editEmp.ejs" , { data : empData });
 });
 
 app.get("/ratings", (req, res) => {
