@@ -1,67 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
 
     <!-- bootstrap -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> -->
 
     <!-- css -->
-    <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <section class="main-con">
-        <div class="nav-bar">
-            <div class="con">
-                <div class="heading">
-                    <h2>The Grand Éclat</h2>
-                </div>
-                <div class="nav-con">
-                    <ul class="nav-list">
-                        <a href="/dashboard"><li class="dashboard"><i class='bx bxs-dashboard'></i>Dashboard</li></a>
-                        <a href="/dashboard/orders"><li class="order"><i class='bx bx-restaurant'></i>Orders</li></a>
-                        <a href="/dashboard/customers"><li class="customer"><i class='bx bxs-user' ></i>Customers</li></a>
-                        <a href="/dashboard/employee"><li class="emoloyee active"><i class='bx bxs-user' ></i>Employees</li></a>
-                        <a href="#"><li class="menu"><i class='bx bxs-food-menu' ></i>Menu</li></a>
-                        <a href="#"><li class="table"><i class='bx bxs-card' ></i>Table</li></a>
-                    </ul>
-                </div>
-            </div>
+      <div class="nav-bar">
+        <div class="con">
+          <div class="heading">
+            <h2>The Grand Éclat</h2>
+          </div>
+          <div class="nav-con">
+            <ul class="nav-list">
+              <a href="/dashboard"
+                ><li class="dashboard">
+                  <i class="bx bxs-dashboard"></i>Dashboard
+                </li></a
+              >
+              <a href="/dashboard/orders"
+                ><li class="order">
+                  <i class="bx bx-restaurant"></i>Orders
+                </li></a
+              >
+              <a href="/dashboard/customers"
+                ><li class="customer">
+                  <i class="bx bxs-user"></i>Customers
+                </li></a
+              >
+              <a href="/dashboard/employee"
+                ><li class="emoloyee active">
+                  <i class="bx bxs-user"></i>Employees
+                </li></a
+              >
+              <a href="#"
+                ><li class="menu"><i class="bx bxs-food-menu"></i>Menu</li></a
+              >
+              <a href="#"
+                ><li class="table"><i class="bx bxs-card"></i>Table</li></a
+              >
+            </ul>
+          </div>
         </div>
-    
-        <div class="dashboard">
-            <div class="nav-bar2">
-                <a href=""><i class='bx bx-menu' ></i></a>
-                <div class="nav-icons">
-                    <p>Hello, Ranadip</p>
-                    <i class='bx bxs-user-circle'></i>
-                </div>
+      </div>
+
+      <div class="dashboard">
+        <div class="nav-bar2">
+          <a href=""><i class="bx bx-menu"></i></a>
+          <div class="nav-icons">
+            <p>Hello, Ranadip</p>
+            <i class="bx bxs-user-circle"></i>
+          </div>
+        </div>
+        <div class="cust-dash">
+          <div class="dash-head">
+            <div class="dash-titile">
+                <h2>Employees List</h2>
+                <p>Dashboard / Employees</p>
             </div>
-            <div class="cust-dash">
-                <div class="dash-titile">
-                    <h2>Employees List</h2>
-                    <p>Dashboard / Employees</p>
-                </div>
-                <div class="o-one">
-                    <table>
-                        <tr>
-                          <th>Employee id</th>
-                          <th>Employee Name</th>
-                          <th>Contact Number</th> 
-                          <th>Joining Date</th>
-                          <th>Location</th>
-                          <th>Post</th> 
-                          <th>Salary</th>
-                        </tr>
-                        <!-- <tr>
+            <div class="emp-add">
+                <form action="/dashboard/employee/new">
+                    <button><i class='bx bx-plus'></i>Add Employee</button>
+                </form>
+            </div>
+          </div>
+
+          <div class="o-one">
+            <table>
+              <tr>
+                <th>Employee id</th>
+                <th>Employee Name</th>
+                <th>Contact Number</th>
+                <th>Joining Date</th>
+                <th>Location</th>
+                <th>Post</th>
+                <th>Salary</th>
+              </tr>
+              <!-- <tr>
                           <td>#12345</td>
                           <td>Ranadip</td>
                           <td>9957416364</td>
@@ -69,24 +103,38 @@
                           <td>Manager</td>
                           <td>15000/-</td>
                         </tr> -->
-                        <% for(employee of employees){ %>
-                            <tr>
-                                <td>#<%= employee.employeeId %></td>
-                                <td><%= employee.name %></td>
-                                <td>+<%= employee.contactNo %></td>
-                                <td><%= employee.joiningDate.toString().split(" ").slice(1,4).join("/") %></td>
-                                <td><%= employee.location.city + ", " + employee.location.state%></td>
-                                <td><%= employee.post %></td>
-                                <td><%= employee.salary.toLocaleString("en-IN") %></td>
-                            </tr>
-                        <% } %>
-                      </table>
-                </div>
-            </div>
-
+              <% for(employee of employees){ %>
+              <tr>
+                <td>#<%= employee.employeeId %></td>
+                <td><%= employee.name %></td>
+                <td>
+                    +<%= employee.contactNo.toString().slice(0, 2) + '-' +
+                    employee.contactNo.toString().slice(2);%>
+                  </td>
+                <td>
+                  <%=
+                  employee.joiningDate.toString().split(" ").slice(1,4).join("/")
+                  %>
+                </td>
+                <td>
+                  <%= employee.location.city + ", " + employee.location.state%>
+                </td>
+                <td><%= employee.post %></td>
+                <td><%= employee.salary.toLocaleString("en-IN") %></td>
+                <td class="btn-td">
+                    <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
+                </td>
+              </tr>
+              <% } %>
+            </table>
+          </div>
         </div>
+      </div>
     </section>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
     <script src="/js/graph.js"></script>
-</body>
+  </body>
 </html>

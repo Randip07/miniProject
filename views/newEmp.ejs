@@ -10,6 +10,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/newEmp.css">
     <link
       rel="stylesheet"
       href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
@@ -43,12 +44,12 @@
                 </li></a
               >
               <a href="/dashboard/customers"
-                ><li class="customer active">
+                ><li class="customer">
                   <i class="bx bxs-user"></i>Customers
                 </li></a
               >
               <a href="/dashboard/employee"
-                ><li class="emoloyee">
+                ><li class="emoloyee active">
                   <i class="bx bxs-user"></i>Employees
                 </li></a
               >
@@ -73,38 +74,38 @@
         </div>
         <div class="cust-dash">
           <div class="dash-titile">
-            <h2>Customer List</h2>
-            <p>Dashboard / Customers</p>
+            <h2>Employees List</h2>
+            <p>Dashboard / Employees / New</p>
           </div>
-          <div class="o-one">
-            <table>
-              <tr>
-                <th>Customer id</th>
-                <th>Customer Name</th>
-                <th>Contact Number</th>
-                <th>Last Order</th>
-                <th>Rating</th>
-              </tr>
-              <tr>
-                <td>#12344</td>
-                <td>Ranadip Das</td>
-                <td>+91-9957416364</td>
-                <td>#</td>
-                <td>5</td>
-              </tr>
-              <% for(customer of customers){ %>
-              <tr>
-                <td>#<%= customer.customerId %></td>
-                <td><%= customer.name %></td>
-                <td>
-                  +<%= customer.contactNo.toString().slice(0, 2) + '-' +
-                  customer.contactNo.toString().slice(2);%>
-                </td>
-                <td>#<%= customer.orders[customer.orders.length] %></td>
-                <td><%= customer.rating %></td>
-              </tr>
-              <% } %>
-            </table>
+          <div class="empForm-div">
+            <form action="dashboard/emoloyee" method="post">
+                <div class="empForm">
+                    <div>
+                        <label for="name">Employee Name</label>
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <div>
+                        <label for="name">Contact Number</label>
+                        <input type="text" id="contactNo" name="contactNo">
+                    </div>
+                    <div>
+                        <label for="name">Post</label>
+                        <input type="text" id="post" name="post">
+                    </div>
+                    <div>
+                        <label for="name">Salary</label>
+                        <input type="text" id="salary" name="salary">
+                    </div>
+                    <div>
+                        <label for="name">City</label>
+                        <input type="text" id="city" name="city">
+                    </div>
+                    <div>
+                        <label for="name">State</label>
+                        <input type="text" id="state" name="state">
+                    </div>
+                </div>
+            </form>
           </div>
         </div>
       </div>
