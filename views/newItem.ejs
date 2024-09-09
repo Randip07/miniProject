@@ -82,14 +82,9 @@
                 <div class="itemForm">
         
                     <div>
-                      <label for="itemName">ItemName</label>
+                      <label for="itemName">Item Name</label>
                       <input type="text" id="itemName" name="itemName" required>
                      </div>
-                     <div>
-                      <label for="itemDetails">ItemDetails</label>
-                      <textarea id="itemDetails" name="itemDetails" rows="2" cols="55"></textarea>
-                  </div>
-                   
                     <div>
                         <label for="category">Category</label>
                         <select id="category" required name="category">
@@ -111,7 +106,7 @@
                         </select>
                      </div>
                      <div>
-                      <label for="price">price</label>
+                      <label for="price">Price</label>
                       <div class="input-group">
                         <span class="input-group-text"><i class='bx bx-rupee' ></i></span>
                           <input type="number" id="price" name="price" required>
@@ -124,8 +119,6 @@
                             <input type="number" class="form-control" id="discount" name="discount" required>
                         </div>
                     </div>
-                   
-                  
                     <div>
                       <label for="availabilityr">Availablity</label>
                       <select id="availability" required name="availability">
@@ -133,11 +126,14 @@
                           <option value="available">available</option>
                           <option value="Not available">Not available</option>
                         </select>
-                     </div>
-                   
+                    </div>
+                    <div>
+                      <label for="itemDetails">Item Details</label>
+                      <textarea id="itemDetails" name="itemDetails" rows="4"></textarea>
+                    </div>
                     <br>
                     <div class="reg-btn">
-                        <button type="submit" >Register</button>
+                        <button type="submit" >Add Item</button>
                         <a href="/dashboard/menu"><i class='bx bx-arrow-back' ></i>Back</a>
                     </div>
 

@@ -17,7 +17,7 @@ a {
 
 .empForm-div{
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 2rem;
     background: var(--text-color);
     margin-top: 1rem;
     border-radius: 1rem;

@@ -150,7 +150,10 @@
                     </div>
                     <div>
                       <label for="discount">Discount</label>
-                      <input type="number" id="discount" name="discount"  value="<%= data.discount %>" required>
+                      <div class="input-group">
+                        <span class="input-group-text" >%</span>
+                        <input type="number" id="discount" name="discount"  value="<%= data.discount %>" required>
+                    </div>
                      </div>
                     <div>
                       <label for="availablity">Availability</label>
