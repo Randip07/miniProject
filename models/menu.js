@@ -34,7 +34,7 @@ const menuSchema = new mongoose.Schema({
   rating: {
     type: [Number],
   },
-  availablity: {
+  availability: {
     type: String,
     enum: ["available", "Not available"],
   },

@@ -126,9 +126,31 @@ app.get("/ratings", (req, res) => {
 
 app.get("/dashboard/menu", async (req, res) => {
   let data = await Menu.find({});
-  res.render("dashMenu.ejs", { items: data });
+  let category = [
+    "Appetizers",
+    "Main-Course",
+    "Beverages",
+    "Ice-Cream",
+    "Drinks",
+    "Add-On",
+  ];
+  res.render("dashMenu.ejs", { items: data , categories : category});
 });
 
 app.get("/dashboard/menu/new", (req, res) => {
   res.render("newItem.ejs")
+});
+
+app.get("/dashboard/menu/:id/edit", async (req, res) => {
+    let { id } = req.params
+    let itemData = await Menu.findById(id)
+    
+    res.render("editItem.ejs" , { data : itemData });
+});
+
+app.put("/dashboard/menu/:id", async (req, res) => {
+    let { id } = req.params
+    let newData = req.body;
+    let empData = await Menu.findByIdAndUpdate(id, newData)
+    res.redirect("/dashboard/menu");
 });

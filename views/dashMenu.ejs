@@ -58,36 +58,45 @@
                   </div>
                 </div>
                 <div class="o-one">
-                    <table>
-                        <tr>
-                          <th>ItemID</th>
-                          <th>ItemName</th>
-                          <th>Price</th>
-                          <th>Category</th>
-                          <th>Discount</th>
-                          <th>Rating</th>
-                          <th>Veg/Non-Veg</th>
-                          <th>Edit Item</th>
-                          
-                        </tr>
-         
-                        <% for(item of items){ %>
+                    <% for(category of categories) {%>
+                        <table>
+                            <h1><%= category %> </h1>
                             <tr>
-                              <td>#<%= item.itemID %></td>
-                              <td><%= item.itemName %></td>
-                              <td><%= item.price %></td>
-                              <td><%= item.category %></td>
-                              <td><%= item.discount %></td>
-                              <td>
-                                <%= `${((item.rating.reduce((partialSum, a) => partialSum + a, 0)) / item.rating.length).toString().slice(0, 3)} (${item.rating.length})` %>
-                              </td>
-                              <td></td>
-                              <td class="btn-td">
-                                  <a href="" class="o-btn"><i class='bx bx-edit'></i></a>
-                              </td>
+                            <th>ItemID</th>
+                            <th>ItemName</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Rating</th>
+                            <th>Veg/Non-Veg</th>
+                            <th>Edit Item</th>
+                            
                             </tr>
-                            <% } %>
-                      </table>
+            
+                            <% for(item of items){ %>
+                                <% if (item.category == category) {%>
+                                    <tr>
+                                    <td>#<%= item.itemID %></td>
+                                    <td><%= item.itemName %></td>
+                                    <td><%= item.price %></td>
+                                    <td><%= item.discount %>%</td>
+                                    <td>
+                                        <%= `${((item.rating.reduce((partialSum, a) => partialSum + a, 0)) / item.rating.length).toString().slice(0, 3)} (${item.rating.length})` %>
+                                    </td>
+                                        <td><% if(item.type=="Veg") {%>
+                                        <i class='bx bx-food-tag' style="color: green;"></i>
+                                        <%  }else{%>
+                                            <i class='bx bx-food-tag' style="color: red;"></i>
+                                        <%} %>
+                                        </td>
+                                    <td class="btn-td">
+                                        <form action="/dashboard/menu/<%= item._id %>/edit">
+                                            <button class="o-btn"><i class='bx bx-edit'></i></button>
+                                        </form>
+                                    </td>
+                                    </tr>
+                                <% }} %>
+                        </table>
+                    <% } %>
                 </div>
             </div>
 

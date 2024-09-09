@@ -283,6 +283,7 @@ i {
 }
 .o-one table {
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .o-one table tr th {
