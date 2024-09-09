@@ -10,7 +10,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="/css/dashboard.css" />
-    <link rel="stylesheet" href="/css/newEmp.css">
+    <link rel="stylesheet" href="/css/newItem.css">
     <link
       rel="stylesheet"
       href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
@@ -53,10 +53,10 @@
                   <i class="bx bxs-user"></i>Employees
                 </li></a
               >
-              <a href="#"
+              <a href="/dashboard/menu"
                 ><li class="menu active"><i class="bx bxs-food-menu"></i>Menu</li></a
               >
-              <a href="#"
+              <a href="/dashboard/table"
                 ><li class="table"><i class="bx bxs-card"></i>Table</li></a
               >
             </ul>
@@ -74,36 +74,74 @@
         </div>
         <div class="cust-dash">
           <div class="dash-titile">
-            <h2>Employees List</h2>
-            <p>Dashboard / Employees / New</p>
+            <h2>Item List</h2>
+            <p>Dashboard / Items / New</p>
           </div>
-          <div class="empForm-div">
-            <form action="dashboard/emoloyee" method="post">
-                <div class="empForm">
+          <div class="itemForm-div">
+            <form action="/dashboard/menu" method="post">
+                <div class="itemForm">
+        
                     <div>
-                        <label for="name">itemName</label>
-                        <input type="text" id="name" name="name">
+                      <label for="itemName">ItemName</label>
+                      <input type="text" id="itemName" name="itemName" required>
+                     </div>
+                     <div>
+                      <label for="itemDetails">ItemDetails</label>
+                      <textarea id="itemDetails" name="itemDetails" rows="2" cols="55"></textarea>
+                  </div>
+                   
+                    <div>
+                        <label for="category">Category</label>
+                        <select id="category" required name="category">
+                            <option selected>Select Category</option>
+                            <option value="Appetizers">Appetizers</option>
+                            <option value="Main-Course">Main-Course</option>
+                            <option value="Beverages">Beverages</option>
+                            <option value="Ice-Cream">Ice-Cream</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Add-On">Add-On</option>
+                          </select>
                     </div>
                     <div>
-                        <label for="name">ItemDetails</label>
-                        <input type="text" id="contactNo" name="contactNo">
-                    </div>
+                      <label for="type">Type</label>
+                      <select id="type" required name="type">
+                          <option selected> Select Veg or Non-Veg</option>
+                          <option value="Veg">Veg</option>
+                          <option value="Non-Veg">Non-Veg</option>
+                        </select>
+                     </div>
+                     <div>
+                      <label for="price">price</label>
+                      <div class="input-group">
+                        <span class="input-group-text"><i class='bx bx-rupee' ></i></span>
+                          <input type="number" id="price" name="price" required>
+                      </div>
+                  </div>
                     <div>
-                        <label for="name">Price</label>
-                        <input type="text" id="post" name="post">
+                        <label for="discount">Discount</label>
+                        <div class="input-group">
+                            <span class="input-group-text" >%</span>
+                            <input type="number" class="form-control" id="discount" name="discount" required>
+                        </div>
                     </div>
+                   
+                  
                     <div>
-                        <label for="name">Category</label>
-                        <input type="text" id="salary" name="salary">
+                      <label for="availabilityr">Availablity</label>
+                      <select id="availability" required name="availability">
+                          <option selected> Select</option>
+                          <option value="available">available</option>
+                          <option value="Not available">Not available</option>
+                        </select>
+                     </div>
+                   
+                    <br>
+                    <div class="reg-btn">
+                        <button type="submit" >Register</button>
+                        <a href="/dashboard/menu"><i class='bx bx-arrow-back' ></i>Back</a>
                     </div>
-                    <div>
-                        <label for="name">Discount</label>
-                        <input type="text" id="city" name="city">
-                    </div>
-                    <div>
-                        <label for="name">Rating</label>
-                        <input type="text" id="state" name="state">
-                    </div>
+
+
                 </div>
             </form>
           </div>
