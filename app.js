@@ -154,3 +154,22 @@ app.put("/dashboard/menu/:id", async (req, res) => {
     let empData = await Menu.findByIdAndUpdate(id, newData)
     res.redirect("/dashboard/menu");
 });
+
+app.post("/dashboard/menu", async (req, res) => {
+  let itemID = await  Menu.countDocuments();
+  itemID += 11101;
+  
+  let newMenu = new Menu({
+      itemID :  itemID,
+      itemName : req.body.itemName,
+      itemDetails : req.body.itemDetails,
+      price : req.body.price,
+      category :  req.body.category,
+      discount : req.body.discount,
+      availablity : req.body.availablity,
+      type : req.body.type,
+  })
+
+  await newMenu.save();
+  res.redirect("/dashboard/menu");
+});
