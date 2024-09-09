@@ -1,4 +1,4 @@
-[
+const menu = [
   // Appetizers
   {
     itemID: 11101,
@@ -559,3 +559,5 @@
     type: "Veg",
   },
 ];
+
+module.exports = { data : menu }
