@@ -78,7 +78,7 @@
             <p>Dashboard / Employee / #<%= data.employeeId %></p>
           </div>
           <div class="empForm-div">
-            <form action="" method="post">
+            <form action="/dashboard/employee/<%= data._id %>?_method=PUT" method="POST">
                 <div class="empForm">
                     <div>
                         <label for="name">Employee Name</label>
@@ -94,7 +94,7 @@
                     <div>
                         <label for="post">Post</label>
                         <select id="post" required name="post" value="<%= data.post %>">
-                            <option selected>Select Post</option>
+                            <option>Select Post</option>
                             <option value="Manager">Manager</option>
                             <option value="Chef">Chef</option>
                             <option value="Waiter">Waiter</option>

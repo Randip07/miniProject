@@ -38,6 +38,10 @@ const menuSchema = new mongoose.Schema({
     type: String,
     enum: ["available", "Not available"],
   },
+  type :{
+    type : String,
+    enum : ["Veg", "Non-Veg"]
+  }
 });
 
 const Menu = mongoose.model("Menu", menuSchema);

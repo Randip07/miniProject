@@ -52,7 +52,7 @@
                   <i class="bx bxs-user"></i>Employees
                 </li></a
               >
-              <a href="/dashboard/menu1"
+              <a href="/dashboard/menu"
                 ><li class="menu"><i class="bx bxs-food-menu"></i>Menu</li></a
               >
               <a href="#"
@@ -122,7 +122,7 @@
                 <td><%= employee.post %></td>
                 <td><%= employee.salary.toLocaleString("en-IN") %></td>
                 <td class="btn-td">
-                  <form action="/dashboard/employee/<%= employee.employeeId %>">
+                  <form action="/dashboard/employee/<%= employee._id %>/edit">
                     <button class="o-btn"><i class='bx bx-edit'></i></button>
                   </form>
                     
