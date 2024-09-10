@@ -5,20 +5,30 @@ const customerSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+
   name: {
     type: String,
     required: true,
   },
+
   contactNo: {
     type: Number,
     required: true,
   },
-  orders: {
-    type: [Number],
-  },
+
+  orders: [{
+    type : "ObjectId",
+    ref : "Order"
+}],
+
   rating: {
     type: Number,
   },
+
+  cart : [{
+    type : "ObjectId",
+    ref : "Menu"
+}]
 });
 
 const Customer = mongoose.model("Customer", customerSchema);

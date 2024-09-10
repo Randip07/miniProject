@@ -5,21 +5,21 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  itemId: {
-    type: [Number],
-    required: true,
-  },
-  table: {
+  items: [{
+      type : "ObjectId",
+      ref : "Menu"
+  }],
+  tableNo: {
     type: Number,
     required: true,
   },
   amount: {
     type: Number,
-    required: true,
   },
   customerId: {
     type: Number,
     required: true,
+    ref : "customers"
   },
   orderStatus: {
     type: String,
@@ -31,6 +31,6 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-const Order = mongoose.model("Order", orderSchemaSchema);
+const Order = mongoose.model("Order", orderSchema);
 module.exports = Order;
 

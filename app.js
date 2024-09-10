@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const Employee = require("./models/employee.js");
 const Menu = require("./models/menu.js");
 const Customer = require("./models/customers.js");
+const Table = require("./models/table.js");
+const Order = require("./models/orders.js");
 const methodOverride = require('method-override')
 const { name } = require("ejs");
 
@@ -55,7 +57,9 @@ app.get("/dashboard", (req, res) => {
   res.render("dashboard.ejs");
 });
 
-app.get("/dashboard/orders", (req, res) => {
+app.get("/dashboard/orders", async (req, res) => {
+  // let data = await Order.findOne({orderId : 1001}).populate("items")
+  // console.log(data);
   res.render("orders.ejs");
 });
 
@@ -173,3 +177,26 @@ app.post("/dashboard/menu", async (req, res) => {
   await newMenu.save();
   res.redirect("/dashboard/menu");
 });
+
+//Dashboard Table
+app.get("/dashboard/table", async (req,res) => {
+    let data = await Table.find();
+    res.render("dashTable.ejs", {tables : data})
+})
+
+app.get("/dashboard/table/view/:id", async (req,res) => {
+    let { id } = req.params
+    let data = await Table.findById(id)
+    res.render("dashTableView.ejs", {data})
+})
+
+app.get("/cart", async (req, res)=> {
+  let data = await Customer.findById("66e087e12d85e86f329f9cb8").populate("cart")
+  res.render("cart.ejs", { cart : data.cart})
+})
+
+app.post("/cart/:id", async (req, res)=> {
+  let {id : itemId} = req.params;
+  await Customer.findOneAndUpdate({_id : "66e087e12d85e86f329f9cb8"}, {$push : { cart : itemId}})
+  res.redirect("/cart")
+})

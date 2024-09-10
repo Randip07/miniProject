@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 const empData = require("./employees.js");
 const menuData = require("./menu.js");
 const cusData = require("./customers.js");
+const tableData = require("./table.js");
+const orderData = require("./orders.js");
 const EmpListing = require("../models/employee.js");
 const MenuListing = require("../models/menu.js");
 const CustListing = require("../models/customers.js");
+const TableListing = require("../models/table.js");
+const OrderListing = require("../models/orders.js");
 
 main()
   .then((res) => {
@@ -34,6 +38,21 @@ const initDB2 = async () => {
   console.log("Customer data initialized");
 };
 
-initDB1();
-// initDB2();
+const initDB3 = async () => {
+  await TableListing.deleteMany({});
+  await TableListing.insertMany(tableData.data);
+  console.log("table data initialized");
+};
+
+const initDB4 = async () => {
+  await OrderListing.deleteMany({});
+  await OrderListing.insertMany(orderData.data);
+  console.log("Order data initialized");
+};
+
+// initDB1();
+initDB2();
 // initDB();
+// initDB3();
+// initDB4();
+
