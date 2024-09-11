@@ -14,7 +14,7 @@
             <h2>The Grand Èclat</h2>
         </div>
         <div class="nav-btn">
-            <a href=""><i class="fa-solid fa-user-large"></i>Ranadip Das</a>
+            <a href=""><i class="fa-solid fa-user-large"></i><%= cusData.name %></a>
         </div>
     </section>
     <section class="main">
@@ -23,34 +23,38 @@
         </div>
         <div class="cart">
             <p><i class='bx bx-cart'></i>Cart Items</p>
-            <% for(item of cart) {%>
-                <div class="cartItems">
-                    <div class="itemName">
-                        <% if(item.type == "Veg") {%>
-                            <i class='bx bx-food-tag' style="color: green;"></i>
-                        <% }else{ %>
-                            <i class='bx bx-food-tag' style="color: red;"></i>
-                        <% } %>
-                        <p><%= item.itemName %></p>
-                    </div>
-                    <div class="quantity">
-                        <div>
-                            <form action="">
-                                <button type="submit"><i class='bx bx-minus' ></i></button>
-                            </form>
+            <div class="cartItemContainer">
+                <% for(item of cart) {%>
+                    <div class="cartItems">
+                        <div class="itemName">
+                            <% if(item.itemId.type == "Veg") {%>
+                                <i class='bx bx-food-tag' style="color: green;"></i>
+                            <% }else{ %>
+                                <i class='bx bx-food-tag' style="color: red;"></i>
+                            <% } %>
+                            <p><%= item.itemId.itemName %></p>
                         </div>
-                        <h3>2</h3>
-                        <div>
-                            <form action="">
-                                <button type="submit"><i class='bx bx-plus' ></i></button>
-                            </form>
+                        <div class="quantity">
+                            <div>
+                                <div class="minBtn">
+                                    <form action="/cart/sub/<%= cusData.id %>/<%= item.itemId._id %>?_method=PUT" method="post">
+                                        <button type="submit"><i class='bx bx-minus' ></i></button>
+                                    </form>
+                                </div>
+                                <h3><%= item.quantity %></h3>
+                                <div class="plusBtn">
+                                    <form action="">
+                                        <button type="submit"><i class='bx bx-plus' ></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="itemPrice">
+                            <p>&#8377;<%= item.itemId.price %></p>
                         </div>
                     </div>
-                    <div class="itemPrice">
-                        <p><%= item.price %></p>
-                    </div>
-                </div>
-            <% } %>
+                <% } %>
+            </div>
         </div>
     </section>
 </body>

@@ -189,12 +189,24 @@ app.get("/dashboard/table/view/:id", async (req,res) => {
 })
 
 app.get("/cart", async (req, res)=> {
-  let data = await Customer.findById("66e12009fef647e33623feca").populate("cart")
-  res.render("cart.ejs", { cart : data.cart})
+  let data = await Customer.findById("66e1cbc286cde24d097b1c08").populate("cart.itemId")
+  let cusData = {
+    id : data._id,
+    name : data.name
+  }
+  res.render("cart.ejs", { cart : data.cart, cusData})
 })
 
 app.post("/cart/:id", async (req, res)=> {
-  let {id : itemId} = req.params;
-  await Customer.findOneAndUpdate({_id : "66e12009fef647e33623feca"}, {$push : { cart : itemId}})
+  let item = {
+    itemId : req.params.id,
+    quantity : 1
+  };
+  let result = await Customer.findOneAndUpdate({_id : "66e1cbc286cde24d097b1c08"}, {$push : { cart : item}})
   res.redirect("/cart")
+})
+
+app.put("/cart/sub/:cusId/:itemId", async (req, res) => {
+  let { cusId, itemId} = req.params;
+  let result = await Customer.findOneAndUpdate({_id : cusId}, {$push : { cart : item}})
 })
