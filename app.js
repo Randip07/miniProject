@@ -8,7 +8,6 @@ const Customer = require("./models/customers.js");
 const Table = require("./models/table.js");
 const Order = require("./models/orders.js");
 const methodOverride = require('method-override')
-const { name } = require("ejs");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -148,14 +147,13 @@ app.get("/dashboard/menu/new", (req, res) => {
 app.get("/dashboard/menu/:id/edit", async (req, res) => {
     let { id } = req.params
     let itemData = await Menu.findById(id)
-    
     res.render("editItem.ejs" , { data : itemData });
 });
 
 app.put("/dashboard/menu/:id", async (req, res) => {
     let { id } = req.params
     let newData = req.body;
-    let empData = await Menu.findByIdAndUpdate(id, newData)
+    await Menu.findByIdAndUpdate(id, newData)
     res.redirect("/dashboard/menu");
 });
 
@@ -191,12 +189,12 @@ app.get("/dashboard/table/view/:id", async (req,res) => {
 })
 
 app.get("/cart", async (req, res)=> {
-  let data = await Customer.findById("66e087e12d85e86f329f9cb8").populate("cart")
+  let data = await Customer.findById("66e12009fef647e33623feca").populate("cart")
   res.render("cart.ejs", { cart : data.cart})
 })
 
 app.post("/cart/:id", async (req, res)=> {
   let {id : itemId} = req.params;
-  await Customer.findOneAndUpdate({_id : "66e087e12d85e86f329f9cb8"}, {$push : { cart : itemId}})
+  await Customer.findOneAndUpdate({_id : "66e12009fef647e33623feca"}, {$push : { cart : itemId}})
   res.redirect("/cart")
 })

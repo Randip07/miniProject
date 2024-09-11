@@ -4,31 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cart</title>
-    <style>
-        table , th, td{
-            padding: 1rem;
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>item Name</th>
-            <th>item Price</th>
-            <th>quantity</th>
-        </tr>
-        <% for(item of cart) {%>
-            <tr>
-                <td><%= item.itemName %></td>
-                <td><%= item.price %></td>
-                <td>2</td>
-            </tr>
-        <% } %>
-        <tr>
-            <td colspan="2">total Price</td>
-            <td>240</td>
-        </tr>
-    </table>
+    <section class="navbar">
+        <div class="logo">
+            <h2>The Grand Èclat</h2>
+        </div>
+        <div class="nav-btn">
+            <a href=""><i class="fa-solid fa-user-large"></i>Ranadip Das</a>
+        </div>
+    </section>
+    <section class="main">
+        <div class="address">
+            <h2>Address</h2>
+        </div>
+        <div class="cart">
+            <p><i class='bx bx-cart'></i>Cart Items</p>
+            <% for(item of cart) {%>
+                <div class="cartItems">
+                    <div class="itemName">
+                        <% if(item.type == "Veg") {%>
+                            <i class='bx bx-food-tag' style="color: green;"></i>
+                        <% }else{ %>
+                            <i class='bx bx-food-tag' style="color: red;"></i>
+                        <% } %>
+                        <p><%= item.itemName %></p>
+                    </div>
+                    <div class="quantity">
+                        <div>
+                            <form action="">
+                                <button type="submit"><i class='bx bx-minus' ></i></button>
+                            </form>
+                        </div>
+                        <h3>2</h3>
+                        <div>
+                            <form action="">
+                                <button type="submit"><i class='bx bx-plus' ></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="itemPrice">
+                        <p><%= item.price %></p>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </section>
 </body>
 </html>
