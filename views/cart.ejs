@@ -14,7 +14,7 @@
             <h2>The Grand Èclat</h2>
         </div>
         <div class="nav-btn">
-            <a href=""><i class="fa-solid fa-user-large"></i>Ranadip Das</a>
+            <a href=""><i class="fa-solid fa-user-large"></i><%= cusData.name %></a>
         </div>
     </section>
     <section class="main">
@@ -23,7 +23,6 @@
         </div>
         <div class="cart">
             <p><i class='bx bx-cart'></i>Cart Items</p>
-<<<<<<< HEAD
             <div class="">
                 <div class="cartItemContainer">
                     <% for(item of cart) {%>
@@ -86,37 +85,7 @@
                 <div class="total">
                     <p>TO PAY</p>
                     <p>&#8377;1560</p>
-=======
-            <% for(item of cart) {%>
-                <div class="cartItems">
-                    <div class="itemName">
-                        <% if(item.type == "Veg") {%>
-                            <i class='bx bx-food-tag' style="color: green;"></i>
-                        <% }else{ %>
-                            <i class='bx bx-food-tag' style="color: red;"></i>
-                        <% } %>
-                        <p><%= item.itemName %></p>
-                    </div>
-                    <div class="quantity">
-                        <div>
-                            <form action="/cart/<%= item._id %>"method="post">
-                                <button type="submit"><i class='bx bx-minus' ></i></button>
-                            </form>
-                        </div>
-                        <h3><%=item.quantity%></h3>
-                        <div>
-                            <form action="/cart/<%= item._id %>"method="post">
-                                <button type="submit"><i class='bx bx-plus' ></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="itemPrice">
-                        <p><%= item.price %></p>
-                    </div>
->>>>>>> 3cc6abeef24c876a8b10d601b8b8bf9a9d0efaaf
                 </div>
-                
-            <% } %>
         </div>
     </section>
 </body>

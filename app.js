@@ -49,8 +49,8 @@ app.get("/booking", (req, res) => {
 
 app.get("/menu", async (req, res) => {
   let data = await Menu.find({});
-  let cartcount = await Customer.findOne({ _id:"66e2ffadc7b36a88056fc72b" })
-  let count =cartcount.cart.length;
+  let cartcount = await Customer.findOne({ _id:"66e1cbc286cde24d097b1c08" })
+  let count = cartcount.cart.length;
   res.render("menu.ejs", { items: data ,count});
 
 });
@@ -192,11 +192,14 @@ app.get("/dashboard/table/view/:id", async (req,res) => {
 })
 
 app.get("/cart", async (req, res)=> {
-  let data = await Customer.findById("66e2ffadc7b36a88056fc72b").populate("cart.itemId")
+  let data = await Customer.findById("66e1cbc286cde24d097b1c08").populate("cart.itemId")
+  
   let cusData = {
     id : data._id,
     name : data.name
   }
+  
+  console.log(data.cart);
   res.render("cart.ejs", { cart : data.cart, cusData})
 })
 
@@ -206,7 +209,7 @@ app.post("/cart/:id", async (req, res)=> {
   };
   let customer = await Customer.findOne(
     {
-      _id: "66e2ffadc7b36a88056fc72b",
+      _id: "66e1cbc286cde24d097b1c08",
       "cart.itemId": req.params.id 
     },
     {
@@ -214,14 +217,14 @@ app.post("/cart/:id", async (req, res)=> {
     }
   );
   if(customer == null){
-    let result = await Customer.findOneAndUpdate({_id : "66e2ffadc7b36a88056fc72b"}, {$push : { cart : item}})
+    let result = await Customer.findOneAndUpdate({_id : "66e1cbc286cde24d097b1c08"}, {$push : { cart : item}})
   }else{
     const cartItem = customer.cart[0];
     
     if (cartItem.quantity < 5) {
       const result = await Customer.updateOne(
         {
-          _id: "66e2ffadc7b36a88056fc72b",
+          _id: "66e1cbc286cde24d097b1c08",
           "cart.itemId": req.params.id
         },
         {
