@@ -23,57 +23,68 @@
         </div>
         <div class="cart">
             <p><i class='bx bx-cart'></i>Cart Items</p>
-            <div class="cartItemContainer">
-                <% for(item of cart) {%>
-                    <div class="cartItems">
-                        <div class="itemName">
-                            <% if(item.itemId.type == "Veg") {%>
-                                <i class='bx bx-food-tag' style="color: green;"></i>
-                            <% }else{ %>
-                                <i class='bx bx-food-tag' style="color: red;"></i>
-                            <% } %>
-                            <p><%= item.itemId.itemName %></p>
-                            <br>
-                            <p></p>
-                        </div>
-                        <div class="quantity">
-                            <div>
-                                <div class="minBtn">
-                                    <form action="/cart/s/<%= cusData.id %>/<%= item._id %>?_method=PUT" method="post">
-                                        <button type="submit"><i class='bx bx-minus' ></i></button>
-                                    </form>
-                                </div>
-                                <h3><%= item.quantity %></h3>
-                                <div class="plusBtn">
-                                    <form action="/cart/p/<%= cusData.id %>/<%= item._id %>?_method=PUT" method="post">
-                                        <button type="submit"><i class='bx bx-plus' ></i></button>
-                                    </form>
+            <div class="">
+                <div class="cartItemContainer">
+                    <% for(item of cart) {%>
+                        <div class="cartItems">
+                            <div class="itemName">
+                                <% if(item.itemId.type == "Veg") {%>
+                                    <i class='bx bx-food-tag' style="color: green;"></i>
+                                <% }else{ %>
+                                    <i class='bx bx-food-tag' style="color: red;"></i>
+                                <% } %>
+                                <p><%= item.itemId.itemName %></p>
+                                <br>
+                                <p></p>
+                            </div>
+                            <div class="quantity">
+                                <div>
+                                    <div class="minBtn">
+                                        <form action="/cart/s/<%= cusData.id %>/<%= item._id %>?_method=PUT" method="post">
+                                            <button type="submit"><i class='bx bx-minus' ></i></button>
+                                        </form>
+                                    </div>
+                                    <h3><%= item.quantity %></h3>
+                                    <div class="plusBtn">
+                                        <form action="/cart/p/<%= cusData.id %>/<%= item._id %>?_method=PUT" method="post">
+                                            <button type="submit"><i class='bx bx-plus' ></i></button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="itemPrice">
+                                <span class="actualPrice">&#8377;<%= item.quantity*item.itemId.price %></span>
+                                <p>&#8377;<%= Math.ceil(item.quantity*(item.itemId.price - item.itemId.price*(item.itemId.discount/100))) %></p>
+                            </div>
                         </div>
-                        <div class="itemPrice">
-                            <span class="actualPrice">&#8377;<%= item.quantity*item.itemId.price %></span>
-                            <p>&#8377;<%= Math.ceil(item.quantity*(item.itemId.price - item.itemId.price*(item.itemId.discount/100))) %></p>
-                        </div>
+                    <% } %>
+                    <div class="billDetails">
+                        <p>Bill Details</p>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Item Total</td>
+                                    <td>&#8377;1450</td>
+                                </tr>
+                                <tr>
+                                    <td>Platform Fee</td>
+                                    <td>&#8377;10</td>
+                                </tr>
+                                <tr>
+                                    <td>S.G.S.T.</td>
+                                    <td>&#8377;18</td>
+                                </tr>
+                                <tr>
+                                    <td>C.G.S.T.</td>
+                                    <td>&#8377;19</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                <% } %>
-                <div class="billDetails">
-                    <p>Bill Details</p>
-                    <table>
-                        <tr>
-                            <td>Item Total</td>
-                            <td>1450</td>
-                        </tr>
-                        <tr>
-                            <td>Platform Fee</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>S.G.S.T.</td>
-                            <td>18</td>
-                        </tr>
-                        <tr></tr>
-                    </table>
+                </div>
+                <div class="total">
+                    <p>TO PAY</p>
+                    <p>&#8377;1560</p>
                 </div>
             </div>
         </div>

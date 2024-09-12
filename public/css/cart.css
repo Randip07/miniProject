@@ -61,14 +61,12 @@ body{
 
 .address {
     width: 60%;
-    height: 600px;
     padding: 0.5rem 1rem;
     background: var(--text-color);
 }
 
 .cart{
     width: 35%;
-    height: 600px;
     padding: 1rem;
     background: var(--text-color);
 }
@@ -81,6 +79,11 @@ body{
     font-size: 1.1rem;
     display: flex;
     align-items: center;
+}
+
+.cartItemContainer{
+    overflow-x: scroll;
+    max-height: 500px;
 }
 
 .cartItems{
@@ -161,3 +164,39 @@ body{
     font-size: 0.6rem;
     text-decoration: 1px solid black line-through;
 }
+
+
+.billDetails p{
+    font-size: 0.9rem;
+}
+
+.billDetails{
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    font-size: 0.7rem;
+    margin-top: 1rem;
+    border-top: 6px solid rgb(234, 234, 234);
+    border-bottom: 2px solid black;
+}
+
+table{
+    width: 100%;
+}
+.billDetails table tbody tr{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.7rem;
+    color: rgb(116, 116, 116);
+}
+
+.total{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+}
+
+.total p{
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
