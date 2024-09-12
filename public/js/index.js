@@ -35,3 +35,5 @@ sr.reveal('.middle-text', {});
 sr.reveal('.row-btn,.shop-content', {delay : 100});
 
 sr.reveal('.contact,.review-content', {delay : 150});
+// Function to update the cart count
+// Function to update the cart count
