@@ -33,17 +33,19 @@
                                 <i class='bx bx-food-tag' style="color: red;"></i>
                             <% } %>
                             <p><%= item.itemId.itemName %></p>
+                            <br>
+                            <p></p>
                         </div>
                         <div class="quantity">
                             <div>
                                 <div class="minBtn">
-                                    <form action="/cart/sub/<%= cusData.id %>/<%= item.itemId._id %>?_method=PUT" method="post">
+                                    <form action="/cart/s/<%= cusData.id %>/<%= item._id %>?_method=PUT" method="post">
                                         <button type="submit"><i class='bx bx-minus' ></i></button>
                                     </form>
                                 </div>
                                 <h3><%= item.quantity %></h3>
                                 <div class="plusBtn">
-                                    <form action="">
+                                    <form action="/cart/p/<%= cusData.id %>/<%= item._id %>?_method=PUT" method="post">
                                         <button type="submit"><i class='bx bx-plus' ></i></button>
                                     </form>
                                 </div>

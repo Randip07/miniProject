@@ -199,14 +199,101 @@ app.get("/cart", async (req, res)=> {
 
 app.post("/cart/:id", async (req, res)=> {
   let item = {
-    itemId : req.params.id,
-    quantity : 1
+    itemId : req.params.id
   };
-  let result = await Customer.findOneAndUpdate({_id : "66e1cbc286cde24d097b1c08"}, {$push : { cart : item}})
+  let customer = await Customer.findOne(
+    {
+      _id: "66e1cbc286cde24d097b1c08",
+      "cart.itemId": req.params.id 
+    },
+    {
+      "cart.$": 1 
+    }
+  );
+  if(customer == null){
+    let result = await Customer.findOneAndUpdate({_id : "66e1cbc286cde24d097b1c08"}, {$push : { cart : item}})
+  }else{
+    const cartItem = customer.cart[0];
+    
+    if (cartItem.quantity < 5) {
+      const result = await Customer.updateOne(
+        {
+          _id: "66e1cbc286cde24d097b1c08",
+          "cart.itemId": req.params.id
+        },
+        {
+          $inc: { "cart.$.quantity": 1 }
+        }
+      )
+    }
+  }
+  res.redirect("/menu")
+})
+
+app.put("/cart/s/:cusId/:itemId", async (req, res) => {
+  let { cusId, itemId : itemIdToUpdate} = req.params;
+  let customer = await Customer.findOne(
+    {
+      _id: cusId,
+      "cart._id": itemIdToUpdate 
+    },
+    {
+      "cart.$": 1 
+    });
+
+  if (customer && customer.cart.length > 0) {
+    const cartItem = customer.cart[0];
+    
+    if (cartItem.quantity > 1) {
+      const result = await Customer.updateOne(
+        {
+          _id: cusId,
+          "cart._id": itemIdToUpdate
+        },
+        {
+          $inc: { "cart.$.quantity": -1 }
+        }
+      )
+    }else{
+      await Customer.updateOne(
+        {
+          _id: cusId
+        },
+        {
+          $pull: { cart: { _id: itemIdToUpdate } } 
+        }
+      )
+    }
+  };
+
   res.redirect("/cart")
 })
 
-app.put("/cart/sub/:cusId/:itemId", async (req, res) => {
-  let { cusId, itemId} = req.params;
-  let result = await Customer.findOneAndUpdate({_id : cusId}, {$push : { cart : item}})
+app.put("/cart/p/:cusId/:itemId", async (req, res) => {
+  let { cusId, itemId :itemIdToUpdate} = req.params;
+
+  let customer = await Customer.findOne(
+    {
+      _id: cusId,
+      "cart._id": itemIdToUpdate 
+    },
+    {
+      "cart.$": 1 
+    });
+
+  if (customer && customer.cart.length > 0) {
+    const cartItem = customer.cart[0];
+    
+    if (cartItem.quantity < 5) {
+      const result = await Customer.updateOne(
+        {
+          _id: cusId,
+          "cart._id": itemIdToUpdate
+        },
+        {
+          $inc: { "cart.$.quantity": 1 }
+        }
+      )
+    }};
+  res.redirect("/cart")
 })
