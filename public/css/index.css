@@ -816,3 +816,15 @@ header.sticky{
 .btn5:hover{
     transform: scale(1.1) translate(12px);
 }
+
+#cart-count{
+    position:absolute;
+    top:-10px;
+    right:-20px;
+    background-color: red;
+    color:white;
+    border-radius: 50%;
+    padding:5px 10px;
+    padding-right: 30;
+  
+}
