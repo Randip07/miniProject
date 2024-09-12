@@ -109,7 +109,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% } %> <% } %>
@@ -139,7 +141,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% }}%>
@@ -169,7 +173,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% }}%>
@@ -199,7 +205,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% }}%>
@@ -229,7 +237,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% }}%>

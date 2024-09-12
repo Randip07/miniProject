@@ -120,6 +120,10 @@ body{
     color: green;
 }
 
+.quantity h3{
+    font-size: 1rem;
+}
+
 .quantity i{
     font-size: 1.2rem;
     color: green;
@@ -141,11 +145,19 @@ body{
 
 .itemPrice{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    line-height: 0.8rem;
    
 }
 
 .itemPrice p {
     font-size: 1rem;
+}
+
+.itemPrice span{
+    font-size: 0.6rem;
+    text-decoration: 1px solid black line-through;
 }
