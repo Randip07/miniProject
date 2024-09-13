@@ -19,16 +19,28 @@ const customerSchema = new mongoose.Schema({
   orders: [{
     type : "ObjectId",
     ref : "Order"
-}],
+  }],
 
   rating: {
     type: Number,
   },
 
+  // cart : [{
+  //   type : "ObjectId",
+  //   ref : "Menu"
+  // }],
+
   cart : [{
-    type : "ObjectId",
-    ref : "Menu"
-}]
+    itemId : {
+      type: "ObjectId",
+      ref : "Menu"
+    },
+    quantity : {
+      type : Number,
+      default :1,
+      required : true
+    }
+  }]
 });
 
 const Customer = mongoose.model("Customer", customerSchema);

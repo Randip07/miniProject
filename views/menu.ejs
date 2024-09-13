@@ -27,6 +27,7 @@
             </button>
           </div>
           <div class="nav-icons">
+            <span  id="cart-count"><%=count%></span>
             <a href="/home" type="button"><i class="bx bxs-home"></i></a>
             <a href="/cart"><i class="bx bx-cart"></i></a>
             <a href="/login" type="button"
@@ -109,7 +110,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% } %> <% } %>
@@ -139,7 +142,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% }}%>
@@ -169,7 +174,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% }}%>
@@ -199,7 +206,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% }}%>
@@ -229,7 +238,9 @@
                     `${((item.rating.reduce((partialSum, a) => partialSum + a,
                     0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
                   </p>
-                  <button class="bttn">add to cart</button>
+                  <form action="/cart/<%= item._id %>" method="post">
+                    <button class="bttn">add to cart</button>
+                  </form>
                 </div>
               </div>
               <% }}%>

@@ -49,7 +49,10 @@ app.get("/booking", (req, res) => {
 
 app.get("/menu", async (req, res) => {
   let data = await Menu.find({});
-  res.render("menu.ejs", { items: data });
+  let cartcount = await Customer.findOne({ _id:"66e1cbc286cde24d097b1c08" })
+  let count = cartcount.cart.length;
+  res.render("menu.ejs", { items: data ,count});
+
 });
 
 app.get("/dashboard", (req, res) => {
@@ -189,18 +192,117 @@ app.get("/dashboard/table/view/:id", async (req,res) => {
 })
 
 app.get("/cart", async (req, res)=> {
-  let data = await Customer.findById("66e12009fef647e33623feca").populate("cart")
-  res.render("cart.ejs", { cart : data.cart})
+  let data = await Customer.findById("66e1cbc286cde24d097b1c08").populate("cart.itemId")
+  
+  let cusData = {
+    id : data._id,
+    name : data.name
+  }
+  
+  console.log(data.cart);
+  res.render("cart.ejs", { cart : data.cart, cusData})
 })
 
 app.post("/cart/:id", async (req, res)=> {
-  let {id : itemId} = req.params;
-  await Customer.findOneAndUpdate({_id : "66e12009fef647e33623feca"}, {$push : { cart : itemId}})
+  let item = {
+    itemId : req.params.id
+  };
+  let customer = await Customer.findOne(
+    {
+      _id: "66e1cbc286cde24d097b1c08",
+      "cart.itemId": req.params.id 
+    },
+    {
+      "cart.$": 1 
+    }
+  );
+  if(customer == null){
+    let result = await Customer.findOneAndUpdate({_id : "66e1cbc286cde24d097b1c08"}, {$push : { cart : item}})
+  }else{
+    const cartItem = customer.cart[0];
+    
+    if (cartItem.quantity < 5) {
+      const result = await Customer.updateOne(
+        {
+          _id: "66e1cbc286cde24d097b1c08",
+          "cart.itemId": req.params.id
+        },
+        {
+          $inc: { "cart.$.quantity": 1 }
+        }
+      )
+    }
+  }
+  res.redirect("/menu")
+})
+
+app.put("/cart/s/:cusId/:itemId", async (req, res) => {
+  let { cusId, itemId : itemIdToUpdate} = req.params;
+  let customer = await Customer.findOne(
+    {
+      _id: cusId,
+      "cart._id": itemIdToUpdate 
+    },
+    {
+      "cart.$": 1 
+    });
+
+  if (customer && customer.cart.length > 0) {
+    const cartItem = customer.cart[0];
+    
+    if (cartItem.quantity > 1) {
+      const result = await Customer.updateOne(
+        {
+          _id: cusId,
+          "cart._id": itemIdToUpdate
+        },
+        {
+          $inc: { "cart.$.quantity": -1 }
+        }
+      )
+    }else{
+      await Customer.updateOne(
+        {
+          _id: cusId
+        },
+        {
+          $pull: { cart: { _id: itemIdToUpdate } } 
+        }
+      )
+    }
+  };
+
   res.redirect("/cart")
 })
 
+app.put("/cart/p/:cusId/:itemId", async (req, res) => {
+  let { cusId, itemId :itemIdToUpdate} = req.params;
 
+  let customer = await Customer.findOne(
+    {
+      _id: cusId,
+      "cart._id": itemIdToUpdate 
+    },
+    {
+      "cart.$": 1 
+    });
 
+  if (customer && customer.cart.length > 0) {
+    const cartItem = customer.cart[0];
+    
+    if (cartItem.quantity < 5) {
+      const result = await Customer.updateOne(
+        {
+          _id: cusId,
+          "cart._id": itemIdToUpdate
+        },
+        {
+          $inc: { "cart.$.quantity": 1 }
+        }
+      )
+    }};
+  res.redirect("/cart")
+})
 
 app.get("/profile", (req, res) => {
   res.render("profile.ejs")

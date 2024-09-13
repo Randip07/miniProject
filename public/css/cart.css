@@ -61,15 +61,13 @@ body{
 
 .address {
     width: 60%;
-    height: 600px;
     padding: 0.5rem 1rem;
     background: var(--text-color);
 }
 
 .cart{
     width: 35%;
-    height: 600px;
-    padding: 1rem 1rem;
+    padding: 1rem;
     background: var(--text-color);
 }
 
@@ -83,18 +81,122 @@ body{
     align-items: center;
 }
 
+.cartItemContainer{
+    overflow-x: scroll;
+    max-height: 500px;
+}
+
 .cartItems{
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
     justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
+    padding: 1rem 0.5rem 0 0.5rem;
+    margin-top: 1rem;
+    border-top: 1.5px solid rgb(198, 198, 198);
+    overflow: auto;
 }
 
 .itemName{
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 
-.quantity{
-    display: flex;
+.itemName p{
+    font-size: 0.9rem;
 }
+
+.itemName i{
+    margin-right: 0.5rem;
+}
+
+.quantity>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid green;
+    padding: 0.2rem 0.5rem;
+    color: green;
+}
+
+.quantity h3{
+    font-size: 1rem;
+}
+
+.quantity i{
+    font-size: 1.2rem;
+    color: green;
+}
+
+.minBtn button{
+    margin-right: 0.5rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.plusBtn button{
+    margin-left: 0.5rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.itemPrice{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    line-height: 0.8rem;
+   
+}
+
+.itemPrice p {
+    font-size: 1rem;
+}
+
+.itemPrice span{
+    font-size: 0.6rem;
+    text-decoration: 1px solid black line-through;
+}
+
+
+.billDetails p{
+    font-size: 0.9rem;
+}
+
+.billDetails{
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    font-size: 0.7rem;
+    margin-top: 1rem;
+    border-top: 6px solid rgb(234, 234, 234);
+    border-bottom: 2px solid black;
+}
+
+table{
+    width: 100%;
+}
+.billDetails table tbody tr{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.7rem;
+    color: rgb(116, 116, 116);
+}
+
+.total{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+}
+
+.total p{
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
