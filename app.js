@@ -198,3 +198,14 @@ app.post("/cart/:id", async (req, res)=> {
   await Customer.findOneAndUpdate({_id : "66e12009fef647e33623feca"}, {$push : { cart : itemId}})
   res.redirect("/cart")
 })
+
+
+
+
+app.get("/profile", (req, res) => {
+  res.render("profile.ejs")
+});
+
+app.get("/favourites", (req, res) => {
+  res.render("favourites.ejs")
+});
