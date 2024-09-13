@@ -44,6 +44,31 @@ body {
   box-shadow: #ff9f0d 0px 1px 15px;
 }
 
+.cartIcon {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.cartIcon i{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  line-height: 0;
+  font-size: 2.5rem !important;
+}
+
+#cart-count{
+  z-index: 5;
+  font-size: 0.8rem;
+  /* color: rgb(2, 118, 2); */
+  color: black;
+  margin-left: 0.3rem;
+  font-weight: 800;
+}
+
 .nav-icons i {
   vertical-align: middle;
   font-size: 1.5rem;
@@ -187,8 +212,10 @@ body {
 .icecream-con,
 .drinks-con,
 .addon-con {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(500px, auto));
+
   gap: 1rem;
   margin-top: 1rem;
   justify-content: center;
@@ -201,9 +228,7 @@ body {
 }
 
 .food-card {
-  width: 250px;
-  height: auto;
-  padding-bottom: 0.5rem;
+  display: flex;
   border: 1px solid black;
   border-radius: 1.5rem;
   margin: 0 0.5rem;
@@ -218,21 +243,32 @@ body {
 }
 
 .food-card img {
-  width: 100%;
-  height: 120px;
+  width: 50%;
+  height: 150px;
   object-fit: cover;
   border-top-left-radius: 1.5rem;
-  border-top-right-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
 }
 
 .card-details {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.card-details > div{
+  width: 100%;
+}
+
+.titleCon {
   display: flex;
   justify-content: space-between;
-  padding: 0 0.5rem;
 }
 
 .titile {
-  width: 70%;
+  width: 60%;
 }
 
 .titile p {
@@ -257,7 +293,6 @@ body {
 
 .add {
   display: flex;
-  padding: 1rem 0.5rem;
   justify-content: space-between;
   align-items: center;
 }

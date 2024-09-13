@@ -198,8 +198,6 @@ app.get("/cart", async (req, res)=> {
     id : data._id,
     name : data.name
   }
-  
-  console.log(data.cart);
   res.render("cart.ejs", { cart : data.cart, cusData})
 })
 

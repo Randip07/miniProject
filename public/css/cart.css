@@ -82,7 +82,7 @@ body{
 }
 
 .cartItemContainer{
-    overflow-x: scroll;
+    overflow: scroll;
     max-height: 500px;
 }
 
@@ -200,3 +200,40 @@ table{
     letter-spacing: 2px;
 }
 
+.emptyCart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.emptyCart img{
+    width: 300px;
+    height: auto;
+}
+
+.emptyCart h3{
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    margin-top: 1rem;
+}
+
+.emptyCart p{
+    font-size: 0.8rem;
+    letter-spacing: 0.03rem;
+    margin-top: 0.5rem;
+    color: rgb(152, 152, 152);
+}
+
+.emptyCart a{
+    margin-top: 0.8rem;
+    padding: 0.8rem 2rem;
+    color : black;
+    background: var(--main-color);
+    transition: all 0.2s ease;
+    &:hover{
+        transform: scale(1.1);
+    }
+
+}
