@@ -301,3 +301,11 @@ app.put("/cart/p/:cusId/:itemId", async (req, res) => {
     }};
   res.redirect("/cart")
 })
+
+app.get("/profile", (req, res) => {
+  res.render("profile.ejs")
+});
+
+app.get("/favourites", (req, res) => {
+  res.render("favourites.ejs")
+});
