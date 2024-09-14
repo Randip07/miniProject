@@ -65,19 +65,23 @@
                             <tbody>
                                 <tr>
                                     <td>Item Total</td>
-                                    <td>&#8377;1450</td>
+                                    <td>&#8377;<%= calucalatedPrice.itemTotal %></td>
+                                </tr>
+                                <tr>
+                                    <td>After Discount</td>
+                                    <td>&#8377;<%= calucalatedPrice.afterDiscount %></td>
                                 </tr>
                                 <tr>
                                     <td>Platform Fee</td>
-                                    <td>&#8377;10</td>
+                                    <td>&#8377;<%= calucalatedPrice.platformFee %></td>
                                 </tr>
                                 <tr>
                                     <td>S.G.S.T.</td>
-                                    <td>&#8377;18</td>
+                                    <td>&#8377;<%= calucalatedPrice.sgst %></td>
                                 </tr>
                                 <tr>
                                     <td>C.G.S.T.</td>
-                                    <td>&#8377;19</td>
+                                    <td>&#8377;<%= calucalatedPrice.cgst %></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -85,7 +89,7 @@
                 </div>
                 <div class="total">
                     <p>TO PAY</p>
-                    <p>&#8377;1560</p>
+                    <p>&#8377;<%= calucalatedPrice.totalPay %></p>
                 </div>
             </div>
         </div>
