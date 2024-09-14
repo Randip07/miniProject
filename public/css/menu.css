@@ -185,33 +185,18 @@ body {
   margin-top: 1rem;
 }
 
-.starter,
-.main,
-.beverages,
-.icecream,
-.drinks,
-.addon {
+.itemCard{
   width: 100%;
   padding-top: 1rem;
 }
 
-.starter-titile h4,
-.main-titile h4,
-.beverages-titile h4,
-.icecream-titile h4,
-.drinks-titile h4,
-.addon-titile h4 {
+.itemCard-titile h4{
   font-weight: 400;
   font-size: 1.1rem;
   letter-spacing: 0.1rem;
 }
 
-.starter-con,
-.main-con,
-.beverages-con,
-.icecream-con,
-.drinks-con,
-.addon-con {
+.itemCard-con{
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, auto));
@@ -243,19 +228,18 @@ body {
 }
 
 .food-card img {
-  width: 50%;
-  height: 150px;
+  width: 200px;
   object-fit: cover;
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
 }
 
 .card-details {
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .card-details > div{
@@ -268,7 +252,9 @@ body {
 }
 
 .titile {
-  width: 60%;
+  width: 70%;
+  line-height: 1.3rem;
+  letter-spacing: 0.02rem;
 }
 
 .titile p {

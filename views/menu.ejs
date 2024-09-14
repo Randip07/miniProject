@@ -55,210 +55,50 @@
             <h2>MENU</h2>
             <img src="/css/img/right.png" alt="" />
           </div>
+          <% for(category of categories) {%>
           <div class="space"></div>
-          <div class="starter">
-            <div class="starter-titile">
-              <h4>Appetizers<span>(9)</span></h4>
+          <div class="itemCard">
+            <div class="itemCard-titile">
+              <h4><%= category %><span>(9)</span></h4>
             </div>
-            <div class="starter-con">
-              <% for (item of items) { %> <% if(item.category ==
-              "Appetizers"){%>
-              <div class="food-card">
-                <img src="/css/img/pizza.avif" alt="" />
-                <div class="card-details">
-                    <div class="titleCon">
-                      <div class="titile">
-                        <h3><%= item.itemName%></h3>
-                        <p><%= item.itemDetails%></p>
-                      </div>
-                      <div class="price">
-                        <p><i class="bx bx-rupee"></i><%= item.price%></p>
-                      </div>
-                    </div>
-                    <div class="addCon">
-                      <div class="add">
-                        <p>
-                          <i class="bx bxs-star"></i><%=
-                          `${((item.rating.reduce((partialSum, a) => partialSum
-                          + a,
-                          0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
-                        </p>
-                        <form action="/cart/<%= item._id %>" method="post">
-                          <button class="bttn">add to cart</button>
-                        </form>
-                      </div>
-                  </div>
-                </div>
-              </div>
-              <% } %> <% } %>
-            </div>
-          </div>
-          <div class="space"></div>
-          <div class="main">
-            <div class="main-titile">
-              <h4>Main Course<span>(9)</span></h4>
-            </div>
-            <div class="main-con">
-              <% for (item of items) { %> <% if(item.category ==
-              "Main-Course"){%>
+            <div class="itemCard-con">
+              <% for (item of items) { %> <% if(item.category == category){%>
               <div class="food-card">
                 <img src="/css/img/pizza.avif" alt="" />
                 <div class="card-details">
                   <div class="titleCon">
-                      <div class="titile">
-                        <h3><%= item.itemName%></h3>
-                        <p><%= item.itemDetails%></p>
-                      </div>
-                      <div class="price">
-                        <p><i class="bx bx-rupee"></i><%= item.price%></p>
-                      </div>
+                    <div class="titile">
+                      <h3>
+                        <% if(item.type == "Veg") {%>
+                          <i class='bx bx-food-tag' style="color: green;"></i>
+                          <% } else{%>
+                            <i class='bx bx-food-tag' style="color: red;"></i>
+                            <% } %>
+                        <%= item.itemName%>
+                      </h3>
+                      <p><%= item.itemDetails%></p>
                     </div>
-                    <div class="addCon">
-                      <div class="add">
-                        <p>
-                          <i class="bx bxs-star"></i><%=
-                          `${((item.rating.reduce((partialSum, a) => partialSum
-                          + a,
-                          0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
-                        </p>
-                        <form action="/cart/<%= item._id %>" method="post">
-                          <button class="bttn">add to cart</button>
-                        </form>
-                      </div>
+                    <div class="price">
+                      <p><i class="bx bx-rupee"></i><%= item.price%></p>
+                    </div>
+                  </div>
+                  <div class="addCon">
+                    <div class="add">
+                      <p>
+                        <i class="bx bxs-star"></i><%=
+                        `${((item.rating.reduce((partialSum, a) => partialSum + a, 0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
+                      </p>
+                      <form action="/cart/<%= item._id %>" method="post">
+                        <button class="bttn">add to cart</button>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
-              <% } %> <% } %>
+              <% }} %>
             </div>
           </div>
-          <div class="space"></div>
-          <div class="beverages">
-            <div class="beverages-titile">
-              <h4>Beverages<span>(9)</span></h4>
-            </div>
-            <div class="beverages-con">
-              <% for (item of items) { %> <% if(item.category == "Beverages"){%>
-              <div class="food-card">
-                <img src="/css/img/pizza.avif" alt="" />
-                <div class="card-details">
-                  <div class="titile">
-                    <h3><%= item.itemName%></h3>
-                    <p><%= item.itemDetails%></p>
-                  </div>
-                  <div class="price">
-                    <p><i class="bx bx-rupee"></i><%= item.price%></p>
-                  </div>
-                </div>
-                <div class="add">
-                  <p>
-                    <i class="bx bxs-star"></i><%=
-                    `${((item.rating.reduce((partialSum, a) => partialSum + a,
-                    0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
-                  </p>
-                  <form action="/cart/<%= item._id %>" method="post">
-                    <button class="bttn">add to cart</button>
-                  </form>
-                </div>
-              </div>
-              <% }}%>
-            </div>
-          </div>
-          <div class="space"></div>
-          <div class="icecream">
-            <div class="icecream-titile">
-              <h4>Ice Cream<span>(9)</span></h4>
-            </div>
-            <div class="icecream-con">
-              <% for (item of items) { %> <% if(item.category == "Ice-Cream"){%>
-              <div class="food-card">
-                <img src="/css/img/pizza.avif" alt="" />
-                <div class="card-details">
-                  <div class="titile">
-                    <h3><%= item.itemName%></h3>
-                    <p><%= item.itemDetails%></p>
-                  </div>
-                  <div class="price">
-                    <p><i class="bx bx-rupee"></i><%= item.price%></p>
-                  </div>
-                </div>
-                <div class="add">
-                  <p>
-                    <i class="bx bxs-star"></i><%=
-                    `${((item.rating.reduce((partialSum, a) => partialSum + a,
-                    0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
-                  </p>
-                  <form action="/cart/<%= item._id %>" method="post">
-                    <button class="bttn">add to cart</button>
-                  </form>
-                </div>
-              </div>
-              <% }}%>
-            </div>
-          </div>
-          <div class="space"></div>
-          <div class="drinks">
-            <div class="drinks-titile">
-              <h4>Drinks<span>(9)</span></h4>
-            </div>
-            <div class="drinks-con">
-              <% for (item of items) { %> <% if(item.category == "Drinks"){%>
-              <div class="food-card">
-                <img src="/css/img/pizza.avif" alt="" />
-                <div class="card-details">
-                  <div class="titile">
-                    <h3><%= item.itemName%></h3>
-                    <p><%= item.itemDetails%></p>
-                  </div>
-                  <div class="price">
-                    <p><i class="bx bx-rupee"></i><%= item.price%></p>
-                  </div>
-                </div>
-                <div class="add">
-                  <p>
-                    <i class="bx bxs-star"></i><%=
-                    `${((item.rating.reduce((partialSum, a) => partialSum + a,
-                    0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
-                  </p>
-                  <form action="/cart/<%= item._id %>" method="post">
-                    <button class="bttn">add to cart</button>
-                  </form>
-                </div>
-              </div>
-              <% }}%>
-            </div>
-          </div>
-          <div class="space"></div>
-          <div class="addon">
-            <div class="addon-titile">
-              <h4>Add On<span>(9)</span></h4>
-            </div>
-            <div class="addon-con">
-              <% for (item of items) { %> <% if(item.category == "Add-On"){%>
-              <div class="food-card">
-                <img src="/css/img/pizza.avif" alt="" />
-                <div class="card-details">
-                  <div class="titile">
-                    <h3><%= item.itemName%></h3>
-                    <p><%= item.itemDetails%></p>
-                  </div>
-                  <div class="price">
-                    <p><i class="bx bx-rupee"></i><%= item.price%></p>
-                  </div>
-                </div>
-                <div class="add">
-                  <p>
-                    <i class="bx bxs-star"></i><%=
-                    `${((item.rating.reduce((partialSum, a) => partialSum + a,
-                    0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
-                  </p>
-                  <form action="/cart/<%= item._id %>" method="post">
-                    <button class="bttn">add to cart</button>
-                  </form>
-                </div>
-              </div>
-              <% }}%>
-            </div>
-          </div>
+          <% } %>
         </div>
       </div>
     </div>

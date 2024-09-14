@@ -28,14 +28,13 @@
                         <a href="#"><li class="search"><i class='bx bx-search-alt-2'></i>Search</li></a>
                         <a href="#"><li class="cart"><i class='bx bxs-cart'></i>Cart</li></a>
                     </ul>
-                </div>
+            </div>
                 <div class="user-name">
                         <div class="nav-list1">
                             <div class="info-column">
                                 <ul class="info-item">
                                     <a href=""><span class="name">Souradip Roy</span></a>
                                     <a href=""><span class="contact"><i class='bx bxs-phone'></i> 8822370121</span></a>
-                                    <a href=""><span class="email"><i class='bx bx-envelope'></i> souradip.roy21@gmail.com</span></a>
                                 </ul>
                             </div>
                             <div class="edit-section">
@@ -58,8 +57,9 @@
                                 <h2>Past Orders<h2>
                             </div> 
                             <div class="food-list">
-                                <div class="food-card">
-                                    <div class="container">
+                                <% for(let i=0; i<=5; i++){ %>
+                                    <div class="food-card">
+                                        <div class="container">
                                             <div class="image-container">
                                                 <img src="/css/img/pizza.avif">
                                             </div>
@@ -84,125 +84,11 @@
                                                 <button class="reorder-button">REORDER</button>
                                                 <button class="help-button">HELP</button>
                                             </div>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="food-card">
-                                    <div class="container">
-                                            <div class="image-container">
-                                                <img src="/css/img/pizza.avif">
-                                            </div>
-                                            <div class="restaurant-info">
-                                                <div class="restaurant-name">Chicken Momo x 1</div>
-                                                <div class="restaurant-address">Guwahati</div>
-                                                <div class="order-details">ORDER #11101</div>
-                                                <button class="view-details">VIEW DETAILS</button>
-                                            </div>
-                                            <div class="item-info">
-                                                <div class="delivered">
-                                                    <div class="delivered-status">Delivered</div>
-                                                    <div class="delivered-icon">✔</div>
-                                                </div>                                        
-                                                <div class="order-summary">
-                                                    <div class="order-rating"><i class="bx bxs-star"></i>4.5(10)</div>
-                                                    <div class="total-paid">Total Paid: ₹50</div>
-                                                </div>    
-                                            </div>
-                                          
-                                            <div class="btn">
-                                                <button class="reorder-button">REORDER</button>
-                                                <button class="help-button">HELP</button>
-                                            </div>
-                                    </div>
-                                </div>
-
-                                <div class="food-card">
-                                    <div class="container">
-                                            <div class="image-container">
-                                                <img src="/css/img/pizza.avif">
-                                            </div>
-                                            <div class="restaurant-info">
-                                                <div class="restaurant-name">Chicken Momo x 1</div>
-                                                <div class="restaurant-address">Guwahati</div>
-                                                <div class="order-details">ORDER #11101</div>
-                                                <button class="view-details">VIEW DETAILS</button>
-                                            </div>
-                                            <div class="item-info">
-                                                <div class="delivered">
-                                                    <div class="delivered-status">Delivered</div>
-                                                    <div class="delivered-icon">✔</div>
-                                                </div>                                        
-                                                <div class="order-summary">
-                                                    <div class="order-rating"><i class="bx bxs-star"></i>4.5(10)</div>
-                                                    <div class="total-paid">Total Paid: ₹50</div>
-                                                </div>    
-                                            </div>
-                                          
-                                            <div class="btn">
-                                                <button class="reorder-button">REORDER</button>
-                                                <button class="help-button">HELP</button>
-                                            </div>
-                                    </div>
-                                </div>
-
-                                <div class="food-card">
-                                    <div class="container">
-                                            <div class="image-container">
-                                                <img src="/css/img/pizza.avif">
-                                            </div>
-                                            <div class="restaurant-info">
-                                                <div class="restaurant-name">Chicken Momo x 1</div>
-                                                <div class="restaurant-address">Guwahati</div>
-                                                <div class="order-details">ORDER #11101</div>
-                                                <button class="view-details">VIEW DETAILS</button>
-                                            </div>
-                                            <div class="item-info">
-                                                <div class="delivered">
-                                                    <div class="delivered-status">Delivered</div>
-                                                    <div class="delivered-icon">✔</div>
-                                                </div>                                        
-                                                <div class="order-summary">
-                                                    <div class="order-rating"><i class="bx bxs-star"></i>4.5(10)</div>
-                                                    <div class="total-paid">Total Paid: ₹50</div>
-                                                </div>    
-                                            </div>
-                                          
-                                            <div class="btn">
-                                                <button class="reorder-button">REORDER</button>
-                                                <button class="help-button">HELP</button>
-                                            </div>
-                                    </div>
-                                </div>
-                                <div class="food-card">
-                                    <div class="container">
-                                            <div class="image-container">
-                                                <img src="/css/img/pizza.avif">
-                                            </div>
-                                            <div class="restaurant-info">
-                                                <div class="restaurant-name">Chicken Momo x 1</div>
-                                                <div class="restaurant-address">Guwahati</div>
-                                                <div class="order-details">ORDER #11101</div>
-                                                <button class="view-details">VIEW DETAILS</button>
-                                            </div>
-                                            <div class="item-info">
-                                                <div class="delivered">
-                                                    <div class="delivered-status">Delivered</div>
-                                                    <div class="delivered-icon">✔</div>
-                                                </div>                                        
-                                                <div class="order-summary">
-                                                    <div class="order-rating"><i class="bx bxs-star"></i>4.5(10)</div>
-                                                    <div class="total-paid">Total Paid: ₹50</div>
-                                                </div>    
-                                            </div>
-                                          
-                                            <div class="btn">
-                                                <button class="reorder-button">REORDER</button>
-                                                <button class="help-button">HELP</button>
-                                            </div>
-                                    </div>
-                                </div>
-                            
-                        </div>      
+                                <% } %>
+                            </div>      
+                        </div>
                     </div>
                 </div>
         </section>
