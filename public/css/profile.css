@@ -20,8 +20,6 @@
   --p-font: 0.8rem;
   --i-size: 1.5rem;
 }
-body {
-}
 
 .nav-bar {
   background-color: var(--text-color);
@@ -32,17 +30,18 @@ body {
   margin: 0;
   z-index: 1000;
   height: 10vh;
+  padding-top: 1.2rem;
 }
 
 .nav-list {
   display: flex;
-  padding: 2rem 2rem;
+  padding:0;
   flex-direction: row;
   justify-content: space-between;
   padding-left: 10%;
   padding-right: 10%;
 }
-.nav-list li {
+.nav-list a {
   display: flex;
   color: #111111;
 }
@@ -50,8 +49,13 @@ body {
   font-size: 25px;
   color: #111111;
 }
-.account {
+.account,
+ .offer,
+  .search,
+   .cart,
+   .home {
   font-weight: bold;
+  font-size: var(--h2-font);
 }
 .account,
 .home,
@@ -92,7 +96,6 @@ body {
 .edit-section {
   display: flex;
   align-items: center;
-  padding-top: 3rem;
 }
 
 .name,
@@ -103,7 +106,7 @@ body {
   align-items: center;
 }
 .name {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 .edit {
@@ -116,6 +119,7 @@ body {
   transition: all 0.2s ease;
   &:hover {
     transform: scale(1.05);
+    box-shadow: rgb(137, 136, 136) 1px 1px 15px;
   }
 }
 .edit i,
@@ -158,6 +162,9 @@ a {
 }
 .con-list li.active {
   background: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: rgb(180, 178, 178) 1px 1px 15px;
 }
 
 .nav-bar2 {
@@ -183,9 +190,16 @@ a {
 .restaurant-info {
   display: flex;
   flex-direction: column;
+  width: 40%;
+}
+.food-item{
+  display: flex;
 }
 
+
 .restaurant-name {
+  display: flex;
+  align-items: center;
   font-size: 1.25rem;
   font-weight: bold;
   padding-left: 0%;
@@ -209,11 +223,11 @@ a {
 .image-container img {
   width: 100%;
   height: 100%;
-  border-radius: 1rem;
+  border-radius: 1rem 0 0 1rem;
 }
 
 .view-details {
-  width: 100%;
+  width: 50%;
   background-color: var(--main-color);
   color: #fff;
   margin-top: 20px;
@@ -227,11 +241,11 @@ a {
     transform: scale(1.05);
   }
 }
-/* .ieam-info{
-padding: 10px;
-} */
+.item-info{
+  display:flex;
+  align-items: end;
+}
 .order-summary {
-  padding-top: 50px;
   margin-left: 10px;
 }
 
@@ -286,10 +300,8 @@ padding: 10px;
   }
 }
 .delivered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 10px;
+ display: flex;
+ flex-direction:row;
 }
 
 .delivered-status {
@@ -307,6 +319,11 @@ padding: 10px;
   border-radius: 1rem;
   box-shadow: rgb(101, 99, 99) 1px 1px 6px;
   margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .user-name{

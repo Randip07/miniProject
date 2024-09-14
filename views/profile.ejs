@@ -22,11 +22,11 @@
         <section class="login-con">
             <div class="nav-bar"> 
                     <ul class="nav-list" >
-                        <a href="#"><li class="account">My Account</li></a>
-                        <a href="#"><li class="home"><i class='bx bxs-home' ></i>Home</li></a>
-                        <a href="#"><li class="offer"><i class='bx bxs-offer'></i>Offer</li></a>
-                        <a href="#"><li class="search"><i class='bx bx-search-alt-2'></i>Search</li></a>
-                        <a href="#"><li class="cart"><i class='bx bxs-cart'></i>Cart</li></a>
+                        <li class="account"><a href="#">My Account</a></li>
+                        <li class="home"><a href="/home"><i class='bx bxs-home'></i>Home</a></li>
+                        <li class="offer"><a href="#"><i class='bx bxs-offer'></i>Offer</a></li>
+                        <li class="search"><a href="/menu"><i class='bx bx-search-alt-2'></i>Search</a></li>
+                        <li class="cart"><a href="/cart"><i class='bx bxs-cart'></i> Cart</a></li>
                     </ul>
             </div>
                 <div class="user-name">
@@ -48,7 +48,7 @@
                         <div class="nav-con">
                             <ul class="con-list">
                                 <a href="/profile"><li class="order active">Orders</li></a>
-                                <a href="/favourites"><li class="favourites">Favourites</li></a>
+                                <a href="profile/favourites"><li class="favourites">Favourites</a></li>
                                 <a href="#"><li class="payments">Payments</li></a>
                             </ul>
                         </div>
@@ -64,16 +64,18 @@
                                                 <img src="/css/img/pizza.avif">
                                             </div>
                                             <div class="restaurant-info">
-                                                <div class="restaurant-name">Chicken Momo x 1</div>
+                                                <div class="food-item">
+                                                    <div class="restaurant-name"><i class='bx bx-food-tag' style="color: red;"></i>Chicken Momo x 1</div>
+                                                </div>
+                                                <div class="delivered">
+                                                    <div class="delivered-status">Delivered</div>
+                                                    <div class="delivered-icon">✔</div>
+                                                </div> 
                                                 <div class="restaurant-address">Guwahati</div>
                                                 <div class="order-details">ORDER #11101</div>
                                                 <button class="view-details">VIEW DETAILS</button>
                                             </div>
-                                            <div class="item-info">
-                                                <div class="delivered">
-                                                    <div class="delivered-status">Delivered</div>
-                                                    <div class="delivered-icon">✔</div>
-                                                </div>                                        
+                                            <div class="item-info">                               
                                                 <div class="order-summary">
                                                     <div class="order-rating"><i class="bx bxs-star"></i>4.5(10)</div>
                                                     <div class="total-paid">Total Paid: ₹50</div>
@@ -92,6 +94,5 @@
                     </div>
                 </div>
         </section>
-        
     </body>
 
