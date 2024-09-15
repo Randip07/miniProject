@@ -50,16 +50,6 @@ body{
     opacity: 0.5;
 }
 
-/* .gradient-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-    z-index: 1;
-} */
-
 .card-container{
     position: relative;
     z-index: 2;
@@ -94,6 +84,7 @@ body{
     display: flex;
     width: 90%;
     margin: 0 auto;
+    align-items: center;
 }
 form select, form input{
     display: block;
@@ -125,7 +116,28 @@ form input[type = submit]{
         opacity: 1;
     }
 }
-  
+
+.form-row1{
+    display: flex;
+    justify-content: center;
+}
+
+.btn{
+    border:none;
+    border-radius: 0.5rem;
+    width: 70%;
+    margin: 0.2rem 0;
+    padding: 0.6rem;
+    background: var(--main-color);
+    opacity: 0.8;
+    transition: all .2s ease-in;
+
+    &:hover{
+        background: var(--main-color);
+        opacity: 1;
+    }
+}
+
 @media(max-width: 992px){
     .card-container{
         grid-template-columns: 100%;
