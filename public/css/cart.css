@@ -59,12 +59,6 @@ body{
     justify-content: space-between;
 }
 
-.address {
-    width: 60%;
-    padding: 0.5rem 1rem;
-    background: var(--text-color);
-}
-
 .cart{
     width: 35%;
     padding: 1rem;
@@ -235,5 +229,59 @@ table{
     &:hover{
         transform: scale(1.1);
     }
+}
 
+.address {
+    width: 60%;
+    padding: 1rem 2rem;
+    background: var(--text-color);
+    letter-spacing: 0.1rem;
+}
+
+.address > h3{
+    font-weight: 500;
+}
+
+.address > h3 i{
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.paymentFormCon{
+    padding: 1rem;
+    border: 1px solid green;
+    width: 50%;
+    margin-top: 1rem;
+}
+
+
+.paymentFormCon form{
+    display: flex;
+    flex-direction: column;
+}
+
+.paymentFormCon form > *{
+    margin-bottom: 0.5rem;
+}
+
+.paymentFormCon form > select{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    &:focus{
+        outline: none;
+    }
+}
+
+.paymentFormCon form button{
+    margin-top: 0.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    background: var(--main-color);
+    opacity: 0.8;
+    border: none;
+    transition: all 0.2s ease;
+    &:hover{
+        transform: scale(1.01);
+        opacity: 1;
+    }
 }

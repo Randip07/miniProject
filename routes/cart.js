@@ -29,7 +29,7 @@ router.get("", wrapAsync (async (req, res) => {
   }
   calucalatedPrice.sgst = Math.ceil(calucalatedPrice.afterDiscount*(2.5/100));
   calucalatedPrice.cgst = Math.ceil(calucalatedPrice.afterDiscount*(2.5/100));
-  calucalatedPrice.totalPay = Math.ceil(calucalatedPrice.afterDiscount + calucalatedPrice.sgst + calucalatedPrice.cgst); 
+  calucalatedPrice.totalPay = Math.ceil(calucalatedPrice.afterDiscount + calucalatedPrice.platformFee + calucalatedPrice.sgst + calucalatedPrice.cgst); 
   res.render("cart.ejs", { cart: cartItems, cusData , calucalatedPrice});
 }));
 

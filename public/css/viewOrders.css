@@ -1,0 +1,139 @@
+.reciptCon, .recipetCusDetails{
+    width: 100%;
+    border: 1.5px solid black;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0.2rem 1rem 1rem 1rem;
+}
+
+.reciptCon table, .recipetCusDetails table{
+    margin-bottom: 0;
+    padding: 0 1rem;
+}
+
+.reciptCon table tr td , .recipetCusDetails table tr td{
+    padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reciptCon table tr td i{
+    font-size: 1rem;
+    margin-left: 0;
+}
+
+.reciptCon table tr , .recipetCusDetails table tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.recipetConMain{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.recipetHeading{
+    display: flex;
+    grid-column: 1/3;
+}
+
+.restaurentDetails{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.reciptCon{
+    width: 100%;
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.recipetHeading h2{
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.03rem;
+}
+
+.reciDetails{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.recipetCusDetailsCon{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    grid-row: 2;
+    height: max-content;
+    line-height: 1.4rem;
+    padding: 1rem;
+    padding-top: 0;
+}
+
+.restaurentDetails h3{
+    font-size: 1.2rem;
+}
+
+.restaurentDetails p{
+    font-size: 0.6rem;
+    color: rgb(176, 175, 175);
+    line-height: 0.65rem;
+}
+
+h3{
+    font-weight: 400;
+}
+
+.printBtn{
+    grid-row: 2;
+    display: flex;
+    justify-content: start;
+    height: max-content;
+    margin-top: 1rem;
+}
+
+.printBtn a{
+    background: #ff9f0d;
+    opacity: 0.8;
+    padding: 0.3rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.printBtn i{ 
+    font-size: 1rem;
+}
+
+@media print{
+    .print-area1{
+        visibility: visible;
+        width: 100%;
+        position: absolute;
+        width: 60%;
+        top: 0;
+        left: 0;
+    }
+    .print-area2{
+        visibility: visible;
+        width: 100%;
+        position: absolute;
+        width: 60%;
+        top: 13rem;
+        left: 0;
+        overflow: hidden;
+    }
+
+    .non-print, .printBtn{
+        visibility: hidden;
+    }
+}

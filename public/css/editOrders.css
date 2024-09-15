@@ -1,0 +1,38 @@
+.editFrom{
+    padding: 1rem;
+    border: 1.5px solid black;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.editFrom form{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.editFrom form *{
+    margin-bottom: 0.5rem;
+}
+
+.editFrom form select{
+    padding: 0.5rem 1rem;
+
+    &:focus{
+        outline: none;
+    }
+}
+
+.editFrom form button{
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #ff9f0d;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover{
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
