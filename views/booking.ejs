@@ -26,45 +26,33 @@
                     <h3>Reservation</h3>
                     <form>
                         <div class = "form-row">
-                            <select name = "days">
-                                <option value = "day-select">Select Day</option>
-                                <option value = "sunday">Sunday</option>
-                                <option value = "monday">Monday</option>
-                                <option value = "tuesday">Tuesday</option>
-                                <option value = "wednesday">Wednesday</option>
-                                <option value = "thursday">Thursday</option>
-                                <option value = "friday">Friday</option>
-                                <option value = "saturday">Saturday</option>
-                            </select>
-
-                            <select name = "hours">
-                                <option value = "hour-select">Select Hour</option>
-                                <option value = "10">10: 00</option>
-                                <option value = "10">11: 00</option>
-                                <option value = "10">12: 00</option>
-                                <option value = "10">13: 00</option>
-                                <option value = "10">14: 00</option>
-                                <option value = "10">15: 00</option>
-                                <option value = "10">16: 00</option>
-                                <option value = "10">17: 00</option>
-                                <option value = "10">18: 00</option>
-                                <option value = "10">19: 00</option>
-                                <option value = "10">20: 00</option>
-                                <option value = "10">21: 00</option>
-                                <option value = "10">22: 00</option>
-                                
-                            </select>
+                            <label for="date">Date:</label>
+                            <input type="date" id="date" name="date">
                         </div>
-
-                        <div class = "form-row">
-                            <input type = "text" placeholder="Full Name">
-                            <input type = "text" placeholder="Phone Number">
+                        <div class="form-row">
+                            <label for="startTime">Start Time</label>
+                            <input type="time" id="startTime" name="startTime" value="00:00">
+                            <label for="endTime">End Time</label>
+                            <input type="time" id="endTime" name="endTime" value="00:00">
                         </div>
-
-                        <div class = "form-row">
-                            <input type = "number" placeholder="How Many Persons?" min = "1">
-                            <input type = "submit" value = "BOOK TABLE">
+                        <div class="form-row">
+                            <label for="table">Available</label>
+                            <Select>
+                                <option value="">TABLE 1</option>
+                                <option value="">TABLE 2</option>
+                                <option value="">TABLE 3</option>
+                                <option value="">TABLE 4</option>
+                                <option value="">TABLE 5</option>
+                                <option value="">TABLE 6</option>
+                            </Select>
+                           
+                            <label for="people">People</label>
+                            <input type="number" id="people" name="people" min="1">
                         </div>
+                        <div class="form-row1">
+                            <button type="submit" class="btn">Confirm</button>
+                        </div>
+                        
                     </form>
                 </div>
             </div>
