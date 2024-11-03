@@ -11,6 +11,8 @@
         <!-- css -->
         <link rel="stylesheet" href="/css/profile.css">
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 
         <!-- logo -->
@@ -70,20 +72,35 @@
                                                 </div>
                                                 <div class="restaurant-info">
                                                     <div class="food-item">
-                                                        <div class="restaurant-name"><i class='bx bx-food-tag' style="color: red;"></i>Chicken Momo x 1</div>
+                                                        <div class="restaurant-name">
+                                                            <table>
+                                                                <% for(item of order.items) {%>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <% if(item.itemId.type == "Veg") {%>
+                                                                                <i class='bx bx-food-tag' style="color: green;"></i>
+                                                                            <% } else{%>
+                                                                                  <i class='bx bx-food-tag' style="color: red;"></i>
+                                                                            <% } %>
+                                                                                <%= `${item.itemId.itemName} X ${item.quantity}`   %>
+                                                                        </td>
+                                                                    </tr>
+                                                                <% } %>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                     <div class="delivered">
                                                         <div class="delivered-status">Delivered</div>
-                                                        <div class="delivered-icon">✔</div>
+                                                        <div class="delivered-icon"><i class="fa-regular fa-circle-check" style="color: green;"></i></div>
                                                     </div> 
                                                     <div class="restaurant-address">Guwahati</div>
-                                                    <div class="order-details">ORDER #11101</div>
+                                                    <div class="order-details">ORDER #<%= order._id %></div>
                                                     <button class="view-details">VIEW DETAILS</button>
                                                 </div>
                                                 <div class="item-info">                               
                                                     <div class="order-summary">
                                                         <div class="order-rating"><i class="bx bxs-star"></i>4.5(10)</div>
-                                                        <div class="total-paid">Total Paid: ₹50</div>
+                                                        <div class="total-paid">Total Paid: ₹<%= order.amount.totalPay %>.00/- </div>
                                                     </div>    
                                                 </div>
                                               

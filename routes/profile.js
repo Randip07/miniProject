@@ -9,7 +9,12 @@ const Customer = require("../models/customers.js");
 
 // Rendering client side profile page
 router.get("", wrapAsync(async (req, res) => {
-  let data = await Customer.findById("6725ba4e2cb5b4d3bab11c63").populate("orders");
+  let data = await Customer.findById("6725ba4e2cb5b4d3bab11c63").populate("orders").populate({
+    path: 'orders',          // Populates items within each order
+    populate: { path: 'items.itemId'}
+  })
+  console.log(data);
+  
   res.render("profile.ejs", { cusData : data});
 }));
 

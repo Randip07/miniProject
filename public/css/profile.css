@@ -300,6 +300,8 @@ a {
 .delivered {
  display: flex;
  flex-direction:row;
+ align-items: center;
+ margin: 1rem 0;
 }
 
 .delivered-status {
@@ -308,7 +310,7 @@ a {
 }
 
 .delivered-icon {
-  margin-left: 8px;
+  margin-left: 0.5rem;
 }
 
 .food-card {
