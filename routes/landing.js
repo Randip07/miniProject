@@ -4,7 +4,6 @@ const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
 const Customer = require("../models/customers.js");
-const { Redirect } = require("twilio/lib/twiml/VoiceResponse.js");
 
 let otp = "";
 function generateOtp(){
