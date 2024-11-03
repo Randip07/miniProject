@@ -5,9 +5,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
 const Customer = require("../models/customers.js");
 const { Redirect } = require("twilio/lib/twiml/VoiceResponse.js");
-const accountSid = "AC3faf10aa9c05c4ac70e7e7616ed30c89"
-const authToken = "0e255e85a8942d3a47e25fce4051bf27"
-const client = require('twilio')(accountSid, authToken);
+const client = require('twilio')( process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN );
 
 let otp = "";
 function generateOtp(){
