@@ -1,3 +1,4 @@
+const { fileLoader } = require("ejs");
 const mongoose = require("mongoose");
 
 const menuSchema = new mongoose.Schema({
@@ -31,17 +32,32 @@ const menuSchema = new mongoose.Schema({
   discount: {
     type: Number,
   },
+  
   rating: {
     type: [Number],
   },
+
   availability: {
     type: String,
     enum: ["available", "Not available"],
   },
+
   type :{
     type : String,
     enum : ["Veg", "Non-Veg"]
   },
+
+  image : {
+    url : {
+      type : String,
+       default : "https://res.cloudinary.com/dm1lamejc/image/upload/v1730657858/restaurent_Menu_dev/rsm48vfsl9ehmb6zkf8b.jpg",
+       set : (v) => v === "" ? "https://res.cloudinary.com/dm1lamejc/image/upload/v1730657858/restaurent_Menu_dev/rsm48vfsl9ehmb6zkf8b.jpg": v
+    },
+    filename : {
+      type : String,
+       default : "No Image"
+    },
+  }
   
 });
 

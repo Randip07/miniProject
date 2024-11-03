@@ -237,14 +237,14 @@ body {
 }
 
 .food-card img {
-  width: 200px;
+  width: 150px;
   object-fit: cover;
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
 }
 
 .card-details {
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

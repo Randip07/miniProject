@@ -58,6 +58,7 @@ router.post("/login",  passport.authenticate("local", {failureRedirect : "/login
 router.post("/signup", ((req, res) => {
     req.session.name = req.body.name,
     req.session.contactNo = "91" + req.body.contactNo
+    req.session.username = req.body.contactNo
     res.redirect("/auth-otp")
   }
 ));
@@ -75,16 +76,17 @@ router.post("/auth-otp", async (req, res) =>{
     if(otp == req.body.otp){
       let newCustomer = new Customer({
         name : req.session.name,
-        username : req.session.contactNo,
+        username : req.session.username,
         contactNo : req.session.contactNo
       })
       let registeredUser = await Customer.register(newCustomer, req.body.password)
       let user = await Customer.findOne({contactNo : req.session.contactNo})
+      console.log(user);
+      
       req.login(registeredUser, async (err) => {
         if(err){
           return next(err);
         }
-        console.log(user);
         req.session.userId = user._id;
         res.redirect("/menu")
       })

@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+  require('dotenv').config()
+}
+
 const express = require("express");
 const router = express.Router();
 const Employee = require("../models/employee.js");
@@ -8,6 +12,9 @@ const Order = require("../models/orders.js");
 const Deliver = require("../models/delivered.js");
 const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
+const multer = require("multer");
+const { storage } = require("../cloudinaryConfig.js");
+const upload = multer( {storage} )
 
 // Rendering Dashboard Page
 router.get(
@@ -222,10 +229,15 @@ router.get(
 // Updating Item details in Database
 router.put(
   "/menu/:id",
+  upload.single('itemImage'),
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let newData = req.body
-    let resu = await Menu.updateOne({_id : id}, newData);
+    let newData = req.body;
+    newData.image = {
+      url : req.file.path,
+      filename : req.file.filename
+    }
+    let resu = await Menu.findByIdAndUpdate(id, newData);
     req.flash("success", "Item updated successfully")
     res.redirect("/dashboard/menu");
   })
@@ -234,10 +246,11 @@ router.put(
 // Adding new item in Database
 router.post(
   "/menu",
+  upload.single('itemImage'),
   wrapAsync(async (req, res) => {
     let itemID = await Menu.countDocuments();
     itemID += 11101;
-
+    
     let newMenuItem = new Menu({
       itemID: itemID,
       itemName: req.body.itemName,
@@ -247,13 +260,17 @@ router.post(
       discount: req.body.discount,
       availability: req.body.availability,
       type: req.body.type,
+      image : {
+        url : req.file.path,
+        filename : req.file.filename
+      }
     });
-
     await newMenuItem.save();
     req.flash("success", "Item has been added successfully.")
     res.redirect("/dashboard/menu");
   })
 );
+
 
 router.delete("/menu/:id", async(req, res) => {
   let { id } = req.params;

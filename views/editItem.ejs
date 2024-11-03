@@ -81,7 +81,7 @@
             <p>Dashboard / Menu / #<%= data.itemID %></p>
           </div>
           <div class="empForm-div">
-            <form action="/dashboard/menu/<%= data._id %>?_method=PUT" method="POST">
+            <form action="/dashboard/menu/<%= data._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="empForm">
                     <div>
                         <label for="name">Item Name</label>
@@ -156,6 +156,12 @@
                       <div class="input-group">
                         <span class="input-group-text" >%</span>
                         <input type="number" id="discount" name="discount"  value="<%= data.discount %>" required>
+                    </div>
+                     </div>
+                    <div>
+                      <label for="itemImage">Item Image</label>
+                      <div class="input-group">
+                        <input type="file" id="itemImage" name="itemImage" required>
                     </div>
                      </div>
                     <div>

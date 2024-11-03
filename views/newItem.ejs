@@ -82,7 +82,7 @@
             <p>Dashboard / Menu / New</p>
           </div>
           <div class="itemForm-div">
-            <form action="/dashboard/menu" method="post">
+            <form action="/dashboard/menu" method="post" enctype="multipart/form-data">
                 <div class="itemForm">
         
                     <div>
@@ -131,6 +131,12 @@
                           <option value="Not available">Not available</option>
                         </select>
                     </div>
+                    <div>
+                      <label for="itemImage">Item Image</label>
+                      <div class="input-group">
+                        <input type="file" id="itemImage" name="itemImage">
+                    </div>
+                     </div>
                     <div>
                       <label for="itemDetails">Item Details</label>
                       <textarea id="itemDetails" name="itemDetails" rows="4"></textarea>
