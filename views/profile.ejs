@@ -30,8 +30,8 @@
                     <ul class="nav-list" >
                         <li class="account"><a href="#">My Account</a></li>
                         <li class="home"><a href="/home"><i class='bx bxs-home'></i>Home</a></li>
-                        <li class="offer"><a href="#"><i class='bx bxs-offer'></i>Offer</a></li>
-                        <li class="search"><a href="/menu"><i class='bx bx-search-alt-2'></i>Search</a></li>
+                        <!-- <li class="offer"><a href="#"><i class='bx bxs-offer'></i>Offer</a></li>
+                        <li class="search"><a href="/menu"><i class='bx bx-search-alt-2'></i>Search</a></li> -->
                         <li class="cart"><a href="/cart"><i class='bx bxs-cart'></i> Cart</a></li>
                     </ul>
             </div>
@@ -39,13 +39,13 @@
                         <div class="nav-list1">
                             <div class="info-column">
                                 <ul class="info-item">
-                                    <a href=""><span class="name"><i class='bx bx-user'></i><%= cusData.name %></span></a>
+                                    <a href=""><span class="name"><i class="fa-solid fa-user"></i><%= cusData.name %></span></a>
                                     <a href=""><span class="contact"><i class='bx bxs-phone'></i> +<%= cusData.contactNo %></span></a>
                                 </ul>
                             </div>
-                            <div class="edit-section">
+                            <!-- <div class="edit-section">
                                 <a href=""><span class="edit"><i class='bx bx-edit'></i> Edit Profile</span></a>
-                            </div>
+                            </div> -->
                         </div>
                 </div>
 
@@ -63,13 +63,17 @@
                                 <h2>Past Orders<h2>
                             </div> 
                             <div class="food-list">
+                                <% if(cusData.orders.length == 0) {%>
+                                    <div class="emptyOrder">
+                                        <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0" alt="">
+                                        <p>No Orders</p>
+                                        <a href="/menu" class="exploreBtn">Explore Our Menu</a>
+                                    </div>
+                                <% } %>
                                 <% if(cusData.orders) {%>
                                     <% for(order of cusData.orders) {%>
                                         <div class="food-card">
                                             <div class="container">
-                                                <div class="image-container">
-                                                    <img src="/css/img/pizza.avif">
-                                                </div>
                                                 <div class="restaurant-info">
                                                     <div class="food-item">
                                                         <div class="restaurant-name">
@@ -89,24 +93,29 @@
                                                             </table>
                                                         </div>
                                                     </div>
+                                                    <div class="total-paid">Total Paid: ₹<%= order.amount.totalPay %>.00/- </div>
                                                     <div class="delivered">
-                                                        <div class="delivered-status">Delivered</div>
-                                                        <div class="delivered-icon"><i class="fa-regular fa-circle-check" style="color: green;"></i></div>
+                                                        <div class="delivered-status"><%= order.orderStatus %></div>
+                                                        <div class="delivered-icon">
+                                                            <% if(order.orderStatus == "Delivered") {%>
+                                                                <i class="fa-regular fa-circle-check" style="color: green;"></i>
+                                                            <% }else{ %>
+                                                                <i class="fa-solid fa-hourglass-start" style="color: red;"></i>
+                                                            <% } %>
+                                                        </div>
                                                     </div> 
-                                                    <div class="restaurant-address">Guwahati</div>
-                                                    <div class="order-details">ORDER #<%= order._id %></div>
-                                                    <button class="view-details">VIEW DETAILS</button>
-                                                </div>
-                                                <div class="item-info">                               
-                                                    <div class="order-summary">
-                                                        <div class="order-rating"><i class="bx bxs-star"></i>4.5(10)</div>
-                                                        <div class="total-paid">Total Paid: ₹<%= order.amount.totalPay %>.00/- </div>
-                                                    </div>    
+                                                    <div class="order-details">ORDER Date : <%= order.date.toString().split(" ").slice(0,5).join(" ") %></div>
+                                                    <div class="order-details">ORDER ID #<%= order._id %></div>
+                                                    <div class="restaurant-address">Guwahati ,Assam</div>
                                                 </div>
                                               
                                                 <div class="btn">
-                                                    <button class="reorder-button">REORDER</button>
-                                                    <button class="help-button">HELP</button>
+                                                    <div class="order-summary">
+                                                        <div class="order-rating"><i class="bx bxs-star"></i>4.5(10)</div>
+                                                    </div>   
+                                                    <div>
+                                                        <a href="/ratings" class="reorder-button">Give Rating</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
