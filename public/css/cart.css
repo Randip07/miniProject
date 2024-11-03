@@ -285,3 +285,22 @@ table{
         opacity: 1;
     }
 }
+
+@media (max-width : 800px){
+    .main{
+        flex-direction: column-reverse;
+        padding: 1rem 5%;
+    }
+    .cart{
+        width: 100%;
+    }
+    .address {
+        width: 100%;
+    }
+    .paymentFormCon{
+        width: 100%;
+    }
+    .navbar{
+        padding: 1.5rem 5%;
+    }
+}

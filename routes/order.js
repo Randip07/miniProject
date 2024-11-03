@@ -43,8 +43,10 @@ let {tableNo, paymentOp} = req.body
         date : new Date()
     })
 
-    await order.save();
-    await Customer.findByIdAndUpdate(id, { cart : []})
+    let result = await order.save();
+    console.log(result._id);
+    
+    await Customer.findByIdAndUpdate(id, { cart : [], $push: { orders: result._id }})
     res.redirect("/home")
 }))
 

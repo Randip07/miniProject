@@ -69,7 +69,7 @@ router.put("/orders/:id", wrapAsync(async (req, res) => {
 router.get(
   "/customers",
   wrapAsync(async (req, res) => {
-    let data = await Customer.find({});
+    let data = await Customer.find({}).populate("orders");
     res.render("customer.ejs", { customers: data });
   })
 );
@@ -113,6 +113,7 @@ router.post(
     });
 
     await newEmployee.save();
+    req.flash("success", "Employees details added successfully")
     res.redirect("/dashboard/employee");
   })
 );
@@ -131,7 +132,9 @@ router.get(
 router.put(
   "/employee/:id",
   wrapAsync(async (req, res) => {
+    
     let { id } = req.params;
+    // console.log(id);
     let newData = {
       name: req.body.name,
       age: req.body.age,
@@ -146,6 +149,7 @@ router.put(
     // console.log(newData);
     let empData = await Employee.findByIdAndUpdate(id, newData);
     // console.log(empData);
+    req.flash("success", "Employees details updated successfully")
     res.redirect("/dashboard/employee");
   })
 );
@@ -190,8 +194,9 @@ router.put(
   "/menu/:id",
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let newData = req.body;
-    await Menu.findByIdAndUpdate(id, newData);
+    let newData = req.body
+    let resu = await Menu.updateOne({_id : id}, newData);
+    req.flash("success", "Item updated successfully")
     res.redirect("/dashboard/menu");
   })
 );
@@ -210,14 +215,22 @@ router.post(
       price: req.body.price,
       category: req.body.category,
       discount: req.body.discount,
-      availablity: req.body.availablity,
+      availability: req.body.availability,
       type: req.body.type,
     });
 
     await newMenuItem.save();
+    req.flash("success", "Item has been added successfully.")
     res.redirect("/dashboard/menu");
   })
 );
+
+router.delete("/menu/:id", async(req, res) => {
+  let { id } = req.params;
+  await Menu.findByIdAndDelete(id);
+  req.flash("success", "Item has been deleted successfully.")
+  res.redirect("/dashboard/menu")
+})
 
 //Rendering Dashboard/table Pafe
 router.get(

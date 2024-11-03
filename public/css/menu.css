@@ -18,6 +18,10 @@
   --p-font: 1.1rem;
 }
 
+h3{
+  font-size: 1.2rem !important;
+}
+
 body {
   width: 100%;
   height: auto;
@@ -62,7 +66,7 @@ body {
 
 #cart-count{
   z-index: 5;
-  font-size: 0.8rem;
+  font-size: 0.8rem !important;
   /* color: rgb(2, 118, 2); */
   color: black;
   margin-left: 0.3rem;
@@ -151,8 +155,15 @@ body {
   letter-spacing: 0.2rem;
 }
 
+.banner-promo h1{
+  font-weight: 700;
+}
+
 .banner-promo h1 span {
   color: var(--main-color);
+  background-color: black;
+  border-radius: 1rem;
+  padding: 0 1rem;
 }
 
 .heading {
@@ -168,7 +179,7 @@ body {
 }
 
 .heading h2 {
-  font-weight: 400;
+  font-weight: 400 !important;
   letter-spacing: 0.5rem;
   opacity: 0.5;
   font-size: 1rem;
@@ -176,7 +187,6 @@ body {
 }
 
 .menu-container {
-  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -200,7 +210,6 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, auto));
-
   gap: 1rem;
   margin-top: 1rem;
   justify-content: center;
@@ -252,8 +261,7 @@ body {
 }
 
 .titile {
-  width: 70%;
-  line-height: 1.3rem;
+  width: 80%;
   letter-spacing: 0.02rem;
 }
 
@@ -285,4 +293,77 @@ body {
 
 .add p i {
   color: #ff9f0d;
+}
+
+@media (max-width : 800px) {
+
+  .con{
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .nav-div {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .search-div {
+    display: none;
+  }
+
+  .dashboard-banner {
+    height: 150px;
+    position: relative;
+  }
+
+  .dashboard-banner img {
+    border-radius: 1.5rem;
+    opacity: 0.8;
+    background-color: #111111;
+  }
+
+  .banner-promo h1 span {
+    border-radius: 0.7rem;
+  }
+
+  .banner-promo {
+    top: 10%;
+    left: 10%;
+  }
+  .itemCard-con{
+    grid-template-columns: 1fr;
+  }
+
+  .food-card img {
+    width: 35%;
+  }
+
+  .card-details {
+    width: 65%;
+  }
+
+  .bttn {
+    border-radius: 0.5rem;
+    transition: none;
+  
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .food-card {
+    margin: 0;
+    margin-bottom: 1rem;
+    transition: none;
+  
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  h3{
+    font-size: 1rem !important;
+  }
+  
 }

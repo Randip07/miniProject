@@ -3,13 +3,15 @@ const router = express.Router();
 const Customer = require("../models/customers.js");
 const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
+const { isLoggedIn } = require("../middlewares.js")
 
 
 
 
 // Cart Page
-router.get("", wrapAsync (async (req, res) => {
-  let data = await Customer.findById("66e1cbc286cde24d097b1c08").populate("cart.itemId");
+router.get("", isLoggedIn, wrapAsync (async (req, res) => {
+  let id = req.session.userId
+  let data = await Customer.findById(id).populate("cart.itemId");
   let cusData = {
     id: data._id,
     name: data.name,
@@ -35,13 +37,15 @@ router.get("", wrapAsync (async (req, res) => {
 
 
 // Adding Item in the cart
-router.post("/:id", wrapAsync (async (req, res) => {
+router.post("/:id", isLoggedIn, wrapAsync (async (req, res) => {
+  console.log();
+  
   let item = {
     itemId: req.params.id,
   };
   let customer = await Customer.findOne(
     {
-      _id: "66e1cbc286cde24d097b1c08",
+      _id: req.session.userId,
       "cart.itemId": req.params.id,
     },
     {
@@ -50,7 +54,7 @@ router.post("/:id", wrapAsync (async (req, res) => {
   );
   if (customer == null) {
     let result = await Customer.findOneAndUpdate(
-      { _id: "66e1cbc286cde24d097b1c08" },
+      { _id: req.session.userId},
       { $push: { cart: item } }
     );
   } else {
@@ -59,7 +63,7 @@ router.post("/:id", wrapAsync (async (req, res) => {
     if (cartItem.quantity < 5) {
       const result = await Customer.updateOne(
         {
-          _id: "66e1cbc286cde24d097b1c08",
+          _id: req.session.userId,
           "cart.itemId": req.params.id,
         },
         {
@@ -68,6 +72,7 @@ router.post("/:id", wrapAsync (async (req, res) => {
       );
     }
   }
+  req.flash("success", "Item added successfully")
   res.redirect("/menu");
 }));
 
@@ -109,7 +114,6 @@ router.put("/s/:cusId/:itemId", wrapAsync (async (req, res) => {
       );
     }
   }
-
   res.redirect("/cart");
 }));
 

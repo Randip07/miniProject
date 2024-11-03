@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-
+const { isLoggedIn } = require("../middlewares.js")
 const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 
 
 
 // Rendering client side profile page
-router.get("", wrapAsync((req, res) => {
+router.get("", isLoggedIn, wrapAsync((req, res) => {
   res.render("profile.ejs");
 }));
 

@@ -1,16 +1,14 @@
+const { name } = require("ejs");
 const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose")
 
 const customerSchema = new mongoose.Schema({
-  customerId: {
-    type: Number,
-    required: true,
+  name : {
+    type : String,
+    required :true,
+    default : "User"
   },
-
-  name: {
-    type: String,
-    required: true,
-  },
-
+  
   contactNo: {
     type: Number,
     required: true,
@@ -42,6 +40,8 @@ const customerSchema = new mongoose.Schema({
     }
   }]
 });
+
+customerSchema.plugin(passportLocalMongoose);
 
 const Customer = mongoose.model("Customer", customerSchema);
 module.exports = Customer;

@@ -79,7 +79,7 @@ a {
     border-bottom-left-radius: 0.2rem;
 }
 
-.reg-btn {
+.reg-btn , .deleteForm{
     display: flex;
     flex-direction: row !important;
     align-items: center;
@@ -90,8 +90,9 @@ a {
 
 }
 
-.reg-btn button{
+.reg-btn button , .deleteBtn{
     padding: 0.5rem 2.5rem;
+    margin-left: 1rem;
     background: var(--main-color);
     opacity: 0.8;
     cursor: pointer;
@@ -113,7 +114,6 @@ a {
     border-radius: 0.5rem;
     transition: all 0.2s ease;
     box-shadow: black 0px 1px 5px;
-    margin-left: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,4 +126,12 @@ a {
 .reg-btn a i{
     font-size: 1.2rem;
     margin:  0 !important;
+}
+
+.deleteBtn{
+    margin-left: 0;
+}
+
+.deleteForm{
+    margin-top: 0;
 }

@@ -286,6 +286,11 @@ i {
   margin-bottom: 1rem;
 }
 
+.categoryTitle{
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+}
+
 .o-one table tr th {
   padding-top: 1rem;
   padding-bottom: 0.5rem;

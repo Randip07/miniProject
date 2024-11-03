@@ -10,11 +10,13 @@ const wrapAsync = require("../utils/wrapAsync.js");
 router.get("",
   wrapAsync(async (req, res, next) => {
     let data = await Menu.find({});
-    let cartcount = await Customer.findOne({ _id: "66e1cbc286cde24d097b1c08" });
+    let cartcount = await Customer.findOne({ _id : req.session.userId});
+    let count;
     if (!cartcount) {
-      next(new ExpressError(500, "customer not found"));
+      count = 0;
+    }else{
+      count = cartcount.cart.length;
     }
-    let count = cartcount.cart.length;
     let categories = [
       "Appetizers",
       "Main-Course",

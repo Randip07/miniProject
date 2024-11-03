@@ -159,13 +159,13 @@
                     </div>
                      </div>
                     <div>
-                      <label for="availablity">Availability</label>
-                      <select id="availablity" required name="availablity">
+                      <label for="availability">Availability</label>
+                      <select id="availability" required name="availability">
                         <% if (data.availability == "available") { %>
                           <option value="available" selected>Available</option>
                           <option value="Not available">Not Available</option>
                         <% } %>
-                        <% if (data.availablity == "Not available") { %>
+                        <% if (data.availability == "Not available") { %>
                           <option value="available">Available</option>
                           <option value="Not available" selected>Not Available</option>
                         <% } %>
@@ -187,10 +187,13 @@
                      <br>
 
                     <div class="reg-btn">
-                        <button type="submit" >Update</button>
-                        <a href="/dashboard/menu"><i class='bx bx-arrow-back' ></i>Back</a>
+                      <a href="/dashboard/menu"><i class='bx bx-arrow-back' ></i>Back</a>
+                      <button type="submit" >Update</button>
                     </div>
                 </div>
+            </form>
+            <form action="/dashboard/menu/<%= data._id %>?_method=DELETE" method="POST" class="deleteForm">
+              <button type="submit" class="deleteBtn">Delete this Item</button>
             </form>
           </div>
         </div>
