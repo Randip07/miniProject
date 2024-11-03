@@ -5,6 +5,7 @@ const Menu = require("../models/menu.js");
 const Customer = require("../models/customers.js");
 const Table = require("../models/table.js");
 const Order = require("../models/orders.js");
+const Deliver = require("../models/delivered.js");
 const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 
@@ -21,7 +22,8 @@ router.get(
   "/orders",
   wrapAsync(async (req, res) => {
     let orderData = await Order.find().populate("customerId");
-    res.render("orders.ejs", { orders: orderData });
+    let deliveredData = await Deliver.find().populate("customerId").populate("orderId")
+    res.render("orders.ejs", { orders: orderData , deliveredOrders : deliveredData});
   })
 );
 
@@ -54,12 +56,40 @@ router.get(
 // Updating order status in Database
 router.put("/orders/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let { paymentStatus , orderStatus } = req.body
+    let { paymentStatus , orderStatus : currOrderStatus  } = req.body
     if(!paymentStatus){
-      await Order.findByIdAndUpdate(id, { orderStatus : orderStatus })
-    }else{
-      await Order.findByIdAndUpdate(id, { "payment.status" : paymentStatus, orderStatus : orderStatus})
+      await Order.findByIdAndUpdate(id, { orderStatus : currOrderStatus })
     }
+    else{
+      await Order.findByIdAndUpdate(id, { "payment.status" : paymentStatus, orderStatus : currOrderStatus})
+    }
+
+    if(paymentStatus=="paid" && (currOrderStatus == "Delivered" || currOrderStatus == "Rejected")){
+      let orderData = await Customer.findById(id);
+      let newDeliveredOrder = new Deliver({
+        orderId : id,
+        items : orderData.items,
+        totalAmount : orderData.amount.totalPay,
+        customerId : orderData.customerId,
+        orderStatus : currOrderStatus,
+        date : orderData.date
+      })
+      await Deliver.insertMany(newDeliveredOrder);
+    }
+
+    if(!paymentStatus && (currOrderStatus == "Delivered" || currOrderStatus == "Rejected")){
+      let orderData = await Order.findById(id);
+      let newDeliveredOrder = new Deliver({
+        orderId : id,
+        items : orderData.items,
+        totalAmount : orderData.amount.totalPay,
+        customerId : orderData.customerId,
+        orderStatus : currOrderStatus,
+        date : orderData.date
+      })
+      await Deliver.insertMany(newDeliveredOrder)
+    }
+    req.flash("success","Order has been updated successfully")
     res.redirect("/dashboard/orders")
   })
 );

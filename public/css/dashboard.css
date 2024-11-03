@@ -196,7 +196,7 @@ i {
 
 .two-a {
   background: #fff;
-  padding: 0.2rem 0;
+  padding: 2rem ;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -206,7 +206,7 @@ i {
 
 .two-b {
   background: #fff;
-  padding: 0.2rem;
+  padding: 2rem;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
@@ -215,7 +215,7 @@ i {
 .three {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(600px, auto));
   gap: 1rem;
 }
 
@@ -264,7 +264,7 @@ i {
 
 .three-b {
   background: #fff;
-  padding: 0.2rem;
+  padding: 2rem;
   border-radius: 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -286,7 +286,7 @@ i {
   margin-bottom: 1rem;
 }
 
-.categoryTitle{
+.categoryTitle, .orderTitle{
   font-size: 1.5rem !important;
   font-weight: 700 !important;
 }

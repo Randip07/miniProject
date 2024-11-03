@@ -103,14 +103,31 @@
                                         </select>
                                     <% } %>
                                     <label for="orderStatus">Order Status</label>
+                                    <% if(data.orderStatus == "Pending") {%>
                                     <select name="orderStatus" id="orderStatus">
-                                        <option selected>Select Order Status</option>
-                                        <option value="Pending">Pending</option>
+                                        <option value="Pending" selected>Pending</option>
                                         <option value="On Queue">On queue</option>
                                         <option value="Cooking">Cooking</option>
                                         <option value="Delivered">Delivered</option>
                                         <option value="Rejected">Rejected</option>
                                     </select>
+                                    <% } %>
+                                    <% if(data.orderStatus == "On Queue") {%>
+                                    <select name="orderStatus" id="orderStatus">
+                                        <option value="On Queue"selected>On queue</option>
+                                        <option value="Cooking">Cooking</option>
+                                        <option value="Delivered">Delivered</option>
+                                        <option value="Rejected">Rejected</option>
+                                    </select>
+                                    <% } %>
+                                    <% if(data.orderStatus == "Cooking") {%>
+                                    <select name="orderStatus" id="orderStatus">
+                                        <option value="On Queue">On queue</option>
+                                        <option value="Cooking" selected>Cooking</option>
+                                        <option value="Delivered">Delivered</option>
+                                        <option value="Rejected">Rejected</option>
+                                    </select>
+                                    <% } %>
                                     <button>Update Status</button>
                                 </form>
                             </div>

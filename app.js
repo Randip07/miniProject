@@ -100,5 +100,4 @@ app.use("/order", order)
 app.use((err, req, res, next) => {
   let { status = 500, message = "some error" } = err;
   res.status(status).send(message);
-  return;
 });

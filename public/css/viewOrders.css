@@ -104,14 +104,17 @@ h3{
 
 .printBtn a{
     background: #ff9f0d;
+    color: black;
     opacity: 0.8;
     padding: 0.3rem 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    margin-right: 1rem;
 }
 
 .printBtn i{ 
     font-size: 1rem;
+
 }
 
 @media print{
