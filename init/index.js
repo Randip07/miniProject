@@ -50,9 +50,9 @@ const initDB4 = async () => {
   console.log("Order data initialized");
 };
 
-initDB1();
-initDB2();
-initDB();
- initDB3();
+// initDB1();
+// initDB2();
+// initDB();
+//  initDB3();
 // initDB4();
 

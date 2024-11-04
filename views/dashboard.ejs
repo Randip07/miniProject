@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="loading()">
     <section class="main-con">
         <div class="nav-bar">
             <div class="con">
@@ -93,10 +93,14 @@
                 </div>
                 <div class="two">
                     <div class="two-a">
-                        <div style="width: 500px;"> <canvas id="incomeChart"></canvas></div>
+                        <div style="width: 600px;"> <canvas id="incomeChart"></canvas></div>
                     </div>
                     <div class="two-b">
-                        <div style="width: 500px;"> <canvas id="salesChart"></canvas></div>
+                        <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">Total sales on different category
+                            <div style="width: 400px;">
+                                <canvas id="salesChart"></canvas></div>
+                            </div>
+                                
                     </div>
                 </div>
                 <div class="three">
@@ -105,78 +109,31 @@
                             <h2>Top items</h2>
                         </div>
                         <div class="card-con">
-                            <div>
+                            <% for(let i=0; i<4; i++){ %>
                                 <div class="top-card">
                                     <div class="top-card-img">
-                                        <i class='bx bxs-user'></i>
+                                        <img src="" alt="" class="image" width="100px">
                                     </div>
                                     <div class="top-card-text">
                                         <div>
-                                            <h4>Chicken Momo</h4>
-                                            <p>#1</p>
+                                            <h4 class="name">Chicken Momo</h4>
+                                            <p class="rank">#1</p>
                                         </div>
                                         <div>
-                                            <p>₹110.00</p>
-                                            <p>Order 20X</p>
+                                            <p class="price">₹110.00</p>
+                                            <p class="quantity">Order 20X</p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div class="top-card">
-                                    <div class="top-card-img">
-                                        <i class='bx bxs-user'></i>
-                                    </div>
-                                    <div class="top-card-text">
-                                        <div>
-                                            <h4>Chicken Momo</h4>
-                                            <p>#1</p>
-                                        </div>
-                                        <div>
-                                            <p>₹110.00</p>
-                                            <p>Order 20X</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="top-card">
-                                    <div class="top-card-img">
-                                        <i class='bx bxs-user'></i>
-                                    </div>
-                                    <div class="top-card-text">
-                                        <div>
-                                            <h4>Chicken Momo</h4>
-                                            <p>#1</p>
-                                        </div>
-                                        <div>
-                                            <p>₹110.00</p>
-                                            <p>Order 20X</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="top-card">
-                                    <div class="top-card-img">
-                                        <i class='bx bxs-user'></i>
-                                    </div>
-                                    <div class="top-card-text">
-                                        <div>
-                                            <h4>Chicken Momo</h4>
-                                            <p>#1</p>
-                                        </div>
-                                        <div>
-                                            <p>₹110.00</p>
-                                            <p>Order 20X</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <% } %>
                         </div>
                     </div>
                     <div class="three-b">
-                        <div style="width: 500px;"> <canvas id="ratingsChart"></canvas></div>
+                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">Ratings on items
+                                <div style="width: 400px;">
+                                    <canvas id="ratingsChart"></canvas>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

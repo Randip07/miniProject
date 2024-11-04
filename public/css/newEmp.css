@@ -135,3 +135,8 @@ a {
 .deleteForm{
     margin-top: 0;
 }
+
+#itemImage{
+    border: 1px solid black;
+    padding-left: 2rem;
+}

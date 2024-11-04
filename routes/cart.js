@@ -10,29 +10,37 @@ const { isLoggedIn } = require("../middlewares.js")
 
 // Cart Page
 router.get("", isLoggedIn, wrapAsync (async (req, res) => {
-  let id = req.session.userId
-  let data = await Customer.findById(id).populate("cart.itemId");
-  let cusData = {
-    id: data._id,
-    name: data.name,
-  };
-  let cartItems = data.cart
-  let calucalatedPrice = {
-    platformFee : 10,
-    itemTotal : 0,
-    afterDiscount : 0,
-    sgst : 0,
-    cgst : 0,
-    totalPay : 0
+  try{
+    let id = req.session.userId
+    let data = await Customer.findById(id).populate("cart.itemId");
+    console.log(data);
+    
+    let cusData = {
+      id: data._id,
+      name: data.name,
+    };
+    let cartItems = data.cart
+    let calucalatedPrice = {
+      platformFee : 10,
+      itemTotal : 0,
+      afterDiscount : 0,
+      sgst : 0,
+      cgst : 0,
+      totalPay : 0
+    }
+    for(item of cartItems){
+      calucalatedPrice.itemTotal += item.quantity*item.itemId.price
+      calucalatedPrice.afterDiscount += Math.ceil(item.quantity*(item.itemId.price - (item.itemId.price*(item.itemId.discount/100))));
+    }
+    calucalatedPrice.sgst = Math.ceil(calucalatedPrice.afterDiscount*(2.5/100));
+    calucalatedPrice.cgst = Math.ceil(calucalatedPrice.afterDiscount*(2.5/100));
+    calucalatedPrice.totalPay = Math.ceil(calucalatedPrice.afterDiscount + calucalatedPrice.platformFee + calucalatedPrice.sgst + calucalatedPrice.cgst); 
+    res.render("cart.ejs", { cart: cartItems, cusData , calucalatedPrice});
   }
-  for(item of cartItems){
-    calucalatedPrice.itemTotal += item.quantity*item.itemId.price
-    calucalatedPrice.afterDiscount += Math.ceil(item.quantity*(item.itemId.price - (item.itemId.price*(item.itemId.discount/100))));
+  catch(err){
+    console.log(err);
+    
   }
-  calucalatedPrice.sgst = Math.ceil(calucalatedPrice.afterDiscount*(2.5/100));
-  calucalatedPrice.cgst = Math.ceil(calucalatedPrice.afterDiscount*(2.5/100));
-  calucalatedPrice.totalPay = Math.ceil(calucalatedPrice.afterDiscount + calucalatedPrice.platformFee + calucalatedPrice.sgst + calucalatedPrice.cgst); 
-  res.render("cart.ejs", { cart: cartItems, cusData , calucalatedPrice});
 }));
 
 

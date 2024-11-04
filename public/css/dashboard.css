@@ -241,6 +241,12 @@ i {
 .top-card-img {
   display: flex;
   align-items: center;
+  width: 100px;
+  margin-right: 1rem;
+}
+
+.top-card-img img{
+  border-radius: 0.6rem;
 }
 
 .top-card-img i {
@@ -249,6 +255,9 @@ i {
 
 .top-card-text {
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .top-card-text div {

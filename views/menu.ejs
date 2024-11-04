@@ -73,7 +73,7 @@
             <div class="itemCard-con">
               <% for (item of items) { %> <% if(item.category == category && item.availability == "available"){%>
               <div class="food-card">
-                <img src="/css/img/pizza.avif" alt="" />
+                <img src="<%= item.image.url %>" alt="" />
                 <div class="card-details">
                   <div class="titleCon">
                     <div class="titile">

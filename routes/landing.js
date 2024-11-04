@@ -5,9 +5,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
 const Customer = require("../models/customers.js");
 const { Redirect } = require("twilio/lib/twiml/VoiceResponse.js");
-const accountSid = "AC3faf10aa9c05c4ac70e7e7616ed30c89"
-const authToken = "0e255e85a8942d3a47e25fce4051bf27"
-const client = require('twilio')(accountSid, authToken);
+const client = require('twilio')( process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN );
 
 let otp = "";
 function generateOtp(){
@@ -48,7 +46,8 @@ router.get("/login3", ((req, res) => {
 
 router.post("/login",  passport.authenticate("local", {failureRedirect : "/login", failureFlash : true}),
   wrapAsync( async (req, res) => {
-    let user = await Customer.findOne({contactNo : req.body.username})
+    let contactNo = "91" +req.body.username;
+    let user = await Customer.findOne({contactNo : contactNo})
     req.session.userId = user._id;
     req.flash("success", "Login Successfull")
     res.redirect("/menu")
@@ -58,6 +57,7 @@ router.post("/login",  passport.authenticate("local", {failureRedirect : "/login
 router.post("/signup", ((req, res) => {
     req.session.name = req.body.name,
     req.session.contactNo = "91" + req.body.contactNo
+    req.session.username = req.body.contactNo
     res.redirect("/auth-otp")
   }
 ));
@@ -75,16 +75,17 @@ router.post("/auth-otp", async (req, res) =>{
     if(otp == req.body.otp){
       let newCustomer = new Customer({
         name : req.session.name,
-        username : req.session.contactNo,
+        username : req.session.username,
         contactNo : req.session.contactNo
       })
       let registeredUser = await Customer.register(newCustomer, req.body.password)
       let user = await Customer.findOne({contactNo : req.session.contactNo})
+      console.log(user);
+      
       req.login(registeredUser, async (err) => {
         if(err){
           return next(err);
         }
-        console.log(user);
         req.session.userId = user._id;
         res.redirect("/menu")
       })
