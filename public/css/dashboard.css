@@ -220,6 +220,7 @@ i {
 }
 
 .three-a {
+  width: 1fr;
   border-radius: 1rem;
   padding: 2rem;
   background: var(--text-color);
@@ -355,4 +356,8 @@ i {
 .emp-add button i{
   margin: 0;
   font-size: 1.1rem;
+}
+
+canvas{
+  cursor: pointer;
 }
