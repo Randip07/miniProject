@@ -43,9 +43,9 @@ body {
 	justify-content: center;
 	align-items: center;
 	grid-gap: .5rem;
-	font-size: 2rem;
+	font-size: 1.3rem;
 	color: var(--yellow);
-	margin-bottom: 2rem;
+	margin-bottom: .5rem;
 }
 .rating .star {
 	cursor: pointer;
@@ -74,15 +74,16 @@ body {
 .rating .star:hover {
 	transform: scale(1.1);
 }
-textarea {
-	width: 100%;
-	background: var(--light);
-	padding: 1rem;
-	border-radius: .5rem;
-	border: none;
-	outline: none;
-	resize: none;
-	margin-bottom: .5rem;
+
+.rating label {
+    margin-right: 10px;
+    font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.selected-stars{
+	color: #111111;
+	font-size: 1.2rem;
 }
 .btn-group {
 	display: flex;
@@ -116,6 +117,6 @@ textarea {
 	background: var(--light);
 }
 .imgDiv2 img {
-    width: 35%;
+    width: 60%;
     height: auto;
 }

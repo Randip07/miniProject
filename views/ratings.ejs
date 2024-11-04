@@ -1,39 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-	<title>Form Reviews</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Form Reviews</title>
     <!-- css -->
     <link rel="stylesheet" href="/css/ratings.css">
-
-	<!-- logo -->
+    <!-- logo -->
     <%- include("./includes/logo.ejs") %>
 </head>
 <body>
 
-	<div class="wrapper">
-		<h3>Ratings & Reviews</h3>
-		<form action="#">
-			<div class="rating">
-				<div class="imgDiv2">
-                    <img src="/css/img/hot.png" alt="">
-                </div>
-				<input type="number" name="rating" hidden>
-				<i class='bx bx-star star' style="--i: 0;"></i>
-				<i class='bx bx-star star' style="--i: 1;"></i>
-				<i class='bx bx-star star' style="--i: 2;"></i>
-				<i class='bx bx-star star' style="--i: 3;"></i>
-				<i class='bx bx-star star' style="--i: 4;"></i>
-			</div>
-			<textarea name="opinion" cols="30" rows="5" placeholder="Your opinion..."></textarea>
-			<div class="btn-group">
-				<button type="submit" class="btn submit">Submit</button>
-				<button class="btn cancel">Cancel</button>
-			</div>
-		</form>
-	</div>
-	<script src="/js/ratings.js"></script>
+    <div class="wrapper">
+        <h3>Ratings & Reviews</h3>
+        <form action="#">
+            <div class="imgDiv2">
+                <img src="/css/img/hot.png" alt="">
+            </div>
+            <div id="rating-container"></div>
+            <div class="btn-group">
+                <button type="submit" class="btn submit">Submit</button>
+                <button type="button" class="btn cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const ratingContainer = document.getElementById("rating-container");
+        const items = ["Item 1", "Item 2", "Item 3"];
+        items.forEach((item, index) => {
+            const ratingDiv = document.createElement("div");
+            ratingDiv.classList.add("rating");
+            ratingDiv.innerHTML = `
+                <label>${item}:</label>
+                <input type="number" name="rating${index + 1}" hidden>
+                <i class='bx bx-star star' style="--i: 0;"></i>
+                <i class='bx bx-star star' style="--i: 1;"></i>
+                <i class='bx bx-star star' style="--i: 2;"></i>
+                <i class='bx bx-star star' style="--i: 3;"></i>
+                <i class='bx bx-star star' style="--i: 4;"></i>
+                <span class="selected-stars"></span>
+            `;
+            ratingContainer.appendChild(ratingDiv);
+            const stars = ratingDiv.querySelectorAll('.star');
+            const selectedStars = ratingDiv.querySelector('.selected-stars');
+            stars.forEach((star, starIndex) => {
+                star.addEventListener('click', () => {
+                    stars.forEach((s, i) => {
+                        s.classList.toggle(i <= starIndex);
+                    });
+                    const ratingValue = starIndex + 1;
+                    ratingDiv.querySelector('input').value = ratingValue;
+                    selectedStars.textContent = `(${ratingValue})`;
+                });
+            });
+        });
+    </script>
+
+    <script src="/js/ratings.js"></script>
 </body>
 </html>
