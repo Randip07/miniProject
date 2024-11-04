@@ -8,6 +8,8 @@ const api_url3 = "http://localhost:8080/getDashboardData/top_items"
 const api_url4 = "http://localhost:8080/getDashboardData/rating_data"
 // const api_url = "http://universities.hipolabs.com/search?name=middle&country=turkey"
 
+const pointImgae = new Image();
+pointImgae.src = ""
 
 async function loading(){
 
