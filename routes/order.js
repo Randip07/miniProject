@@ -12,7 +12,7 @@ const { now } = require("mongoose");
 // ordering item
 router.post("/:id", wrapAsync( async (req, res, next) => {
     let { id } = req.params
-let {tableNo, paymentOp} = req.body
+    let {tableNo, paymentOp} = req.body
 
     let cusData = await Customer.findById(id).populate("cart.itemId");
     let cartItems = cusData.cart

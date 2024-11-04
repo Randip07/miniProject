@@ -30,6 +30,7 @@ router.get(
   wrapAsync(async (req, res) => {
     let orderData = await Order.find().populate("customerId");
     let deliveredData = await Deliver.find().populate("customerId").populate("orderId")
+    // console.log(orderData);
     res.render("orders.ejs", { orders: orderData , deliveredOrders : deliveredData});
   })
 );
@@ -72,7 +73,7 @@ router.put("/orders/:id", wrapAsync(async (req, res) => {
     }
 
     if(paymentStatus=="paid" && (currOrderStatus == "Delivered" || currOrderStatus == "Rejected")){
-      let orderData = await Customer.findById(id);
+      let orderData = await Order.findById(id);
       let newDeliveredOrder = new Deliver({
         orderId : id,
         items : orderData.items,

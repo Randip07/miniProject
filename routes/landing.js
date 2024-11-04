@@ -46,7 +46,8 @@ router.get("/login3", ((req, res) => {
 
 router.post("/login",  passport.authenticate("local", {failureRedirect : "/login", failureFlash : true}),
   wrapAsync( async (req, res) => {
-    let user = await Customer.findOne({contactNo : req.body.username})
+    let contactNo = "91" +req.body.username;
+    let user = await Customer.findOne({contactNo : contactNo})
     req.session.userId = user._id;
     req.flash("success", "Login Successfull")
     res.redirect("/menu")
