@@ -25,7 +25,7 @@
         <div class="address payment">
             <h3><i class="fa-solid fa-utensils"></i>Select your table number</h3>
             <div class="paymentFormCon">
-                <form action="/order/<%= cusData.id %>" method="post">
+                <form action="/payment/initiate_payment" method="post">
                     <label for="tableNo">Table No</label>
                     <select name="tableNo" id="tableNo">
                         <option selected>Select Table</option>
@@ -35,12 +35,12 @@
                         <option value="4">Table 4</option>
                         <option value="5">Table 5</option>
                     </select>
-                    <label for="paymentOp">Payment Option</label>
+                    <!-- <label for="paymentOp">Payment Option</label>
                     <select name="paymentOp" id="paymentOp">
                         <option selected>Select Payment Mode</option>
                         <option value="online">Online</option>
                         <option value="onCash">On Cash</option>
-                    </select>
+                    </select> -->
                     <button>Place Order</button>
                 </form>
             </div>

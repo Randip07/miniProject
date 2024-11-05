@@ -13,7 +13,7 @@ router.get("", isLoggedIn, wrapAsync (async (req, res) => {
   try{
     let id = req.session.userId
     let data = await Customer.findById(id).populate("cart.itemId");
-    console.log(data);
+    // console.log(data);
     
     let cusData = {
       id: data._id,

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= code %></title>
+
+    <!-- link css -->
+     <link rel="stylesheet" href="/css/orderStatus.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <dotlottie-player src="https://lottie.host/11fe52dc-ac46-4da8-8fef-7a3f4a09b433/oXLzHsLyP7.json" background="transparent" speed=".5" style="width: 200px; height: 200px;" autoplay></dotlottie-player>
+            <h3 id="one">Thank you, your order has been accepted.</h3>
+            <p id="two">Please wait 15 minutes. Your food will be delivered on your table.</p>
+            <p id="three">Your transaction id is <%= transactionId %></p>
+            <a href="/profile" id="four">Go to profile</a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script> 
+</body>
+</html>

@@ -114,7 +114,7 @@
                                 <td><%= `${order.date.toString().split(" ").slice(4,5).join("/")}/${order.date.toString().split(" ").slice(1,3).join("/")}`  %></td>
                                 <td>₹<%= order.totalAmount%>.00/-</td>
                                 <td><%= order.orderId.tableNo %></td>
-                                <td><%= order.orderStatus %></td>
+                                <td><%= order.orderId.orderStatus %></td>
                                 <td>
                                     <%= order.orderId.payment.status.toUpperCase() %>
                                         <% if(order.orderId.payment.status == "pending"){ %>

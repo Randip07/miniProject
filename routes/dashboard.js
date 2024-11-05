@@ -30,7 +30,6 @@ router.get(
   wrapAsync(async (req, res) => {
     let orderData = await Order.find().populate("customerId");
     let deliveredData = await Deliver.find().populate("customerId").populate("orderId")
-    // console.log(orderData);
     res.render("orders.ejs", { orders: orderData , deliveredOrders : deliveredData});
   })
 );

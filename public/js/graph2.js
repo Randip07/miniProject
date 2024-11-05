@@ -2,17 +2,21 @@
 const ctx = document.getElementById('incomeChart');
 const ctx2 = document.getElementById('salesChart');
 const ctx3 = document.getElementById('ratingsChart');
-const api_url = "http://localhost:8080/getDashboardData/income_data"
+
+const api_url = "http://localhost:8080/getDashboardData"
+const api_url1 = "http://localhost:8080/getDashboardData/income_data"
 const api_url2 = "http://localhost:8080/getDashboardData/sales_data"
 const api_url3 = "http://localhost:8080/getDashboardData/top_items"
 const api_url4 = "http://localhost:8080/getDashboardData/rating_data"
 // const api_url = "http://universities.hipolabs.com/search?name=middle&country=turkey"
 
+const pointImage = new Image(10,12);
+pointImage.src = "../css/img2/rupeee.png"
 
 async function loading(){
 
   // income chart
-  let chart1Data = await organizeIncomeData(api_url);
+  let chart1Data = await organizeIncomeData(api_url1);
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -20,15 +24,23 @@ async function loading(){
       datasets: [{
         label: 'Daily Income',
         data: chart1Data.dailyIncome,
-        borderWidth: 1
+        borderWidth: 3,
       }]
     },
     options: {
+      elements : {
+        point : {
+          pointStyle : ["circle"],
+          borderWidth : 10
+        }
+      },
       scales: {
         y: {
           beginAtZero: true,
           ticks : {
-            display : true
+            display : true,
+            stepSize : 1000,
+            maxTicksLimit : 4
           },
           grid : {
             display : false
@@ -71,7 +83,6 @@ async function loading(){
 
   let topItemsDataJson = await fetch(api_url3);
   let topItemsData = await topItemsDataJson.json();
-  console.log(topItemsData);
   
   for(let i=0; i<4; i++){
     names[i].textContent = topItemsData.result[i].itemName
@@ -103,6 +114,21 @@ async function loading(){
     }
   });
 
+
+  // dashOverview
+  let dashOverviewJson = await fetch(api_url);
+  let dashOverview = await dashOverviewJson.json();
+  let overallDatas = document.querySelectorAll(".overallData");
+  // console.log(dashOverview.response);
+  
+  for(let i=0; i<4; i++){
+    if (overallDatas[i].textContent == "₹") {
+      overallDatas[i].textContent = overallDatas[i].textContent  + dashOverview.response[i] + ".00/-"
+    }
+    else{
+    overallDatas[i].textContent = overallDatas[i].textContent  + dashOverview.response[i]
+    }
+  }
 }
 
 

@@ -299,6 +299,10 @@ a {
   padding: 10px 0;
 }
 
+a{
+  text-decoration: none;
+}
+
 .help-button {
   padding: 10px;
   border: none;

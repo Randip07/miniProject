@@ -112,6 +112,7 @@ body {
 .btn-group .btn.cancel {
 	background: var(--white);
 	color: #111111;
+	text-decoration: none;
 }
 .btn-group .btn.cancel:hover {
 	background: var(--light);

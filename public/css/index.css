@@ -713,6 +713,10 @@ header.sticky{
     .details{
         gap: 1.5rem;
     }
+
+    .about-img img{
+        border-radius: 2rem;
+    }
 }
 
 @media (max-width : 475px){

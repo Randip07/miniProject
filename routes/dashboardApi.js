@@ -5,6 +5,35 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const Customer = require("../models/customers.js");
 const Deliver = require("../models/delivered.js");
 const Menu = require("../models/menu.js");
+const Order = require("../models/orders.js");
+
+router.get("", wrapAsync(async (req, res) => {
+  let totalItems = await Menu.countDocuments();
+  let totalCustomers = await Customer.countDocuments();
+  let totalOrders = await Order.countDocuments();
+  const result = await Deliver.aggregate([
+    {
+      $group: {
+        _id: null,                         // No grouping key, so we get a single result
+        totalAmount: { $sum: "$totalAmount" }  // Sum all totalAmount fields
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        totalAmount: 1                     // Only include the totalAmount in the result
+      }
+    }
+  ]);
+  let response = [
+    totalItems,
+    totolIncome = result[0].totalAmount,
+    totalCustomers,
+    totalOrders,
+]
+  
+  res.status(200).json({response})
+}))
 
 router.get("/income_data", wrapAsync(async (req, res) => {
     Deliver.aggregate([
