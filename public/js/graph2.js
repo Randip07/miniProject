@@ -167,8 +167,8 @@ async function organizeSalesData(api){
   
   for(let i=0; i<dataSet.result.length; i++) {
     if(dataSet.result[i]){
-      category.push(dataSet.result[i].category[0]);
-      amount.push(dataSet.result[i].totalAmount)
+      category.push(dataSet.result[i]._id[0]);
+      amount.push(dataSet.result[i].totalSales)
     }else{
       category.push(0)
       amount.push(0)
