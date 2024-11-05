@@ -58,7 +58,8 @@ const orderSchema = new mongoose.Schema({
       required : true,
       enum : ["paid", "pending"],
       default : "pending"
-    }
+    },
+    transactionId : String,
   },
 
   orderStatus: {

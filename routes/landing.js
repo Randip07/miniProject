@@ -104,9 +104,4 @@ router.get("/booking", ((req, res) => {
   res.render("booking.ejs");
 }));
 
-// Rating Page
-router.get("/ratings", ((req, res) => {
-  res.render("ratings.ejs");
-}));
-
 module.exports = router;

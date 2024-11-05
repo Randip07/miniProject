@@ -23,4 +23,8 @@ router.get("/favourites", wrapAsync((req, res) => {
   res.render("favourites.ejs");
 }));
 
+router.get("/ratings", isLoggedIn, ((req, res) => {
+  res.render("ratings.ejs");
+}));
+
 module.exports = router;
