@@ -345,7 +345,7 @@ body {
   .bttn {
     border-radius: 0.5rem;
     transition: none;
-  
+    color: #111111;
     &:hover {
       transform: none;
     }

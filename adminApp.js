@@ -3,26 +3,19 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
-const ExpressError = require("./utils/ExpressError.js");
-const wrapAsync = require("./utils/wrapAsync.js");
-const { error } = require("console");
 const cookieParser = require('cookie-parser');
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
 const passport = require("passport")
 const LocalStrategy = require("passport-local")
-const User = require("./models/customers.js")
 const Admin = require("./models/admin.js")
 const defaultPassword = "QW79ASPO"
 const flash = require("connect-flash")
 
 // Importing routes
-const cart = require("./routes/cart.js");
-const menu = require("./routes/menu.js");
-const profile = require("./routes/profile.js");
-const landing = require("./routes/landing.js");
-const order = require("./routes/order.js");
-const payment = require("./routes/paymentGateway.js");
+const dashboard = require("./routes/dashboard.js");
+const dashboardApi = require("./routes/dashboardApi.js");
+const adminLogin = require("./routes/adminLogin.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -31,7 +24,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(cookieParser())
-
 
 
 const localDBUrl = "mongodb://127.0.0.1:27017/restaurent"
@@ -50,10 +42,9 @@ store.on("error", (err) => {
   console.log("ERROR in MONGO STORE", err);
 })
 
-// express session
 const sessionOptions ={
-  store,
-  secret : "VK1880",
+    store,
+  secret : "VK18800",
   resave : false,
   saveUninitialized : true,
   cookie : {
@@ -74,11 +65,11 @@ app.use((req, res, next) => {
 // passport
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()))
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+passport.use(new LocalStrategy(Admin.authenticate()))
+passport.serializeUser(Admin.serializeUser())
+passport.deserializeUser(Admin.deserializeUser())
 
-const port = 8080;
+const port = 8088;
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
@@ -94,27 +85,10 @@ async function main() {
   await mongoose.connect(DB_URL);
 }
 
-app.get("/demoUser", async (req, res) => { 
-  let fakeUser = {
-    name : "Ranadip Das",
-    username : "9957416364",
-    contactNo : 9957416364
-  }
-
-  let regUser = await User.register(fakeUser, defaultPassword);
-  res.send(regUser);
-
-});
-
-app.get
-
 // Routing
-app.use("/", landing)
-app.use("/cart", cart);
-app.use("/menu", menu);
-app.use("/profile", profile);
-app.use("/order", order)
-app.use("/payment", payment)
+app.use("/dashboard", dashboard);
+app.use("/getDashboardData", dashboardApi)
+app.use("/admin", adminLogin);
 
 // Middlewares
 app.use((err, req, res, next) => {

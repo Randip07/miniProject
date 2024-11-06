@@ -1,5 +1,5 @@
 .env
 node_modules/
 atesting
-/routes/paymentGateway.js
-adminApp.js
+# /routes/paymentGateway.js
+# adminApp.js
