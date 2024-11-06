@@ -30,14 +30,21 @@
             <div class="box">
                 <div class="text">
                     <div class="textDiv">
-                        <h2>Sign Up</h2>
+                        <h2>SIGN UP <% if(data){ %>
+                            <%= data.toUpperCase() %>
+                            <% } %></h2>
                         <p>Enter your details to sign up</p>
                     </div>
                 </div>
                 <div class="imgDiv">
                     <img src="/css/img/cold.png" alt="">
                 </div>
-                <form action="/signup" method="post">
+                <form <% if(data != " "){ %>
+                    action="/admin/signup"
+                    <% } else{%>
+                action="/signup"
+                <% } %>
+                 method="post">
                     <div>
                         <label for="name">Name</label>
                         <div class="inpGrp">

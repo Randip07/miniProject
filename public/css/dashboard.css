@@ -343,6 +343,32 @@ i {
   align-items: center;
 }
 
+.emp-add{
+  display: flex;
+}
+
+.showDiscount p{
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: var(--text-color);
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.showDiscount p i{
+  font-size: 1.2rem;
+}
+
+.emp-add form {
+  margin-right: 1rem;
+}
+
 .emp-add button{
   border: none;
   padding: 0.5rem 1rem;
@@ -364,4 +390,9 @@ i {
 
 canvas{
   cursor: pointer;
+}
+
+table tr td img{
+  width: 70px;
+  border-radius: 0.7rem;
 }

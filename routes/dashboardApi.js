@@ -6,11 +6,16 @@ const Customer = require("../models/customers.js");
 const Deliver = require("../models/delivered.js");
 const Menu = require("../models/menu.js");
 const Order = require("../models/orders.js");
+const Admin = require("../models/admin.js");
 
 router.get("", wrapAsync(async (req, res) => {
   let totalItems = await Menu.countDocuments();
   let totalCustomers = await Customer.countDocuments();
   let totalOrders = await Order.countDocuments();
+  let adminName = await Admin.findById(req.session.adminId);
+  adminName = adminName.name;
+  
+  
   const result = await Deliver.aggregate([
     {
       $group: {
@@ -30,6 +35,7 @@ router.get("", wrapAsync(async (req, res) => {
     totolIncome = result[0].totalAmount,
     totalCustomers,
     totalOrders,
+    adminName
 ]
   
   res.status(200).json({response})

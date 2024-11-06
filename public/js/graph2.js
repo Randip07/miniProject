@@ -3,11 +3,11 @@ const ctx = document.getElementById('incomeChart');
 const ctx2 = document.getElementById('salesChart');
 const ctx3 = document.getElementById('ratingsChart');
 
-const api_url = "http://localhost:8080/getDashboardData"
-const api_url1 = "http://localhost:8080/getDashboardData/income_data"
-const api_url2 = "http://localhost:8080/getDashboardData/sales_data"
-const api_url3 = "http://localhost:8080/getDashboardData/top_items"
-const api_url4 = "http://localhost:8080/getDashboardData/rating_data"
+const api_url = "http://localhost:8088/getDashboardData"
+const api_url1 = "http://localhost:8088/getDashboardData/income_data"
+const api_url2 = "http://localhost:8088/getDashboardData/sales_data"
+const api_url3 = "http://localhost:8088/getDashboardData/top_items"
+const api_url4 = "http://localhost:8088/getDashboardData/rating_data"
 // const api_url = "http://universities.hipolabs.com/search?name=middle&country=turkey"
 
 const pointImage = new Image(10,12);
@@ -119,6 +119,8 @@ async function loading(){
   let dashOverviewJson = await fetch(api_url);
   let dashOverview = await dashOverviewJson.json();
   let overallDatas = document.querySelectorAll(".overallData");
+  let adminName = document.getElementById("adminName")
+  adminName.textContent += dashOverview.response[4];
   // console.log(dashOverview.response);
   
   for(let i=0; i<4; i++){

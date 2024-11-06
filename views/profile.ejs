@@ -54,8 +54,8 @@
                         <div class="nav-con">
                             <ul class="con-list">
                                 <a href="/profile"><li class="order active">Orders</li></a>
-                                <a href="profile/favourites"><li class="favourites">Favourites</a></li>
-                                <a href="#"><li class="payments">Payments</li></a>
+                                <!-- <a href="profile/favourites"><li class="favourites">Favourites</a></li> -->
+                                <!-- <a href="#"><li class="payments">Payments</li></a> -->
                             </ul>
                         </div>
                         <div class="con-list1">
@@ -93,7 +93,7 @@
                                                             </table>
                                                         </div>
                                                     </div>
-                                                    <div class="total-paid">Total Paid: ₹<%= order.amount.totalPay %>.00/- </div>
+                                                    <div class="total-paid">Total Paid: ₹<%= order.amount.totalPay.toLocaleString("en-IN") %>.00/- </div>
                                                     <div class="delivered">
                                                         <div class="delivered-status"><%= order.orderStatus %></div>
                                                         <div class="delivered-icon">

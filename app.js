@@ -8,22 +8,21 @@ const wrapAsync = require("./utils/wrapAsync.js");
 const { error } = require("console");
 const cookieParser = require('cookie-parser');
 const session = require('express-session')
+const MongoStore = require('connect-mongo');
 const passport = require("passport")
 const LocalStrategy = require("passport-local")
 const User = require("./models/customers.js")
+const Admin = require("./models/admin.js")
 const defaultPassword = "QW79ASPO"
 const flash = require("connect-flash")
 
-
 // Importing routes
 const cart = require("./routes/cart.js");
-const dashboard = require("./routes/dashboard.js");
 const menu = require("./routes/menu.js");
 const profile = require("./routes/profile.js");
 const landing = require("./routes/landing.js");
 const order = require("./routes/order.js");
-const dashboardApi = require("./routes/dashboardApi.js")
-const payment = require("./routes/paymentGateway.js")
+const payment = require("./routes/paymentGateway.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -33,7 +32,27 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(cookieParser())
 
+
+
+const localDBUrl = "mongodb://127.0.0.1:27017/restaurent"
+const DB_URL = process.env.ATLAS_DB_URL
+
+// mongo session store
+const store = MongoStore.create({
+  mongoUrl : DB_URL,
+  crypto : {
+    secret : "VK1880",
+  },
+  touchAfter : 24 * 3600
+})
+
+store.on("error", (err) => {
+  console.log("ERROR in MONGO STORE", err);
+})
+
+// express session
 const sessionOptions ={
+  store,
   secret : "VK1880",
   resave : false,
   saveUninitialized : true,
@@ -72,7 +91,7 @@ main()
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/restaurent");
+  await mongoose.connect(DB_URL);
 }
 
 app.get("/demoUser", async (req, res) => { 
@@ -92,11 +111,9 @@ app.get
 // Routing
 app.use("/", landing)
 app.use("/cart", cart);
-app.use("/dashboard", dashboard);
 app.use("/menu", menu);
 app.use("/profile", profile);
 app.use("/order", order)
-app.use("/getDashboardData", dashboardApi)
 app.use("/payment", payment)
 
 // Middlewares

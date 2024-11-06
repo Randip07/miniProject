@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- css -->
+     <link rel="stylesheet" href="/css/discount.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <h3>Update Discount on your restaurent</h3>
+            <dotlottie-player src="https://lottie.host/fca3664a-ef1a-4855-919a-7bd0df9df8d3/pyY5fDRDsK.json" background="transparent" speed=".5" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+            <form action="/dashboard/menu/discount" method="post">
+                <label for="discount">TYPE DISCOUNT</label>
+                <input type="text" id="discount" name="discount">
+                <button type="submit" class="btn">Update</button>
+                <a href="/dashboard/menu" class="btn cancel" type="button">Cancel</a>
+            </form>
+        </div>
+    </div>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script> 
+</body>
+</html>

@@ -4,6 +4,7 @@ if(process.env.NODE_ENV != "production"){
 
 const express = require("express");
 const router = express.Router();
+const app = express();
 const Employee = require("../models/employee.js");
 const Menu = require("../models/menu.js");
 const Customer = require("../models/customers.js");
@@ -15,10 +16,14 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const multer = require("multer");
 const { storage } = require("../cloudinaryConfig.js");
 const upload = multer( {storage} )
+const { isAdminLoggedIn } = require("../middlewares.js");
+
+// routes 
 
 // Rendering Dashboard Page
 router.get(
   "",
+  isAdminLoggedIn,
   ((req, res) => {
     res.render("dashboard.ejs");
   })
@@ -27,6 +32,7 @@ router.get(
 // Rendering Dashboard/orders Page
 router.get(
   "/orders",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let orderData = await Order.find().populate("customerId");
     let deliveredData = await Deliver.find().populate("customerId").populate("orderId")
@@ -37,6 +43,7 @@ router.get(
 // Rendering Dashboard/orders/view Page
 router.get(
   "/orders/:id",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let orderData = await Order.findById(id)
@@ -50,6 +57,7 @@ router.get(
 // Rendering Dashboard/orders/edit Page
 router.get(
   "/orders/:id/edit",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let orderData = await Order.findById(id)
@@ -105,6 +113,7 @@ router.put("/orders/:id", wrapAsync(async (req, res) => {
 // Rendering Dashboard/customers Page
 router.get(
   "/customers",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let data = await Customer.find({}).populate("orders");
     res.render("customer.ejs", { customers: data });
@@ -114,6 +123,7 @@ router.get(
 // Rendering Dashboard/employee Page
 router.get(
   "/employee",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let data = await Employee.find({});
     res.render("employees.ejs", { employees: data });
@@ -123,6 +133,7 @@ router.get(
 // New Employee adding Page
 router.get(
   "/employee/new",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     res.render("newEmp.ejs");
   })
@@ -158,6 +169,7 @@ router.post(
 // Rendering Editing Employeee Details Page
 router.get(
   "/employee/:id/edit",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let empData = await Employee.findById(id);
@@ -194,6 +206,7 @@ router.put(
 // Rending Dashboard/menu Page
 router.get(
   "/menu",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let data = await Menu.find({});
     let category = [
@@ -211,20 +224,35 @@ router.get(
 // Rendering adding new item page
 router.get(
   "/menu/new",
+  isAdminLoggedIn,
   wrapAsync((req, res) => {
     res.render("newItem.ejs");
   })
 );
 
+// disocunt update
+router.post("/menu/discount",isAdminLoggedIn, async (req, res) => {
+  let result  = await Menu.updateMany({}, {discount : req.body.discount})
+  res.redirect("/dashboard/menu")
+})
+
 // Rendering Editing item details page
 router.get(
   "/menu/:id/edit",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let itemData = await Menu.findById(id);
     res.render("editItem.ejs", { data: itemData });
   })
 );
+
+// discount page
+router.get("/menu/discount", isAdminLoggedIn, (req, res) => {
+  res.render("discount.ejs");
+})
+
+
 
 // Updating Item details in Database
 router.put(
@@ -282,6 +310,7 @@ router.delete("/menu/:id", async(req, res) => {
 //Rendering Dashboard/table Pafe
 router.get(
   "/table",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let data = await Table.find();
     res.render("dashTable.ejs", { tables: data });
@@ -291,6 +320,7 @@ router.get(
 // Rendering Dashboard/table/view page
 router.get(
   "/table/view/:id",
+  isAdminLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let data = await Table.findById(id);

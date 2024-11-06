@@ -21,11 +21,11 @@ router.get("", isLoggedIn, wrapAsync(async (req, res) => {
 
 
 // Rendering client side profile/favourites page
-router.get("/favourites", wrapAsync((req, res) => {
+router.get("/favourites", isLoggedIn, wrapAsync((req, res) => {
   res.render("favourites.ejs");
 }));
 
-router.get("/ratings", isLoggedIn, ((req, res) => {
+router.get("/ratings", ( async (req, res) => {
   res.render("ratings.ejs");
 }));
 
