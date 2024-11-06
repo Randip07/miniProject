@@ -66,7 +66,11 @@
             </div>
     
             <div class="signup">
-                <p>Don't have account? <a href="/admin/signup"> Register here</a></p>
+                <p>Don't have account? <a <% if(data != " "){ %>
+                    href="/admin/signup"
+                    <% } else{%>
+                action="/signup"
+                <% } %>> Register here</a></p>
             </div>
         </div>
 
