@@ -22,7 +22,7 @@ const menu = require("./routes/menu.js");
 const profile = require("./routes/profile.js");
 const landing = require("./routes/landing.js");
 const order = require("./routes/order.js");
-const payment = require("./routes/paymentGateway.js");
+// const payment = require("./routes/paymentGateway.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -114,7 +114,7 @@ app.use("/cart", cart);
 app.use("/menu", menu);
 app.use("/profile", profile);
 app.use("/order", order)
-app.use("/payment", payment)
+// app.use("/payment", payment)
 
 // Middlewares
 app.use((err, req, res, next) => {
