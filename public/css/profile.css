@@ -87,7 +87,6 @@
 }
 
 .info-item {
-  margin-bottom: 1rem;
   font-size: var(--h2-font);
 }
 .info-item a {
@@ -344,7 +343,8 @@ a{
 .user-name{
   background: var(--main-color);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 .emptyOrder{

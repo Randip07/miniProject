@@ -27,6 +27,11 @@ body {
   height: auto;
 }
 
+.login-con{
+  width: 100%;
+
+}
+
 .con {
   width: 80%;
   margin: 0px auto;

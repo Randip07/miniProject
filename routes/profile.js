@@ -29,4 +29,19 @@ router.get("/ratings", ( async (req, res) => {
   res.render("ratings.ejs");
 }));
 
+router.get("/logout", (req, res) => {
+  // console.log("logout");
+  
+  // req.logout( (err) => {
+  //   if(err){
+  //     next(err);
+  //   }
+  //   req.flash("success", "you are logged out")    
+  //   res.redirect("/menu");
+  // })
+
+  req.session.destroy();
+  res.redirect("/menu")
+})
+
 module.exports = router;

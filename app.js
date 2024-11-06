@@ -40,6 +40,7 @@ const DB_URL = process.env.ATLAS_DB_URL
 // mongo session store
 const store = MongoStore.create({
   mongoUrl : DB_URL,
+  autoRemove: 'native',
   crypto : {
     secret : "VK1880",
   },
