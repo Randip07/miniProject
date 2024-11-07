@@ -85,22 +85,22 @@
                 <div class="empForm">
                     <div>
                         <label for="name">Item Name</label>
-                        <input type="text" id="name" name="itemName" value= "<%= data.itemName %>" required>
+                        <input type="text" id="name" name="newItem[itemName]" value= "<%= data.itemName %>" required>
                     </div>
                     <div>
                       <label for="itemDetails">Item Details</label>
-                      <input type="text" id="itemDetails" name="itemDetails" value= "<%= data.itemDetails %>" required>
+                      <input type="text" id="itemDetails" name="newItem[itemDetails]" value= "<%= data.itemDetails %>" required>
                   </div>
                   <div>
                     <label for="salary">Price</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class='bx bx-rupee' ></i></span>
-                        <input type="number" id="price" name="price"  value="<%= data.price %>" required>
+                        <input type="number" id="price" name="newItem[price]"  value="<%= data.price %>" required>
                     </div>
                   </div>
                     <div>
                         <label for="category">Category</label>
-                        <select id="category" required name="category">
+                        <select id="category" required name="newItem[category]">
                           <% if (data.category == "Appetizers") { %>
                             <option value="Appetizers" selected >Appetizers</option>
                             <option value="Main-Course">Main-Course</option>
@@ -155,18 +155,18 @@
                       <label for="discount">Discount</label>
                       <div class="input-group">
                         <span class="input-group-text" >%</span>
-                        <input type="number" id="discount" name="discount"  value="<%= data.discount %>" required>
+                        <input type="number" id="discount" name="newItem[discount]"  value="<%= data.discount %>" required>
                     </div>
                      </div>
                     <div>
                       <label for="itemImage">Item Image</label>
                       <div class="input-group">
-                        <input type="file" id="itemImage" name="itemImage">
+                        <input type="file" id="itemImage" name="newItem[itemImage]">
                     </div>
                      </div>
                     <div>
                       <label for="availability">Availability</label>
-                      <select id="availability" required name="availability">
+                      <select id="availability" required name="newItem[availability]">
                         <% if (data.availability == "available") { %>
                           <option value="available" selected>Available</option>
                           <option value="Not available">Not Available</option>
@@ -179,7 +179,7 @@
                      </div>
                     <div>
                       <label for="type">Type</label>
-                      <select id="type" required name="type">
+                      <select id="type" required name="newItem[type]">
                         <% if (data.type == "Veg") { %>
                           <option value="Veg" selected>Veg</option>
                           <option value="Non-Veg">Non-Veg</option>

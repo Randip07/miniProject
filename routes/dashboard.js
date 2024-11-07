@@ -258,15 +258,18 @@ router.get("/menu/discount", isAdminLoggedIn, (req, res) => {
 // Updating Item details in Database
 router.put(
   "/menu/:id",
-  upload.single('itemImage'),
+  upload.single('newItem[itemImage]'),
   wrapAsync(async (req, res) => {
     let { id } = req.params;
-    let newData = req.body;
-    newData.image = {
-      url : req.file.path,
-      filename : req.file.filename
+    let newItem = await Menu.findByIdAndUpdate(id, {...req.body.newItem});
+    
+    if(typeof req.file !== "undefined"){
+      newItem.image = {
+        url : req.file.path,
+        filename : req.file.filename
+      }
+      await newItem.save();
     }
-    let resu = await Menu.findByIdAndUpdate(id, newData);
     req.flash("success", "Item updated successfully")
     res.redirect("/dashboard/menu");
   })
