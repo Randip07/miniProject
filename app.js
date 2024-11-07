@@ -116,6 +116,9 @@ app.use("/menu", menu);
 app.use("/profile", profile);
 app.use("/order", order)
 app.use("/payment", payment)
+app.get("*", (req, res) => {
+  res.redirect("/home")
+})
 
 // Middlewares
 app.use((err, req, res, next) => {
