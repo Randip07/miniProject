@@ -209,7 +209,7 @@ router.get(
   "/menu",
   isAdminLoggedIn,
   wrapAsync(async (req, res) => {
-    let data = await Menu.find({}).populate("rating").sort({ availability: -1 });
+    let data = await Menu.find({}).populate("rating").sort({ availability: -1 , itemName : 1});
 
 
     let category = [
