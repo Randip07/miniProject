@@ -95,7 +95,7 @@
                     <div class="add">
                       <p>
                         <i class="bx bxs-star"></i><%=
-                        `${((item.rating.reduce((partialSum, a) => partialSum + a, 0))/item.rating.length).toString().slice(0,3)}(${item.rating.length})`%>
+                        `${((item.rating.rating.reduce((partialSum, a) => partialSum + a, 0))/item.rating.rating.length).toString().slice(0,3)}(${item.rating.rating.length})`%>
                       </p>
                       <form action="/cart/<%= item._id %>" method="post">
                         <button class="bttn">add to cart</button>
