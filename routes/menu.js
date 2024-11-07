@@ -9,7 +9,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 // Rendering client side menu page
 router.get("",
   wrapAsync(async (req, res, next) => {
-    let data = await Menu.find({});
+    let data = await Menu.find({}).populate("rating");
     let cartcount = await Customer.findOne({ _id : req.session.userId});
     let count;
     if (!cartcount) {
