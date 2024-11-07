@@ -10,6 +10,7 @@ const ratingSchema = new mongoose.Schema({
   
   rating: {
     type: [Number],
+    default : []
   }
   
 });

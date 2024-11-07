@@ -17,6 +17,7 @@ const multer = require("multer");
 const { storage } = require("../cloudinaryConfig.js");
 const upload = multer( {storage} )
 const { isAdminLoggedIn } = require("../middlewares.js");
+const Rating = require('../models/ratings.js');
 
 // routes 
 
@@ -278,26 +279,30 @@ router.put(
 // Adding new item in Database
 router.post(
   "/menu",
-  upload.single('itemImage'),
+  upload.single('newItem[itemImage]'),
   wrapAsync(async (req, res) => {
     let itemID = await Menu.countDocuments();
     itemID += 11101;
     
-    let newMenuItem = new Menu({
-      itemID: itemID,
-      itemName: req.body.itemName,
-      itemDetails: req.body.itemDetails,
-      price: req.body.price,
-      category: req.body.category,
-      discount: req.body.discount,
-      availability: req.body.availability,
-      type: req.body.type,
-      image : {
+    let newMenuItem = new Menu(req.body.newItem)
+    newMenuItem.itemID = itemID;
+  
+    if(typeof req.file !== "undefined"){
+      newMenuItem.image = {
         url : req.file.path,
         filename : req.file.filename
       }
-    });
-    await newMenuItem.save();
+    }
+    
+    let newItemResult = await newMenuItem.save();
+    let newRating = new Rating({
+      itemId : newItemResult._id
+    })
+
+    let newRatingResult = await newRating.save();
+    newItemResult.rating = newRatingResult._id;
+    await newItemResult.save();
+    
     req.flash("success", "Item has been added successfully.")
     res.redirect("/dashboard/menu");
   })

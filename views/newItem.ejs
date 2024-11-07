@@ -87,11 +87,11 @@
         
                     <div>
                       <label for="itemName">Item Name</label>
-                      <input type="text" id="itemName" name="itemName" required>
+                      <input type="text" id="itemName" name="newItem[itemName]" required>
                      </div>
                     <div>
                         <label for="category">Category</label>
-                        <select id="category" required name="category">
+                        <select id="category" required name="newItem[category]">
                             <option selected>Select Category</option>
                             <option value="Appetizers">Appetizers</option>
                             <option value="Main-Course">Main-Course</option>
@@ -103,7 +103,7 @@
                     </div>
                     <div>
                       <label for="type">Type</label>
-                      <select id="type" required name="type">
+                      <select id="type" required name="newItem[type]">
                           <option selected> Select Veg or Non-Veg</option>
                           <option value="Veg">Veg</option>
                           <option value="Non-Veg">Non-Veg</option>
@@ -113,19 +113,19 @@
                       <label for="price">Price</label>
                       <div class="input-group">
                         <span class="input-group-text"><i class='bx bx-rupee' ></i></span>
-                          <input type="number" id="price" name="price" required>
+                          <input type="number" id="price" name="newItem[price]" required>
                       </div>
                   </div>
                     <div>
                         <label for="discount">Discount</label>
                         <div class="input-group">
                             <span class="input-group-text" >%</span>
-                            <input type="number" class="form-control" id="discount" name="discount" required>
+                            <input type="number" class="form-control" id="discount" name="newItem[discount]" required>
                         </div>
                     </div>
                     <div>
                       <label for="availabilityr">Availablity</label>
-                      <select id="availability" required name="availability">
+                      <select id="availability" required name="newItem[availability]">
                           <option selected> Select</option>
                           <option value="available">available</option>
                           <option value="Not available">Not available</option>
@@ -134,12 +134,12 @@
                     <div>
                       <label for="itemImage">Item Image</label>
                       <div class="input-group">
-                        <input type="file" id="itemImage" name="itemImage">
+                        <input type="file" id="itemImage" name="newItem[itemImage]">
                     </div>
                      </div>
                     <div>
                       <label for="itemDetails">Item Details</label>
-                      <textarea id="itemDetails" name="itemDetails" rows="4"></textarea>
+                      <textarea id="itemDetails" name="newItem[itemDetails]" rows="4"></textarea>
                     </div>
                     <br>
                     <div class="reg-btn">
