@@ -10,6 +10,7 @@
 
         <!-- css -->
         <link rel="stylesheet" href="/css/profile.css">
+        <link rel="stylesheet" href="/css/ratingStar.css">
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -110,10 +111,17 @@
                                               
                                                 <div class="btn">
                                                     <div class="order-summary">
-                                                        <div class="order-rating"><i class="bx bxs-star"></i>4.5(10)</div>
+                                                        <div class="order-rating">
+                                                            <% if(order.rating.status == "done"){ %>
+                                                            <h3>Your rating</h3>
+                                                            <p class="starability-result" data-rating="<%= order.rating.rating %>"></p>
+                                                            <% } %>
+                                                        </div>
                                                     </div>   
                                                     <div>
-                                                        <a href="/profile/ratings" class="reorder-button">Give Rating</a>
+                                                        <% if(order.rating.status != "done"){ %>
+                                                        <a href="/profile/ratings/<%= order._id %>" class="reorder-button">Give Rating</a>
+                                                        <% } %>
                                                     </div>
                                                 </div>
                                             </div>

@@ -77,7 +77,7 @@
                             <th>Item Name</th>
                             <th>Price</th>
                             <th>Discount</th>
-                            <!-- <th>Rating</th> -->
+                            <th>Rating</th>
                             <th>Veg/Non-Veg</th>
                             <th>Availability</th>
                             </tr>
@@ -90,9 +90,9 @@
                                     <td><%= item.itemName %></td>
                                     <td>₹<%= item.price %>.00/-</td>
                                     <td><%= item.discount %>%</td>
-                                    <!-- <td>
-                                        <%= `${((item.rating.reduce((partialSum, a) => partialSum + a, 0)) / item.rating.length).toString().slice(0, 3)} (${item.rating.length})` %>
-                                    </td> -->
+                                    <td>
+                                        <%= `${((item.rating.rating.reduce((partialSum, a) => partialSum + a, 0)) / item.rating.rating.length).toString().slice(0, 3)} (${item.rating.rating.length})` %>
+                                    </td>
                                         <td><% if(item.type=="Veg") {%>
                                         <i class='bx bx-food-tag' style="color: green;"></i>
                                         <%  }else{%>

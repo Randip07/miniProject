@@ -34,7 +34,8 @@ const menuSchema = new mongoose.Schema({
   },
   
   rating: {
-    type: [Number],
+    type: "ObjectId",
+    ref : "Rating"
   },
 
   availability: {

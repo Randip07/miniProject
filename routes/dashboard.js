@@ -208,7 +208,8 @@ router.get(
   "/menu",
   isAdminLoggedIn,
   wrapAsync(async (req, res) => {
-    let data = await Menu.find({});
+    let data = await Menu.find({}).populate("rating");
+  
     let category = [
       "Appetizers",
       "Main-Course",

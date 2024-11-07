@@ -78,7 +78,7 @@ async function loading(){
   let prices = document.querySelectorAll(".price");
   let quantities = document.querySelectorAll(".quantity");
   let images = document.querySelectorAll(".image");
-  console.log(images);
+  // console.log(images);
   
 
   let topItemsDataJson = await fetch(api_url3);
@@ -94,13 +94,14 @@ async function loading(){
   }
 
   // rating Chart
+  let chart3Data = await oraganizeRatingsData(api_url4)
   const chart3 = new Chart(ctx3, {
     type: 'doughnut',
     data: {
-      labels: ['1 Star', '2 Star', '3 Star', '4 Star', '5 Star'],
+      labels: chart3Data.count,
       datasets: [{
         label: 'Total rating count',
-        data: [0, 0, 0, 17, 43],
+        data: chart3Data.averageRating,
         borderWidth: 1
       }]
     },
@@ -188,24 +189,17 @@ async function organizeSalesData(api){
 async function oraganizeRatingsData(api) {
   let response = await fetch(api);
   let dataSet = await response.json();
-
+  
   let count = [];
   let averageRating = [];
   for(let i=0; i<5; i++) {
-    if(dataSet.result[i] && (dataSet.result[i].averageRating == 4 || dataSet.result[i].averageRating == 5)){
-      count.push(dataSet.result[i].count);
-      averageRating.push(dataSet.result[i].averageRating)
-    }else{
-      count.push(0)
-      averageRating.push(i)
-    }
+      count.push(dataSet.result[i]._id  + " Star");
+      averageRating.push(dataSet.result[i].totalCount)
   }
   let result = {
     count : count,
     averageRating : averageRating
   };
-
   return result
   
 }
-oraganizeRatingsData(api_url4)
