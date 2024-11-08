@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+  require('dotenv').config()
+}
+
 const express = require("express");
 const router = express.Router();
 const ExpressError = require("../utils/ExpressError.js");
@@ -21,7 +25,6 @@ function generateOtp(){
     from: '+14066620709',
     to: '+917086552655', // Text your number
   })
-  .then((message) => console.log(message.sid))
 }
 
 
@@ -32,16 +35,12 @@ router.get("/home", ((req, res) => {
 
 // Login Page
 router.get("/login", ((req, res) => {
-  res.render("login.ejs");
+  res.render("login.ejs", { data : " "});
 }));
 
 // Sign up Page
 router.get("/signup", ((req, res) => {
-  res.render("signUp.ejs");
-}));
-
-router.get("/login3", ((req, res) => {
-  res.render("login3.ejs");
+  res.render("signUp.ejs", { data : " "});
 }));
 
 router.post("/login",  passport.authenticate("local", {failureRedirect : "/login", failureFlash : true}),
@@ -64,7 +63,7 @@ router.post("/signup", ((req, res) => {
 
 router.get("/auth-otp", (req, res) =>{
   generateOtp();
-  res.render("otp_auth.ejs")
+  res.render("otp_auth.ejs", { data : " "})
 })
 
 router.post("/auth-otp", async (req, res) =>{

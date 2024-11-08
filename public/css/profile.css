@@ -43,6 +43,7 @@
 
 .nav-list a {
   display: flex;
+  align-items: center;
   color: #111111;
 }
 
@@ -86,7 +87,6 @@
 }
 
 .info-item {
-  margin-bottom: 1rem;
   font-size: var(--h2-font);
 }
 .info-item a {
@@ -343,7 +343,8 @@ a{
 .user-name{
   background: var(--main-color);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
 .emptyOrder{
@@ -366,7 +367,7 @@ a{
 @media( max-width : 1000px){
   .nav-bar2{
     flex-direction: column;
-    height: 100vh;
+    height: max-content;
   }
 
   .nav-con{
@@ -418,7 +419,11 @@ a{
   }
 
   .nav-list{
-    padding: 0 1rem;
+    padding: 0;
+  }
+
+  .nav-list li{
+    font-size: 1rem;
   }
 
   .nav-list1{
@@ -436,5 +441,13 @@ a{
     &:hover {
       transform: none;
     }
+  }
+
+  .name{
+    font-size: 1.7rem;
+  }
+
+  .contact{
+    font-size: 1rem;
   }
 }

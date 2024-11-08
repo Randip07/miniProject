@@ -6,11 +6,17 @@ const Customer = require("../models/customers.js");
 const Deliver = require("../models/delivered.js");
 const Menu = require("../models/menu.js");
 const Order = require("../models/orders.js");
+const Admin = require("../models/admin.js");
+const Rating = require("../models/ratings.js");
 
 router.get("", wrapAsync(async (req, res) => {
   let totalItems = await Menu.countDocuments();
   let totalCustomers = await Customer.countDocuments();
   let totalOrders = await Order.countDocuments();
+  let adminName = await Admin.findById(req.session.adminId);
+  adminName = adminName.name;
+  
+  
   const result = await Deliver.aggregate([
     {
       $group: {
@@ -30,6 +36,7 @@ router.get("", wrapAsync(async (req, res) => {
     totolIncome = result[0].totalAmount,
     totalCustomers,
     totalOrders,
+    adminName
 ]
   
   res.status(200).json({response})
@@ -169,63 +176,61 @@ router.get("/top_items", wrapAsync(async (req, res) => {
 }))
 
 router.get("/rating_data", wrapAsync(async (req, res) => {
-    try {
-        const result = await Menu.aggregate([
-          // Unwind the ratings array to create separate documents for each rating
-          { $unwind: "$rating" },
-    
-          // Group by item ID to calculate average rating for each item
-          {
-            $group: {
-              _id: "$_id",                              // Group by item ID
-              itemName: { $first: "$itemName" },      // Get item name
-              averageRating: { $avg: { $toInt: "$rating" } } // Calculate average rating
-            }
-          },
-    
-          // Project to include the ceiling of the average rating
-          {
-            $project: {
-              _id: 0,
-              itemId: "$_id",
-              itemName: 1,
-              averageRating: { $ceil: "$averageRating" } // Take ceiling value
-            }
-          },
-    
-          // Group by the rounded average rating
-          {
-            $group: {
-              _id: "$averageRating",                   // Group by the average rating
-              items: {                                 // Create an array of items with this average rating
-                $push: {
-                  itemId: "$itemId",
-                  itemName: "$itemName"
-                }
-              },
-              count: { $sum: 1 }                       // Count the number of items in this group
-            }
-          },
-    
-          // Project the results to display the grouped average ratings and items
-          {
-            $project: {
-              _id: 0,
-              averageRating: "$_id",
-              items: 1,
-              count: 1                                   // Include count of items
-            }
-          },
-    
-          // Sort by average rating in ascending order
-          { $sort: { averageRating: 1 } }
-        ]);
-        res.status(200).json({result})
+    try{
+      const result = await Rating.aggregate([
+        {
+          $project: {
+            itemId: 1,
+            averageRating: { $avg: "$rating" }
+          }
+        },
+        {
+          $addFields: {
+            ceilingRating: { $ceil: "$averageRating" }
+          }
+        },
+        {
+          $group: {
+            _id: "$ceilingRating",
+            totalCount: { $sum: 1 }
+          }
+        },
+        {
+          $sort: { _id: 1 }
+        }
+      ]);
+      console.log(result);
+      res.status(200).json({result})
       } catch (error) {
         console.error("Error calculating average ratings grouped with count:", error);
       }
     }));
 
 
-router.get("")
+// router.get("/menu/update", async(req, res) => {
+//   // let MenuData = await Menu.find().sort({ _id: 1 });;
+//   let ratingData = await Rating.find().sort({ itemId: 1 }); 
+  
+//   let updateData = []
+//   for(item of ratingData){
+//     updateData.push({
+//       updateOne: {
+//         filter: { _id: item.itemId },
+//         update: { $set : { rating : item._id } }
+//       }
+//     })
+//   }
+
+//   // console.log(updateData[0].updateOne.update);
+  
+
+//   let result = await Menu.bulkWrite(updateData);
+//   console.log(result);
+  
+  
+//   res.send(result)
+  
+// })
+
+
 module.exports = router

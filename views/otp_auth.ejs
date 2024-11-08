@@ -30,14 +30,24 @@
             <div class="box">
                 <div class="text">
                     <div class="textDiv">
-                        <h2>Sign Up</h2>
+                        <h2>SIGN UP  
+                            <% if(data){ %>
+                            <%= data.toUpperCase() %>
+                            <% } %>
+                        </h2>
                         <p>Enter your OTP to sign up</p>
                     </div>
                 </div>
                 <div class="imgDiv">
                     <img src="/css/img/cold.png" alt="">
                 </div>
-                <form action="/auth-otp" method="post">
+                <form  
+                <% if(data != " "){ %>
+                    action="/admin/auth-otp"
+                    <% } else{%>
+                    action="/auth-otp"
+                <% } %> 
+                method="post">
                     <div>
                         <label for="otp">One Time Password(OTP)</label>
                         <div class="inpGrp">

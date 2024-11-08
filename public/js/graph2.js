@@ -3,11 +3,11 @@ const ctx = document.getElementById('incomeChart');
 const ctx2 = document.getElementById('salesChart');
 const ctx3 = document.getElementById('ratingsChart');
 
-const api_url = "http://localhost:8080/getDashboardData"
-const api_url1 = "http://localhost:8080/getDashboardData/income_data"
-const api_url2 = "http://localhost:8080/getDashboardData/sales_data"
-const api_url3 = "http://localhost:8080/getDashboardData/top_items"
-const api_url4 = "http://localhost:8080/getDashboardData/rating_data"
+const api_url = "http://localhost:8088/getDashboardData"
+const api_url1 = "http://localhost:8088/getDashboardData/income_data"
+const api_url2 = "http://localhost:8088/getDashboardData/sales_data"
+const api_url3 = "http://localhost:8088/getDashboardData/top_items"
+const api_url4 = "http://localhost:8088/getDashboardData/rating_data"
 // const api_url = "http://universities.hipolabs.com/search?name=middle&country=turkey"
 
 const pointImage = new Image(10,12);
@@ -78,7 +78,7 @@ async function loading(){
   let prices = document.querySelectorAll(".price");
   let quantities = document.querySelectorAll(".quantity");
   let images = document.querySelectorAll(".image");
-  console.log(images);
+  // console.log(images);
   
 
   let topItemsDataJson = await fetch(api_url3);
@@ -94,13 +94,14 @@ async function loading(){
   }
 
   // rating Chart
+  let chart3Data = await oraganizeRatingsData(api_url4)
   const chart3 = new Chart(ctx3, {
     type: 'doughnut',
     data: {
-      labels: ['1 Star', '2 Star', '3 Star', '4 Star', '5 Star'],
+      labels: chart3Data.count,
       datasets: [{
         label: 'Total rating count',
-        data: [0, 0, 0, 17, 43],
+        data: chart3Data.averageRating,
         borderWidth: 1
       }]
     },
@@ -119,6 +120,8 @@ async function loading(){
   let dashOverviewJson = await fetch(api_url);
   let dashOverview = await dashOverviewJson.json();
   let overallDatas = document.querySelectorAll(".overallData");
+  let adminName = document.getElementById("adminName")
+  adminName.textContent += dashOverview.response[4];
   // console.log(dashOverview.response);
   
   for(let i=0; i<4; i++){
@@ -186,24 +189,17 @@ async function organizeSalesData(api){
 async function oraganizeRatingsData(api) {
   let response = await fetch(api);
   let dataSet = await response.json();
-
+  
   let count = [];
   let averageRating = [];
   for(let i=0; i<5; i++) {
-    if(dataSet.result[i] && (dataSet.result[i].averageRating == 4 || dataSet.result[i].averageRating == 5)){
-      count.push(dataSet.result[i].count);
-      averageRating.push(dataSet.result[i].averageRating)
-    }else{
-      count.push(0)
-      averageRating.push(i)
-    }
+      count.push(dataSet.result[i]._id  + " Star");
+      averageRating.push(dataSet.result[i].totalCount)
   }
   let result = {
     count : count,
     averageRating : averageRating
   };
-
   return result
   
 }
-oraganizeRatingsData(api_url4)

@@ -30,14 +30,24 @@
             <div class="box">
                 <div class="text">
                     <div class="textDiv">
-                        <h2>LOGIN</h2>
+                        <h2>LOGIN 
+                            <% if(data){ %>
+                                <%= data.toUpperCase() %>
+                                <% } %>
+                        </h2>
                         <p>Enter your phone number to continue</p>
                     </div>
                 </div>
                 <div class="imgDiv">
                     <img src="/css/img/cold.png" alt="">
                 </div>
-                <form action="/login" method="post">
+                <form 
+                <% if(data != " "){ %>
+                    action="/admin/login"
+                    <% } else{%>
+                action="/login"
+                <% } %>
+                 method="post">
                     <label for="inputNumber">PHONE NUMBER</label>
                     <div class="inpGrp">
                         <span>+91</span>
@@ -56,7 +66,11 @@
             </div>
     
             <div class="signup">
-                <p>Don't have account? <a href="/signup"> Register here</a></p>
+                <p>Don't have account? <a <% if(data != " "){ %>
+                    href="/admin/signup"
+                    <% } else{%>
+                href="/signup"
+                <% } %>> Register here</a></p>
             </div>
         </div>
 

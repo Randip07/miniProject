@@ -13,7 +13,7 @@ router.get("", isLoggedIn, wrapAsync (async (req, res) => {
   try{
     let id = req.session.userId
     let data = await Customer.findById(id).populate("cart.itemId");
-    // console.log(data);
+    // console.log(req.session.userId);
     
     let cusData = {
       id: data._id,
@@ -46,7 +46,6 @@ router.get("", isLoggedIn, wrapAsync (async (req, res) => {
 
 // Adding Item in the cart
 router.post("/:id", isLoggedIn, wrapAsync (async (req, res) => {
-  console.log();
   
   let item = {
     itemId: req.params.id,

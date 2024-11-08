@@ -56,6 +56,12 @@
                       <p>Dashboard / Menu</p>
                   </div>
                   <div class="emp-add">
+                    <div class="showDiscount">
+                        <p>Current discount <%= items[0].discount %><i class='bx bxs-offer'></i></p>
+                    </div>
+                    <form action="/dashboard/menu/discount">
+                        <button><i class='bx bxs-discount'></i>Give discount</button>
+                    </form>
                       <form action="/dashboard/menu/new">
                           <button><i class='bx bx-plus'></i>Add Items</button>
                       </form>
@@ -67,29 +73,33 @@
                             <h1 class="categoryTitle"><%= category %> </h1>
                             <tr>
                             <th>Item Id</th>
+                            <th>Image</th>
                             <th>Item Name</th>
                             <th>Price</th>
                             <th>Discount</th>
                             <th>Rating</th>
                             <th>Veg/Non-Veg</th>
+                            <th>Availability</th>
                             </tr>
             
                             <% for(item of items){ %>
                                 <% if (item.category == category) {%>
                                     <tr>
                                     <td>#<%= item.itemID %></td>
+                                    <td><img src="<%= item.image.url %>" alt=""></td>
                                     <td><%= item.itemName %></td>
-                                    <td><%= item.price %></td>
+                                    <td>₹<%= item.price %>.00/-</td>
                                     <td><%= item.discount %>%</td>
                                     <td>
-                                        <%= `${((item.rating.reduce((partialSum, a) => partialSum + a, 0)) / item.rating.length).toString().slice(0, 3)} (${item.rating.length})` %>
+                                        <%= `${((item.rating.rating.reduce((partialSum, a) => partialSum + a, 0)) / item.rating.rating.length).toString().slice(0, 3)} (${item.rating.rating.length})` %>
                                     </td>
                                         <td><% if(item.type=="Veg") {%>
                                         <i class='bx bx-food-tag' style="color: green;"></i>
                                         <%  }else{%>
                                             <i class='bx bx-food-tag' style="color: red;"></i>
                                         <%} %>
-                                        </td>
+                                    </td>
+                                    <td><%= item.availability %></td>   
                                     <td class="btn-td">
                                         <form action="/dashboard/menu/<%= item._id %>/edit">
                                             <button class="o-btn"><i class='bx bx-edit'></i></button>

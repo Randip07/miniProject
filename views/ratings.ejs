@@ -7,6 +7,7 @@
     <title>Form Reviews</title>
     <!-- css -->
     <link rel="stylesheet" href="/css/ratings.css">
+    <link rel="stylesheet" href="/css/ratingStar.css">
     <!-- logo -->
     <%- include("./includes/logo.ejs") %>
 </head>
@@ -14,50 +15,33 @@
 
     <div class="wrapper">
         <h3>Ratings & Reviews</h3>
-        <form action="#">
+        <form action="/profile/ratings/<%= orderId %>" method="post">
             <div class="imgDiv2">
                 <img src="/css/img/hot.png" alt="">
             </div>
-            <div id="rating-container"></div>
+            <% for(let i=0; i<ratingPageData.length; i++ ){ %>
+                <div id="rating-container">
+                    <label><%= ratingPageData[i].itemName %></label>
+                    <fieldset class="starability-checkmark">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="ratings[<%= ratingPageData[i].id %>]" value="0" checked aria-label="No rating." />
+                        <input type="radio" id="<%= i %>-rate1" name="ratings[<%= ratingPageData[i].id %>]" value="1" />
+                        <label for="<%= i %>-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="<%= i %>-rate2" name="ratings[<%= ratingPageData[i].id %>]" value="2" />
+                        <label for="<%= i %>-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="<%= i %>-rate3" name="ratings[<%= ratingPageData[i].id %>]" value="3" />
+                        <label for="<%= i %>-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="<%= i %>-rate4" name="ratings[<%= ratingPageData[i].id %>]" value="4" />
+                        <label for="<%= i %>-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="<%= i %>-rate5" name="ratings[<%= ratingPageData[i].id %>]" value="5" />
+                        <label for="<%= i %>-rate5" title="Amazing">5 stars</label>
+                      </fieldset>
+                </div>
+            <% } %>
             <div class="btn-group">
                 <button type="submit" class="btn submit">Submit</button>
                 <a href="/profile" class="btn cancel">Cancel</a>
             </div>
         </form>
     </div>
-
-    <script>
-        const ratingContainer = document.getElementById("rating-container");
-        const items = ["Item 1", "Item 2", "Item 3"];
-        items.forEach((item, index) => {
-            const ratingDiv = document.createElement("div");
-            ratingDiv.classList.add("rating");
-            ratingDiv.innerHTML = `
-                <label>${item}:</label>
-                <input type="number" name="rating${index + 1}" hidden>
-                <i class='bx bx-star star' style="--i: 0;"></i>
-                <i class='bx bx-star star' style="--i: 1;"></i>
-                <i class='bx bx-star star' style="--i: 2;"></i>
-                <i class='bx bx-star star' style="--i: 3;"></i>
-                <i class='bx bx-star star' style="--i: 4;"></i>
-                <span class="selected-stars"></span>
-            `;
-            ratingContainer.appendChild(ratingDiv);
-            const stars = ratingDiv.querySelectorAll('.star');
-            const selectedStars = ratingDiv.querySelector('.selected-stars');
-            stars.forEach((star, starIndex) => {
-                star.addEventListener('click', () => {
-                    stars.forEach((s, i) => {
-                        s.classList.toggle(i <= starIndex);
-                    });
-                    const ratingValue = starIndex + 1;
-                    ratingDiv.querySelector('input').value = ratingValue;
-                    selectedStars.textContent = `(${ratingValue})`;
-                });
-            });
-        });
-    </script>
-    
-    <script src="/js/ratings.js"></script>
 </body>
 </html>
