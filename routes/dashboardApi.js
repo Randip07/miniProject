@@ -113,7 +113,7 @@ router.get("/sales_data", wrapAsync(async (req, res) => {
       },
 
       // Optionally, sort results by totalSales in descending order
-      { $sort: { totalSales: -1 } }
+      { $sort: { _id : 1 } }
     ]);
     // console.log("Total Sales by Category with Discounts:", result);
     res.status(200).json({result});
