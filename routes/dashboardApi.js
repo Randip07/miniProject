@@ -71,37 +71,44 @@ router.get("/sales_data", wrapAsync(async (req, res) => {
     const result = await Deliver.aggregate([
       // Unwind the items array to work with each item individually
       { $unwind: "$items" },
-      
-      // Lookup the category of each item from the Menu collection
+
+      // Lookup to join with Menu collection based on itemId in Deliver and _id in Menu
       {
         $lookup: {
-          from: "menus",                // Name of the Menu collection
-          localField: "items.itemId",    // Field in Deliver schema to match
-          foreignField: "_id",           // Field in Menu collection to match
-          as: "itemDetails"              // Output array of matched documents
-        }
+          from: "menus",           // Menu collection name in the database
+          localField: "items.itemId", 
+          foreignField: "_id",
+          as: "menuInfo",
+        },
       },
+      
+      // Unwind the menuInfo array to get each item's info
+      { $unwind: "$menuInfo" },
 
-      // Unwind the itemDetails array to access each item's category
-      { $unwind: "$itemDetails" },
-
-      // Group by category and calculate the totalAmount per category
+      // Group by category and calculate total sales for each, factoring in the discount
       {
         $group: {
-          _id: "$itemDetails.category",  // Group by the category field from Menu
-          totalAmount: { $sum: "$totalAmount" }  // Sum totalAmount for each category
+          _id: "$menuInfo.category", 
+          totalSales: {
+            $sum: { 
+              $multiply: [
+                "$items.quantity",
+                { 
+                  $subtract: [
+                    "$menuInfo.price", 
+                    { $multiply: ["$menuInfo.price", { $divide: ["$menuInfo.discount", 100] }] }
+                  ]
+                }
+              ]
+            }
+          }
         }
       },
-      { $sort: { _id: 1 } },
-      // Project the result to format the output
-      {
-        $project: {
-          _id: 0,
-          category: "$_id",
-          totalAmount: 1
-        }
-      }
+
+      // Optionally, sort results by totalSales in descending order
+      { $sort: { totalSales: -1 } }
     ]);
+    // console.log("Total Sales by Category with Discounts:", result);
     res.status(200).json({result});
   } catch (error) {
     console.error("Error calculating total amount by category:", error);

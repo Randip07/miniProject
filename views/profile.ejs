@@ -106,7 +106,8 @@
                                                     </div> 
                                                     <div class="order-details">ORDER Date : <%= order.date.toString().split(" ").slice(0,5).join(" ") %></div>
                                                     <div class="order-details">ORDER ID #<%= order._id %></div>
-                                                    <div class="restaurant-address">Guwahati ,Assam</div>
+                                                    <div class="order-details">TRANSACTION ID : <%= order.payment.transactionId %></div>
+                                                    <div class="restaurant-address">Guwahati , Assam</div>
                                                 </div>
                                               
                                                 <div class="btn">

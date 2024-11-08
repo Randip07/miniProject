@@ -35,6 +35,10 @@ body {
   background: var(--second-color);
 }
 
+.table{
+  display: none !important;
+}
+
 .main-con {
   display: flex;
 }

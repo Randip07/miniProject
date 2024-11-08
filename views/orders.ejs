@@ -75,7 +75,7 @@
                                     <td>+<%= order.customerId.contactNo.toString().slice(0, 2) + '-' +
                                         order.customerId.contactNo.toString().slice(2)%></td>
                                     <td><%= `${order.date.toString().split(" ").slice(4,5).join("/")}/${order.date.toString().split(" ").slice(1,3).join("/")}`  %></td>
-                                    <td><%= order.amount.totalPay%></td>
+                                    <td>₹<%= order.amount.totalPay%>.00/-</td>
                                     <td><%= order.tableNo %></td>
                                     <td><%= order.orderStatus %></td>
                                     <td>

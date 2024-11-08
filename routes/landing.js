@@ -46,7 +46,7 @@ router.get("/login3", ((req, res) => {
 
 router.post("/login",  passport.authenticate("local", {failureRedirect : "/login", failureFlash : true}),
   wrapAsync( async (req, res) => {
-    let contactNo = "91" +req.body.username;
+    let contactNo = "91" + req.body.username;
     let user = await Customer.findOne({contactNo : contactNo})
     req.session.userId = user._id;
     req.flash("success", "Login Successfull")
@@ -68,8 +68,8 @@ router.get("/auth-otp", (req, res) =>{
 })
 
 router.post("/auth-otp", async (req, res) =>{
-  console.log(req.body);
-  console.log(otp);
+  // console.log(req.body);
+  // console.log(otp);
   
   try{
     if(otp == req.body.otp){
@@ -80,7 +80,7 @@ router.post("/auth-otp", async (req, res) =>{
       })
       let registeredUser = await Customer.register(newCustomer, req.body.password)
       let user = await Customer.findOne({contactNo : req.session.contactNo})
-      console.log(user);
+      // console.log(user);
       
       req.login(registeredUser, async (err) => {
         if(err){
