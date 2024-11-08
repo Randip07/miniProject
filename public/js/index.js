@@ -29,7 +29,7 @@ sr.reveal('.offer-img', {delay : 100});
 sr.reveal('.container', {delay : 50});
 
 sr.reveal('.about-img', {});
-sr.reveal('.about-text', {delay : 150});
+sr.reveal('.about-text', {delay : 100});
 
 sr.reveal('.middle-text', {});
 sr.reveal('.row-btn,.shop-content', {delay : 100});

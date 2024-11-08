@@ -250,7 +250,6 @@ table{
 .paymentFormCon{
     padding: 1rem;
     border: 1px solid green;
-    width: 50%;
     margin-top: 1rem;
 }
 
@@ -276,7 +275,7 @@ table{
     margin-top: 0.5rem;
     padding: 1rem;
     cursor: pointer;
-    background: var(--main-color);
+    background: green;
     opacity: 0.8;
     border: none;
     transition: all 0.2s ease;
@@ -286,20 +285,44 @@ table{
     }
 }
 
+.acceptPaymetnBox{
+    color: #111111;
+    margin-top: 1rem;
+    border: 1px solid green;
+    padding: 1rem;
+}
+
+.acceptLogo{
+    display: flex;
+    margin-top: 0.8rem;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.acceptLogo img{
+    width: auto;
+    height: 30px;
+    margin-right: 1rem;
+}
+
 @media (max-width : 800px){
     .main{
         flex-direction: column-reverse;
         padding: 1rem 5%;
     }
+
     .cart{
         width: 100%;
     }
+
     .address {
         width: 100%;
     }
+
     .paymentFormCon{
         width: 100%;
     }
+
     .navbar{
         padding: 1.5rem 5%;
     }
