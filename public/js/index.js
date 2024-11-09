@@ -29,11 +29,11 @@ sr.reveal('.offer-img', {delay : 100});
 sr.reveal('.container', {delay : 50});
 
 sr.reveal('.about-img', {});
-sr.reveal('.about-text', {delay : 100});
+sr.reveal('.about-text', {delay : 50});
 
 sr.reveal('.middle-text', {});
-sr.reveal('.row-btn,.shop-content', {delay : 100});
+sr.reveal('.row-btn,.shop-content', {delay : 50});
 
-sr.reveal('.contact,.review-content', {delay : 150});
+sr.reveal('.contact,.review-content', {delay : 50});
 // Function to update the cart count
 // Function to update the cart count
