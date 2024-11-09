@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cart</title>
     <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/radioBtnStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
 
@@ -26,24 +27,38 @@
             <h3><i class="fa-solid fa-utensils"></i>Select your table number</h3>
             <div class="paymentFormCon">
                 <p>Currently we are not accepting orders. Website is under mainteinance. we will be available soon. Thank you.</p>
-                <!-- <form action="/payment/initiate_payment" method="post">
-                    <label for="tableNo">Table No</label>
-                    <select name="tableNo" id="tableNo">
-                        <option selected>Select Table</option>
-                        <option value="1">Table 1</option>
-                        <option value="2">Table 2</option>
-                        <option value="3">Table 3</option>
-                        <option value="4">Table 4</option>
-                        <option value="5">Table 5</option>
-                    </select> -->
-                    <!-- <label for="paymentOp">Payment Option</label>
-                    <select name="paymentOp" id="paymentOp">
+                <form action="/payment/initiate_payment" method="post">
+                    <!-- <select name="paymentOp" id="paymentOp">
                         <option selected>Select Payment Mode</option>
                         <option value="online">Online</option>
                         <option value="onCash">On Cash</option>
                     </select> -->
-                    <!-- <button>Place Order</button> -->
+                    <!-- <div class="container">
+                        <div class="radio-tile-group">
+                            <% for(let i=1 ; i<6; i++) {%>
+                                <div class="input-container">
+                                    <input id="fly" type="radio" name="tableNo" value="<%= i %>" required>
+                                    <div class="radio-tile">
+                                        <img src="/css/img/tableLogo.png" alt="">
+                                        <label for="fly">Table <%= i %></label>
+                                    </div>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                        <button>Place Order</button> -->
                 </form>
+            </div>
+            <div class="acceptPaymetnBox">
+                <div class="accpetText">
+                    <p>We are now accepting</p>
+                </div>
+                <div class="acceptLogo">
+                    <img src="/css/img/phonepe.png" alt="">
+                    <img src="/css/img/gpay.png" alt="">
+                    <img src="/css/img/paytm.png" alt="">
+                    <img src="/css/img/mastercard.png" alt="">
+                </div>
             </div>
         </div>
         <div class="cart">

@@ -196,10 +196,12 @@ router.get("/rating_data", wrapAsync(async (req, res) => {
           }
         },
         {
-          $sort: { _id: 1 }
+          $sort: { _id: -1 }
+        },
+        {
+          $limit : 5
         }
       ]);
-      console.log(result);
       res.status(200).json({result})
       } catch (error) {
         console.error("Error calculating average ratings grouped with count:", error);

@@ -28,7 +28,7 @@ router.post("/initiate_payment", async (req, res) => {
     merchantTransactionId: merchantTransactionId,
     merchantUserId: merchantUserId,
     amount: amount,
-    redirectUrl: `https://restaurent-project.onrender.com/payment/redirect-url/${merchantTransactionId}`,
+    redirectUrl: `http://localhost:8080/payment/redirect-url/${merchantTransactionId}`,
     redirectMode: "REDIRECT",
     mobileNumber: "9999999999",
     paymentInstrument: {
@@ -86,6 +86,7 @@ router.get(
           "X-VERIFY" : xVerify
         },
       };
+      
       axios
         .request(options)
         .then(async function (response) {
@@ -94,13 +95,17 @@ router.get(
             if(p.calucalatedPrice != 10){
               let result = await calculateTotalPrice(req.session.userId, req.session.tableNo);
               let order = result.order
-              order.payment.transactionId = response.data.data.transactionId
+              order.payment.transactionId = response.data.data.transactionId;
+              console.log(order);
+              
               let orderSaveData = await order.save();
               await Customer.findOneAndUpdate({_id : req.session.userId}, { cart : [], $push: { orders: orderSaveData._id }})
               res.render("orderStatus.ejs", { transactionId : response.data.data.transactionId, code : "Payment Successfull" });
             }else{
               res.redirect("/menu")
             }
+          }else{
+            res.redirect("/menu")
           }
         })
         .catch(function (error) {
