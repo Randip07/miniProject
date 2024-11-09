@@ -33,6 +33,8 @@ body{
     display: flex;
     justify-content: space-between;
     background: var(--text-color);
+    position: sticky;
+    top: 0;
 }
 
 .logo h3{
@@ -57,6 +59,7 @@ body{
     padding: 1.5rem 14%;
     display: flex;
     justify-content: space-between;
+    overflow: scroll;
 }
 
 .cart{

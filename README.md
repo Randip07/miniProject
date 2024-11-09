@@ -56,7 +56,7 @@ The **Restaurant Management System** is a web application designed to streamline
 
 ### Clone the repository:
 ```bash
-git clone https://github.com/yourusername/restaurant-management-system.git
+git clone https://github.com/Randip07/miniProject.git
 cd restaurant-management-system
 ```
 
