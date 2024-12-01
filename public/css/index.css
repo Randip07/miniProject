@@ -149,7 +149,7 @@ section{
     justify-content: center;
 }
 .offer-img div{
-    background-image: url("../css/img/offer.png");
+    background-image: url("https://res.cloudinary.com/dm1lamejc/image/upload/v1733073392/offer_cjdqji.png");
     background-repeat: no-repeat;
     background-size: contain;
     width: 400px;
