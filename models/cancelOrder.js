@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const deliveredSchema = new mongoose.Schema({
+const cancelOrderSchema = new mongoose.Schema({
 
     orderId : {
         type: "ObjectId",
@@ -31,8 +31,7 @@ const deliveredSchema = new mongoose.Schema({
 
     orderStatus: {
         type: String,
-        enum: ["Delivered", "Cancelled"],
-        required : true,
+        default: "Cancelled",
     },
 
     date: {
@@ -42,6 +41,6 @@ const deliveredSchema = new mongoose.Schema({
 
 });
 
-const Deliver = mongoose.model("Deliver", deliveredSchema);
-module.exports = Deliver;
+const CancelOrder = mongoose.model("CancelOrder", cancelOrderSchema);
+module.exports = CancelOrder;
 

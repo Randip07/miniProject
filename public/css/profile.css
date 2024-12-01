@@ -30,15 +30,22 @@
   z-index: 1000;
   height: 10vh;
   padding-top: 1.2rem;
+  padding-left: 5%;
+  padding-right: 10%;
+  display: flex;
+}
+
+.nav-bar>p{
+  width: 20%;
 }
 
 .nav-list {
+  width: 100%;
   display: flex;
   padding:0;
   flex-direction: row;
   justify-content: space-between;
   padding-left: 10%;
-  padding-right: 10%;
 }
 
 .nav-list a {
@@ -54,7 +61,7 @@
 
 .account,
  .offer,
-  .search,
+  .menu,
    .cart,
    .home {
   font-weight: bold;
@@ -65,7 +72,7 @@
 .contact,
 .email,
 .offer,
-.search,
+.menu,
 .cart {
   cursor: pointer;
   transition: all 0.2s ease;
@@ -420,6 +427,7 @@ a{
 
   .nav-list{
     padding: 0;
+    margin-top: 1rem;
   }
 
   .nav-list li{
@@ -431,10 +439,16 @@ a{
     margin-left: 1rem;
   }
 
+  .nav-bar>p{
+    width: fit-content;
+  }
+
   .nav-bar{
     height: max-content;
     padding: 1rem;
     position :initial;
+    flex-direction: column;
+    /* align-items: center; */
   }
 
   .reorder-button {

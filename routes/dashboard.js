@@ -1,341 +1,84 @@
-if(process.env.NODE_ENV != "production"){
-  require('dotenv').config()
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
 }
 
 const express = require("express");
 const router = express.Router();
-const app = express();
-const Employee = require("../models/employee.js");
-const Menu = require("../models/menu.js");
-const Customer = require("../models/customers.js");
-const Table = require("../models/table.js");
-const Order = require("../models/orders.js");
-const Deliver = require("../models/delivered.js");
 const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const multer = require("multer");
 const { storage } = require("../cloudinaryConfig.js");
-const upload = multer( {storage} )
+const upload = multer({ storage });
 const { isAdminLoggedIn } = require("../middlewares.js");
-const Rating = require('../models/ratings.js');
+const { log10 } = require("chart.js/helpers");
+const dashboardController = require("../controller/dashboardController.js");
 
-// routes 
+// routes
 
 // Rendering Dashboard Page
-router.get(
-  "",
-  isAdminLoggedIn,
-  ((req, res) => {
-    res.render("dashboard.ejs");
-  })
-);
+router.get("", isAdminLoggedIn, dashboardController.showDashboard);
 
 // Rendering Dashboard/orders Page
-router.get(
-  "/orders",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let orderData = await Order.find().populate("customerId");
-    let deliveredData = await Deliver.find().populate("customerId").populate("orderId")
-    res.render("orders.ejs", { orders: orderData , deliveredOrders : deliveredData});
-  })
-);
+router.get("/orders", isAdminLoggedIn, wrapAsync(dashboardController.showOrders));
 
 // Rendering Dashboard/orders/view Page
-router.get(
-  "/orders/:id",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let orderData = await Order.findById(id)
-      .populate("items.itemId")
-      .populate("customerId");
-    res.render("viewOrders.ejs" , {data : orderData});
-  })
-);
-
+router.get("/orders/:id", isAdminLoggedIn, wrapAsync(dashboardController.viewOrderInfo));
 
 // Rendering Dashboard/orders/edit Page
-router.get(
-  "/orders/:id/edit",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let orderData = await Order.findById(id)
-      .populate("items.itemId")
-      .populate("customerId");
-    res.render("editOrders.ejs" , {data : orderData});
-  })
-);
-
+router.get("/orders/:id/edit", isAdminLoggedIn, wrapAsync(dashboardController.showOrderEditPage));
 
 // Updating order status in Database
-router.put("/orders/:id", wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let { paymentStatus , orderStatus : currOrderStatus  } = req.body
-    if(!paymentStatus){
-      await Order.findByIdAndUpdate(id, { orderStatus : currOrderStatus })
-    }
-    else{
-      await Order.findByIdAndUpdate(id, { "payment.status" : paymentStatus, orderStatus : currOrderStatus})
-    }
-
-    if(paymentStatus=="paid" && (currOrderStatus == "Delivered" || currOrderStatus == "Rejected")){
-      let orderData = await Order.findById(id);
-      let newDeliveredOrder = new Deliver({
-        orderId : id,
-        items : orderData.items,
-        totalAmount : orderData.amount.totalPay,
-        customerId : orderData.customerId,
-        orderStatus : currOrderStatus,
-        date : orderData.date
-      })
-      await Deliver.insertMany(newDeliveredOrder);
-    }
-
-    if(!paymentStatus && (currOrderStatus == "Delivered" || currOrderStatus == "Rejected")){
-      let orderData = await Order.findById(id);
-      let newDeliveredOrder = new Deliver({
-        orderId : id,
-        items : orderData.items,
-        totalAmount : orderData.amount.totalPay,
-        customerId : orderData.customerId,
-        orderStatus : currOrderStatus,
-        date : orderData.date
-      })
-      await Deliver.insertMany(newDeliveredOrder)
-    }
-    req.flash("success","Order has been updated successfully")
-    res.redirect("/dashboard/orders")
-  })
-);
-
+router.put("/orders/:id", wrapAsync(dashboardController.updateOrderData));
 
 // Rendering Dashboard/customers Page
-router.get(
-  "/customers",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let data = await Customer.find({}).populate("orders");
-    res.render("customer.ejs", { customers: data });
-  })
-);
+router.get("/customers", isAdminLoggedIn, wrapAsync(dashboardController.showCustomers));
 
 // Rendering Dashboard/employee Page
-router.get(
-  "/employee",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let data = await Employee.find({});
-    res.render("employees.ejs", { employees: data });
-  })
-);
+router.get("/employee", isAdminLoggedIn, wrapAsync(dashboardController.showEmployees));
 
 // New Employee adding Page
-router.get(
-  "/employee/new",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    res.render("newEmp.ejs");
-  })
-);
+router.get("/employee/new", isAdminLoggedIn, wrapAsync(dashboardController.showEmployeeAddPage));
 
 // New Employee Adding in Database
-router.post(
-  "/employee",
-  wrapAsync(async (req, res) => {
-    let employeeId = await Employee.countDocuments();
-    employeeId += 10100;
-
-    let newEmployee = new Employee({
-      employeeId: employeeId,
-      name: req.body.name,
-      age: req.body.age,
-      location: {
-        city: req.body.city,
-      },
-      contactNo: "91" + req.body.contactNo,
-      gender: req.body.gender,
-      salary: req.body.salary,
-      post: req.body.post,
-      joiningDate: new Date(),
-    });
-
-    await newEmployee.save();
-    req.flash("success", "Employees details added successfully")
-    res.redirect("/dashboard/employee");
-  })
-);
+router.post("/employee", wrapAsync(dashboardController.addNewEmployee));
 
 // Rendering Editing Employeee Details Page
-router.get(
-  "/employee/:id/edit",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let empData = await Employee.findById(id);
-    res.render("editEmp.ejs", { data: empData });
-  })
-);
+router.get("/employee/:id/edit", isAdminLoggedIn, wrapAsync(dashboardController.showEditEmployeePage));
 
 // Updating Employee Details in Database
-router.put(
-  "/employee/:id",
-  wrapAsync(async (req, res) => {
-    
-    let { id } = req.params;
-    // console.log(id);
-    let newData = {
-      name: req.body.name,
-      age: req.body.age,
-      location: {
-        city: req.body.city,
-      },
-      contactNo: "91" + req.body.contactNo,
-      gender: req.body.gender,
-      salary: req.body.salary,
-      post: req.body.post,
-    };
-    // console.log(newData);
-    let empData = await Employee.findByIdAndUpdate(id, newData);
-    // console.log(empData);
-    req.flash("success", "Employees details updated successfully")
-    res.redirect("/dashboard/employee");
-  })
-);
+router.put("/employee/:id", wrapAsync(dashboardController.updateEmployee));
 
 // Rending Dashboard/menu Page
-router.get(
-  "/menu",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let data = await Menu.find({}).populate("rating").sort({ availability: -1 , itemName : 1});
-
-
-    let category = [
-      "Appetizers",
-      "Main-Course",
-      "Beverages",
-      "Ice-Cream",
-      "Drinks",
-      "Add-On",
-    ];
-    res.render("dashMenu.ejs", { items: data, categories: category });
-  })
-);
+router.get("/menu", isAdminLoggedIn, wrapAsync(dashboardController.showMenuPage));
 
 // Rendering adding new item page
-router.get(
-  "/menu/new",
-  isAdminLoggedIn,
-  wrapAsync((req, res) => {
-    res.render("newItem.ejs");
-  })
-);
-
-// disocunt update
-router.post("/menu/discount",isAdminLoggedIn, async (req, res) => {
-  let result  = await Menu.updateMany({}, {discount : req.body.discount})
-  res.redirect("/dashboard/menu")
-})
-
-// Rendering Editing item details page
-router.get(
-  "/menu/:id/edit",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let itemData = await Menu.findById(id);
-    res.render("editItem.ejs", { data: itemData });
-  })
-);
-
-// discount page
-router.get("/menu/discount", isAdminLoggedIn, (req, res) => {
-  res.render("discount.ejs");
-})
-
-
-
-// Updating Item details in Database
-router.put(
-  "/menu/:id",
-  upload.single('newItem[itemImage]'),
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let newItem = await Menu.findByIdAndUpdate(id, {...req.body.newItem});
-    
-    if(typeof req.file !== "undefined"){
-      newItem.image = {
-        url : req.file.path,
-        filename : req.file.filename
-      }
-      await newItem.save();
-    }
-    req.flash("success", "Item updated successfully")
-    res.redirect("/dashboard/menu");
-  })
-);
+router.get("/menu/new", isAdminLoggedIn, wrapAsync(dashboardController.showNewItemAddPage));
 
 // Adding new item in Database
-router.post(
-  "/menu",
-  upload.single('newItem[itemImage]'),
-  wrapAsync(async (req, res) => {
-    let itemID = await Menu.countDocuments();
-    itemID += 11101;
-    
-    let newMenuItem = new Menu(req.body.newItem)
-    newMenuItem.itemID = itemID;
-  
-    if(typeof req.file !== "undefined"){
-      newMenuItem.image = {
-        url : req.file.path,
-        filename : req.file.filename
-      }
-    }
-    
-    let newItemResult = await newMenuItem.save();
-    let newRating = new Rating({
-      itemId : newItemResult._id
-    })
+router.post("/menu", upload.single("newItem[itemImage]"), wrapAsync(dashboardController.addNewItem));
 
-    let newRatingResult = await newRating.save();
-    newItemResult.rating = newRatingResult._id;
-    await newItemResult.save();
-    
-    req.flash("success", "Item has been added successfully.")
-    res.redirect("/dashboard/menu");
-  })
-);
+// Rendering Editing item details page
+router.get("/menu/:id/edit", isAdminLoggedIn, wrapAsync(dashboardController.showEditItemPage));
 
+// Updating Item details in Database
+router.put("/menu/:id", upload.single("newItem[itemImage]"), wrapAsync(dashboardController.updateItemDetails));
 
-router.delete("/menu/:id", async(req, res) => {
-  let { id } = req.params;
-  await Menu.findByIdAndDelete(id);
-  req.flash("success", "Item has been deleted successfully.")
-  res.redirect("/dashboard/menu")
-})
+// Delete Item from database
+router.delete("/menu/:id", wrapAsync(dashboardController.deleteItem));
 
-//Rendering Dashboard/table Pafe
-router.get(
-  "/table",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let data = await Table.find();
-    res.render("dashTable.ejs", { tables: data });
-  })
-);
+// discount page
+router.get("/menu/discount", isAdminLoggedIn, dashboardController.showDiscounEditPage);
 
-// Rendering Dashboard/table/view page
-router.get(
-  "/table/view/:id",
-  isAdminLoggedIn,
-  wrapAsync(async (req, res) => {
-    let { id } = req.params;
-    let data = await Table.findById(id);
-    res.render("dashTableView.ejs", { data });
-  })
-);
+// disocunt update
+router.post("/menu/discount", isAdminLoggedIn, dashboardController.updateDiscount);
+
+//Rendering Dashboard/Charges Page
+router.get("/charges", isAdminLoggedIn, wrapAsync(dashboardController.showChargesPage));
+
+// Rendering Dashboard/charges/Edit page
+router.get("/charges/edit", isAdminLoggedIn, wrapAsync(dashboardController.showChargesEditPage));
+
+// Upadating Charges
+router.post("/charges", isAdminLoggedIn, wrapAsync(dashboardController.updateCharges));
 
 module.exports = router;

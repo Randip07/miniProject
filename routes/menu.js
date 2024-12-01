@@ -5,28 +5,9 @@ const Customer = require("../models/customers.js");
 const ExpressError = require("../utils/ExpressError.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 
+const menuController = require("../controller/menuController.js");
 
 // Rendering client side menu page
-router.get("",
-  wrapAsync(async (req, res, next) => {
-    let data = await Menu.find({}).populate("rating").sort({itemName : 1});
-    let cartcount = await Customer.findOne({ _id : req.session.userId});
-    let count;
-    if (!cartcount) {
-      count = 0;
-    }else{
-      count = cartcount.cart.length;
-    }
-    let categories = [
-      "Appetizers",
-      "Main-Course",
-      "Beverages",
-      "Ice-Cream",
-      "Drinks",
-      "Add-On",
-    ];
-    res.render("menu.ejs", { items: data, count , categories});
-  })
-);
+router.get("", wrapAsync(menuController.showClientMenu));
 
-module.exports = router
+module.exports = router;

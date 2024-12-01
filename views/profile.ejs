@@ -28,11 +28,11 @@
 
         <section class="login-con">
             <div class="nav-bar"> 
+                    <p class="account">My Account</p>
                     <ul class="nav-list" >
-                        <li class="account"><a href="#">My Account</a></li>
                         <li class="home"><a href="/home"><i class='bx bxs-home'></i>Home</a></li>
-                        <!-- <li class="offer"><a href="#"><i class='bx bxs-offer'></i>Offer</a></li>
-                        <li class="search"><a href="/menu"><i class='bx bx-search-alt-2'></i>Search</a></li> -->
+                        <!-- <li class="offer"><a href="#"><i class='bx bxs-offer'></i>Offer</a></li> -->
+                        <li class="menu"><a href="/menu"><i class='bx bx-food-menu'></i></i>Menu</a></li>
                         <li class="cart"><a href="/cart"><i class='bx bxs-cart'></i> Cart</a></li>
                     </ul>
             </div>
@@ -93,33 +93,49 @@
                                                         </div>
                                                     </div>
                                                     <div class="total-paid">Total Paid: ₹<%= order.amount.totalPay.toLocaleString("en-IN") %>.00/- </div>
+                                                    <div class="order-details">ORDER Date : <%= order.date.toString().split(" ").slice(0,4).join(" ") + " " + order.date.toString().split(" ").slice(4,5).join(" ").split(":").slice(0,2).join(":") %></div>
+                                                    <div class="order-details">ORDER ID #<%= order._id %></div>
+                                                    <div class="order-details">TRANSACTION ID : <%= order.payment.transactionId %></div>
+                                                    <!-- <div class="restaurant-address">Guwahati , Assam</div> -->
                                                     <div class="delivered">
                                                         <div class="delivered-status"><%= order.orderStatus %></div>
                                                         <div class="delivered-icon">
                                                             <% if(order.orderStatus == "Delivered") {%>
                                                                 <i class="fa-regular fa-circle-check" style="color: green;"></i>
+                                                            <% }else if(order.orderStatus == "Cancelled"){ %>
+                                                                <i class="fa-regular fa-circle-xmark"style="color: red;"></i>
                                                             <% }else{ %>
                                                                 <i class="fa-solid fa-hourglass-start" style="color: red;"></i>
                                                             <% } %>
                                                         </div>
                                                     </div> 
-                                                    <div class="order-details">ORDER Date : <%= order.date.toString().split(" ").slice(0,5).join(" ") %></div>
-                                                    <div class="order-details">ORDER ID #<%= order._id %></div>
-                                                    <div class="order-details">TRANSACTION ID : <%= order.payment.transactionId %></div>
-                                                    <div class="restaurant-address">Guwahati , Assam</div>
+                                                    <% if(order.orderStatus == "Cancelled"){ %>
+                                                        <p>*Refunds will be initiated within 2-3 business days.</p>
+                                                    <% } else if(order.orderStatus == "On Queue" || order.orderStatus == "Pending"){%>
+                                                        <p>*Orders can be canceled before cooking begins.</p>
+                                                    <% } else if(order.orderStatus == "Cooking"){%>
+                                                        <p>*Orders can't be canceled once cooking has begun.</p>
+                                                    <% } %>
+                                                        
                                                 </div>
-                                              
+
                                                 <div class="btn">
                                                     <div class="order-summary">
-                                                        <div class="order-rating">
-                                                            <% if(order.rating.status == "done"){ %>
-                                                            <h3>Your rating</h3>
-                                                            <p class="starability-result" data-rating="<%= order.rating.rating %>"></p>
-                                                            <% } %>
-                                                        </div>
+                                                        <% if(order.orderStatus == "On Queue" || order.orderStatus == "Pending" ){ %>
+                                                            <form action="/order/cancel/<%= order._id %>?_method=DELETE" method="post">
+                                                                <button class="reorder-button">Cancel Order</button>
+                                                            </form>
+                                                        <% } else {%>
+                                                            <div class="order-rating">
+                                                                <% if(order.rating.status == "done" && order.orderStatus != "Cancelled"){ %>
+                                                                <h3>Your rating</h3>
+                                                                <p class="starability-result" data-rating="<%= order.rating.rating %>"></p>
+                                                                <% }%>
+                                                            </div>
+                                                        <% } %>
                                                     </div>   
                                                     <div>
-                                                        <% if(order.rating.status != "done"){ %>
+                                                        <% if(order.rating.status != "done" && order.orderStatus == "Delivered"){ %>
                                                         <a href="/profile/ratings/<%= order._id %>" class="reorder-button">Give Rating</a>
                                                         <% } %>
                                                     </div>

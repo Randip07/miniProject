@@ -35,7 +35,7 @@
                         <a href="/dashboard/customers"><li class="customer"><i class='bx bxs-user' ></i>Customers</li></a>
                         <a href="/dashboard/employee"><li class="emoloyee"><i class='bx bxs-user' ></i>Employees</li></a>
                         <a href="/dashboard/menu"><li class="menu active"><i class='bx bxs-food-menu' ></i>Menu</li></a>
-                        <a href="/dashboard/table"><li class="table"><i class='bx bxs-card' ></i>Table</li></a>
+                        <a href="/dashboard/charges"><li class="table"><i class='bx bxs-card' ></i>Charges</li></a>
                     </ul>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                   </div>
                   <div class="emp-add">
                     <div class="showDiscount">
-                        <p>Current discount <%= items[0].discount %><i class='bx bxs-offer'></i></p>
+                        <p>Current discount <%= discount %><i class='bx bxs-offer'></i></p>
                     </div>
                     <form action="/dashboard/menu/discount">
                         <button><i class='bx bxs-discount'></i>Give discount</button>
@@ -76,7 +76,7 @@
                             <th>Image</th>
                             <th>Item Name</th>
                             <th>Price</th>
-                            <th>Discount</th>
+                            <!-- <th>Discount</th> -->
                             <th>Rating</th>
                             <th>Veg/Non-Veg</th>
                             <th>Availability</th>
@@ -89,7 +89,7 @@
                                     <td><img src="<%= item.image.url %>" alt=""></td>
                                     <td><%= item.itemName %></td>
                                     <td>₹<%= item.price %>.00/-</td>
-                                    <td><%= item.discount %>%</td>
+                                    <!-- <td><%= item.discount %>%</td> -->
                                     <td>
                                         <%= `${((item.rating.rating.reduce((partialSum, a) => partialSum + a, 0)) / item.rating.rating.length).toString().slice(0, 3)} (${item.rating.rating.length})` %>
                                     </td>

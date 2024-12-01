@@ -35,9 +35,6 @@ body {
   background: var(--second-color);
 }
 
-.table{
-  display: none !important;
-}
 
 .main-con {
   display: flex;
@@ -395,4 +392,12 @@ canvas{
 table tr td img{
   width: 70px;
   border-radius: 0.7rem;
+}
+
+.chargesTable{
+  margin-top: 1rem;
+}
+
+.chargesTable tr td {
+  border: 2px solid var(--second-color);
 }
