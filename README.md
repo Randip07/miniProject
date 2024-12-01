@@ -20,8 +20,6 @@ The **Restaurant Management System** is a web application designed to streamline
 - **User Authentication**: Secure login/signup system with JWT authentication.
 - **Menu Management**: Add, edit, and remove items from the menu.
 - **Order Management**: Place, update, and track orders in real-time.
-- **Table Reservation**: Customers can reserve tables online.
-- **Inventory Management**: Keep track of available stock and ingredients.
 - **Staff Management**: Manage roles and tasks of restaurant staff.
 - **Payment Integration**: Support for online payments using payment gateways.
 - **Analytics Dashboard**: Visualize restaurant performance and sales through charts and reports.
@@ -30,8 +28,7 @@ The **Restaurant Management System** is a web application designed to streamline
 ## Technology Stack
 
 **Frontend**: 
-- React.js (with Hooks and Context API)
-- Redux (for state management)
+- React.js
 - CSS3 and Bootstrap (for styling)
   
 **Backend**: 
@@ -41,10 +38,8 @@ The **Restaurant Management System** is a web application designed to streamline
 - Mongoose (for MongoDB object modeling)
   
 **Other Tools**:
-- JWT (for user authentication)
-- Bcrypt (for password hashing)
-- Stripe/PayPal API (for payment integration)
-- Socket.IO (for real-time order tracking)
+- Passport (for user authentication)
+- PhonePe API (for payment integration)
 - Chart.js or D3.js (for analytics)
 
 ## Installation
@@ -52,7 +47,7 @@ The **Restaurant Management System** is a web application designed to streamline
 ### Prerequisites
 - Node.js (v14 or higher)
 - MongoDB (v4 or higher)
-- NPM or Yarn
+- NPM
 
 ### Clone the repository:
 ```bash
@@ -86,7 +81,7 @@ MONGO_URI=your_mongodb_uri
 # JWT Secret Key
 JWT_SECRET=your_jwt_secret
 
-# Stripe/PayPal API Keys
+# PhonePE API Keys
 PAYMENT_SECRET_KEY=your_payment_gateway_key
 
 # Server Port
@@ -147,16 +142,6 @@ Include screenshots here showing the main features of the app, such as the dashb
 - **GET** `/api/orders` - Get all orders (Admin only)
 - **POST** `/api/orders` - Place a new order
 - **PUT** `/api/orders/:id` - Update order status (Admin/Staff only)
-
-### Table Reservation
-- **POST** `/api/reservations` - Reserve a table
-- **GET** `/api/reservations` - Get all reservations (Admin only)
-
-### Inventory Management
-- **GET** `/api/inventory` - Get all inventory items
-- **POST** `/api/inventory` - Add a new inventory item (Admin only)
-- **PUT** `/api/inventory/:id` - Update inventory (Admin only)
-- **DELETE** `/api/inventory/:id` - Remove an inventory item (Admin only)
 
 ### Payment
 - **POST** `/api/payment` - Process a payment via Stripe/PayPal
