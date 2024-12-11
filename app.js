@@ -87,7 +87,7 @@ app.listen(port, () => {
 
 main()
   .then((res) => {
-    console.log("connection successful");
+    console.log("Database connection successful");
   })
   .catch((err) => console.log(err));
 

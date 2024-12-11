@@ -8,7 +8,7 @@ const orderController = require("../controller/orderController.js");
 // orderStatus page
 
 // ordering item
-router.post("/:id", wrapAsync(orderController.orderingItem));
+router.post("", wrapAsync(orderController.orderingItem));
 
 // Order Cancel
 router.delete("/cancel/:id", wrapAsync(orderController.orderCancel));

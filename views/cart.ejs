@@ -27,7 +27,12 @@
             <h3><i class="fa-solid fa-utensils"></i>Select your table number</h3>
             <div class="paymentFormCon">
                 <!-- <p>Currently we are not accepting orders. Website is under mainteinance. we will be available soon. Thank you.</p> -->
-                <form action="/payment/initiate_payment" method="post">
+                <!-- <form action="/payment/initiate_payment" method="post"> -->
+                <form action="/order" method="post">
+                    <select name="paymentOp" id="">
+                        <option value="onCash" selected>Cash</option>
+                        <option value="online">Online</option>
+                    </select>
                     <div class="container">
                         <div class="radio-tile-group">
                             <% for(let i=1 ; i<6; i++) {%>
@@ -46,7 +51,8 @@
             </div>
             <div class="acceptPaymetnBox">
                 <div class="accpetText">
-                    <p>We are now accepting</p>
+                    <!-- <p>We are now accepting</p> -->
+                    <p>Online payments are temporarily unavailable</p>
                 </div>
                 <div class="acceptLogo">
                     <img src="/css/img/phonepe.png" alt="">

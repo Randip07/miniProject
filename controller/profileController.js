@@ -3,12 +3,14 @@ const Order = require("../models/orders.js");
 const Rating = require("../models/ratings.js");
 
 module.exports.showProfilePage = async (req, res) => {
+  
   let data = await Customer.findById(req.session.userId)
     .populate("orders")
     .populate({
       path: "orders", // Populates items within each order
       populate: { path: "items.itemId" },
     });
+
   data.orders.sort((a, b) => new Date(b.date) - new Date(a.date));
   res.render("profile.ejs", { cusData: data });
 };

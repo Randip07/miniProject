@@ -23,8 +23,8 @@ module.exports.initiatePayment = async (req, res) => {
     merchantTransactionId: merchantTransactionId,
     merchantUserId: merchantUserId,
     amount: amount,
-    // redirectUrl: `http://localhost:8080/payment/redirect-url/${merchantTransactionId}`,
-    redirectUrl: `https://restaurent-project.onrender.com/payment/redirect-url/${merchantTransactionId}`,
+    redirectUrl: `http://localhost:8080/payment/redirect-url/${merchantTransactionId}`,
+    // redirectUrl: `https://restaurent-project.onrender.com/payment/redirect-url/${merchantTransactionId}`,
     redirectMode: "REDIRECT",
     mobileNumber: "9999999999",
     paymentInstrument: {

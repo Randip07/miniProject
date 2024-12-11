@@ -95,7 +95,12 @@
                                                     <div class="total-paid">Total Paid: ₹<%= order.amount.totalPay.toLocaleString("en-IN") %>.00/- </div>
                                                     <div class="order-details">ORDER Date : <%= order.date.toString().split(" ").slice(0,4).join(" ") + " " + order.date.toString().split(" ").slice(4,5).join(" ").split(":").slice(0,2).join(":") %></div>
                                                     <div class="order-details">ORDER ID #<%= order._id %></div>
-                                                    <div class="order-details">TRANSACTION ID : <%= order.payment.transactionId %></div>
+                                                    <div class="order-details">TRANSACTION ID : <% if(order.payment.transactionId){%>
+                                                        <%= order.payment.transactionId %> 
+                                                        <% }else{ %>
+                                                        unavailable
+                                                        <% } %>
+                                                    </div>
                                                     <!-- <div class="restaurant-address">Guwahati , Assam</div> -->
                                                     <div class="delivered">
                                                         <div class="delivered-status"><%= order.orderStatus %></div>

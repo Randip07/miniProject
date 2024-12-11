@@ -55,3 +55,15 @@
     grid-template-columns: repeat(5, minmax(170px, auto));
     gap: 2rem;
 }
+
+#editChargesBtn{
+    background-color: #ff9f0d;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: #111111;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    &:hover{
+        transform: scale(1.05);
+    }
+}

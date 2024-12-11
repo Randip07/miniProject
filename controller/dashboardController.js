@@ -241,5 +241,6 @@ module.exports.showDiscounEditPage = (req, res) => {
 module.exports.updateDiscount = async (req, res) => {
   //  let result = await Menu.updateMany({}, { discount: req.body.discount });
   await Charge.updateMany({discount : req.body.discount })
-   res.redirect("/dashboard/menu");
+  req.flash("success", "Discount has been updated successfully.");
+  res.redirect("/dashboard/menu");
 };
